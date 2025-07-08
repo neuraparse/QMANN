@@ -1,6 +1,19 @@
 # Contributing to QMNN
 
+⚠️ **IMPORTANT**: This project is patent-protected. Please read our licensing terms before contributing.
+
 We welcome contributions to the Quantum Memory-Augmented Neural Networks (QMNN) project! This document provides guidelines for contributing to the project.
+
+## 🔒 Patent and Licensing Notice
+
+Before contributing, please understand:
+
+- **Patent Protection**: Core technologies are patent-protected by Neura Parse
+- **Contributor Agreement**: All contributions become subject to our patent rights
+- **Commercial Use**: Requires separate commercial licensing
+- **Academic Use**: Permitted under academic license terms
+
+By contributing, you agree that your contributions may be covered by Neura Parse patents and licensing terms.
 
 ## Table of Contents
 

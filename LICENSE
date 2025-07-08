@@ -1,16 +1,60 @@
-MIT License
+NEURA PARSE DUAL LICENSE
 
 Copyright (c) 2025 Neura Parse and contributors
+All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+IMPORTANT: This software is subject to dual licensing terms.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+================================================================================
+ACADEMIC AND RESEARCH LICENSE (Non-Commercial Use)
+================================================================================
+
+Permission is hereby granted, free of charge, to any person or organization
+obtaining a copy of this software and associated documentation files (the
+"Software"), to use, copy, modify, and distribute the Software for
+NON-COMMERCIAL purposes only, subject to the following conditions:
+
+1. PERMITTED USES:
+   - Academic research and education
+   - Non-commercial scientific research
+   - Personal learning and experimentation
+   - Open-source contributions back to this project
+
+2. PROHIBITED USES:
+   - Commercial use or deployment
+   - Integration into commercial products or services
+   - Patent applications based on this work without written permission
+   - Military or defense applications
+   - Cryptocurrency or blockchain applications
+   - Any use that generates revenue or commercial value
+
+3. ATTRIBUTION REQUIREMENTS:
+   - This copyright notice and license must be included in all copies
+   - Any publications must cite the original Neura Parse research
+   - Derivative works must clearly acknowledge Neura Parse as the source
+
+4. PATENT PROTECTION:
+   - Users may not file patents based on concepts, algorithms, or methods
+     contained in this software without explicit written permission from Neura Parse
+   - Any improvements or modifications remain subject to Neura Parse patent rights
+
+================================================================================
+COMMERCIAL LICENSE
+================================================================================
+
+For commercial use, including but not limited to:
+- Integration into commercial products or services
+- Commercial deployment or hosting
+- Revenue-generating applications
+- Patent licensing
+- Military or defense applications
+
+A separate commercial license must be obtained from Neura Parse.
+Contact: info@neuraparse.com
+
+================================================================================
+DISCLAIMER
+================================================================================
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -19,3 +63,23 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+================================================================================
+PATENT NOTICE
+================================================================================
+
+This software may be covered by pending or issued patents owned by Neura Parse.
+Use of this software does not grant any patent rights. Patent licensing is
+available separately for commercial applications.
+
+For patent licensing inquiries: info@neuraparse.com
+
+================================================================================
+CONTACT INFORMATION
+================================================================================
+
+Neura Parse
+Email: info@neuraparse.com
+Licensing: info@neuraparse.com
+Patents: info@neuraparse.com
+Website: https://neuraparse.com

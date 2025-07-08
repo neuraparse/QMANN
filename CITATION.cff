@@ -6,7 +6,7 @@ version: 1.0.0
 date-released: 2025-07-08
 url: "https://github.com/neuraparse/QMANN"
 repository-code: "https://github.com/neuraparse/QMANN"
-license: MIT
+license: "Neura Parse Dual License (Academic/Commercial)"
 doi: 10.5281/zenodo.XXXXXXX
 
 authors:

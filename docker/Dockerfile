@@ -164,10 +164,14 @@ FROM production as final
 LABEL org.opencontainers.image.title="QMNN: Quantum Memory-Augmented Neural Networks"
 LABEL org.opencontainers.image.description="A quantum computing framework for memory-augmented neural networks"
 LABEL org.opencontainers.image.version="1.0.0"
-LABEL org.opencontainers.image.authors="Bayram Eker <bayram.eker@example.com>"
-LABEL org.opencontainers.image.url="https://github.com/bayrameker/QMANN"
-LABEL org.opencontainers.image.source="https://github.com/bayrameker/QMANN"
-LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.authors="Neura Parse <info@neuraparse.com>"
+LABEL org.opencontainers.image.vendor="Neura Parse"
+LABEL org.opencontainers.image.url="https://neuraparse.com"
+LABEL org.opencontainers.image.source="https://github.com/neuraparse/QMANN"
+LABEL org.opencontainers.image.licenses="Neura Parse Dual License"
+LABEL patent.protected="true"
+LABEL commercial.license.required="true"
+LABEL licensing.contact="info@neuraparse.com"
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \

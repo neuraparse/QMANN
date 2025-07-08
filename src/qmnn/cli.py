@@ -273,6 +273,12 @@ def demo_command(args):
 
 def main():
     """Main CLI entry point."""
+    # Display license warning
+    console.print("\n[bold red]⚠️  PATENT PROTECTED SOFTWARE ⚠️[/bold red]")
+    console.print("[yellow]This software is protected by patents. Commercial use requires licensing.[/yellow]")
+    console.print("[yellow]Academic use only without commercial license. See LICENSE and PATENTS.md[/yellow]")
+    console.print("[yellow]Contact: info@neuraparse.com[/yellow]\n")
+
     parser = argparse.ArgumentParser(
         description="QMNN: Quantum Memory-Augmented Neural Networks",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -283,6 +289,8 @@ Examples:
   qmnn benchmark --benchmarks comparison memory --output results/
   qmnn demo --show-circuit
   qmnn info
+
+IMPORTANT: This software is patent-protected. See USAGE_WARNING.md
         """
     )
     

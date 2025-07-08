@@ -1,11 +1,15 @@
 # QMANN: Quantum Memory-Augmented Neural Networks (2025)
 
+> ⚠️ **IMPORTANT**: This software is patent-protected. Read [USAGE_WARNING.md](USAGE_WARNING.md) before use.
+
 [![arXiv](https://img.shields.io/badge/arXiv-2025.XXXXX-b31b1b.svg)](https://arxiv.org/abs/2025.XXXXX)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Dual](https://img.shields.io/badge/License-Dual%20(Academic%2FCommercial)-red.svg)](LICENSE)
 [![Paper License: CC BY 4.0](https://img.shields.io/badge/Paper%20License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Quantum Advantage](https://img.shields.io/badge/Quantum-Advantage%20Verified-green.svg)](#quantum-advantage)
 [![Fault Tolerant](https://img.shields.io/badge/Fault-Tolerant-blue.svg)](#error-correction)
+[![Patent Protected](https://img.shields.io/badge/Patent-Protected-red.svg)](PATENTS.md)
+[![Commercial License Required](https://img.shields.io/badge/Commercial-License%20Required-orange.svg)](LICENSE)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![GitHub](https://img.shields.io/badge/GitHub-neuraparse-blue.svg)](https://github.com/neuraparse)
 [![Website](https://img.shields.io/badge/Website-neuraparse.com-green.svg)](https://neuraparse.com)
@@ -159,11 +163,33 @@ If you use this work, please cite:
 }
 ```
 
-## 📄 License
+## 📄 License & Patents
 
-- **Code**: MIT License
-- **Paper**: CC BY 4.0
-- **Data**: CC0 1.0
+⚠️ **IMPORTANT LICENSING NOTICE** ⚠️
+
+This project uses **Dual Licensing** with patent protection:
+
+### 🎓 Academic License (FREE)
+- **Non-commercial research and education only**
+- No patent filing rights
+- Must cite Neura Parse in publications
+- See [LICENSE](LICENSE) for full terms
+
+### 💼 Commercial License (PAID)
+- Required for any commercial use
+- Includes patent licensing
+- Contact: info@neuraparse.com
+
+### 📋 Additional Licenses
+- **Paper**: CC BY 4.0 (with patent reservations)
+- **Data**: CC0 1.0 (where applicable)
+
+### 🔒 Patent Protection
+- Core technologies are patent-protected
+- See [PATENTS.md](PATENTS.md) for details
+- Patent licensing: info@neuraparse.com
+
+**⚠️ WARNING**: Commercial use without proper licensing may result in patent infringement claims.
 
 ## 🤝 Contributing
 
