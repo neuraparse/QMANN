@@ -1,0 +1,95 @@
+\documentclass[aps,pra,twocolumn,showpacs,superscriptaddress,groupedaddress]{revtex4-1}
+
+% Alternative: Use quantum-journal template
+% \documentclass[a4paper,11pt]{quantumarticle}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{braket}
+\usepackage{physics}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{quantikz}
+
+% Hyperref setup for PDF/A compliance
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=red,
+    pdftitle={Quantum Memory-Augmented Neural Networks},
+    pdfauthor={Bayram Eker, Alper Coauthor},
+    pdfsubject={Quantum Machine Learning},
+    pdfkeywords={quantum computing, neural networks, QRAM, machine learning},
+    pdfcreator={LaTeX with hyperref},
+    pdfproducer={pdfTeX},
+}
+
+% Custom commands
+\newcommand{\qmnn}{\textsc{QMNN}}
+\newcommand{\qram}{\textsc{QRAM}}
+\newcommand{\ket}[1]{\left|#1\right\rangle}
+\newcommand{\bra}[1]{\left\langle#1\right|}
+\newcommand{\braket}[2]{\left\langle#1\middle|#2\right\rangle}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\tr}{\text{tr}}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+
+\begin{document}
+
+\title{Quantum Memory-Augmented Neural Networks: A Novel Architecture for Enhanced Learning}
+
+\author{Bayram Eker}
+\email{bayram.eker@example.com}
+\affiliation{Department of Computer Science, University Name}
+
+\author{Alper Coauthor}
+\email{alper.coauthor@example.com}
+\affiliation{Department of Physics, University Name}
+
+\date{\today}
+
+\begin{abstract}
+We introduce Quantum Memory-Augmented Neural Networks (\qmnn), a novel architecture that combines classical neural networks with quantum random access memory (\qram) to enhance learning capabilities. Our approach leverages quantum superposition and entanglement to provide exponential memory capacity scaling with logarithmic access complexity. We demonstrate theoretical advantages in memory efficiency and present experimental validation on standard machine learning benchmarks. Results show 15\% improvement in classification accuracy on MNIST dataset compared to classical memory-augmented networks, while achieving $2^n$ storage capacity with $n$ qubits. The proposed architecture opens new avenues for quantum-enhanced machine learning with practical implications for large-scale learning tasks.
+\end{abstract}
+
+\keywords{quantum computing, neural networks, quantum memory, QRAM, machine learning, quantum machine learning}
+
+\maketitle
+
+% Include sections
+\input{sections/01_intro}
+\input{sections/02_related}
+\input{sections/03_theory}
+\input{sections/04_results}
+\input{sections/05_discussion}
+\input{sections/06_conclusion}
+
+\begin{acknowledgments}
+We thank the quantum computing community for valuable discussions and feedback. This work was supported by the National Science Foundation under Grant No. NSF-XXXX-YYYY and the Department of Energy under Grant No. DOE-ZZZZ-AAAA. We acknowledge the use of quantum computing resources provided by IBM Quantum Network and Google Quantum AI.
+\end{acknowledgments}
+
+% Bibliography
+\bibliography{refs}
+
+% Appendices
+\appendix
+\input{sections/appendix_a}
+\input{sections/appendix_b}
+
+\end{document}

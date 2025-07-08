@@ -1,0 +1,179 @@
+version: '3.8'
+
+services:
+  # Development environment
+  qmnn-dev:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: development
+    container_name: qmnn-dev
+    ports:
+      - "8888:8888"  # Jupyter Lab
+      - "5000:5000"  # MLflow
+      - "6006:6006"  # TensorBoard
+    volumes:
+      - .:/app
+      - qmnn-data:/app/data
+      - qmnn-results:/app/results
+      - qmnn-models:/app/models
+    environment:
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTHONPATH=/app/src
+      - MLFLOW_TRACKING_URI=http://localhost:5000
+    labels:
+      - "org.opencontainers.image.title=QMNN Development"
+      - "org.opencontainers.image.description=Quantum Memory-Augmented Neural Networks Development Environment"
+      - "org.opencontainers.image.vendor=Neura Parse"
+      - "org.opencontainers.image.version=1.0.0"
+      - "org.opencontainers.image.url=https://neuraparse.com"
+      - "org.opencontainers.image.source=https://github.com/neuraparse/QMANN"
+    networks:
+      - qmnn-network
+    stdin_open: true
+    tty: true
+    command: >
+      bash -c "
+        mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:///mlflow.db &
+        tensorboard --logdir=./logs --host=0.0.0.0 --port=6006 &
+        jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+      "
+
+  # Production environment
+  qmnn-prod:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: production
+    container_name: qmnn-prod
+    volumes:
+      - qmnn-data:/app/data
+      - qmnn-results:/app/results
+      - qmnn-models:/app/models
+    environment:
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTHONPATH=/app/src
+    networks:
+      - qmnn-network
+    profiles:
+      - production
+
+  # Benchmark runner
+  qmnn-benchmark:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: benchmark
+    container_name: qmnn-benchmark
+    volumes:
+      - qmnn-data:/app/data
+      - qmnn-results:/app/results
+      - ./benchmarks:/app/benchmarks
+    environment:
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTHONPATH=/app/src
+    networks:
+      - qmnn-network
+    profiles:
+      - benchmark
+
+  # Paper compilation
+  qmnn-paper:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: paper
+    container_name: qmnn-paper
+    volumes:
+      - ./paper:/paper
+      - qmnn-paper-output:/paper/out
+    networks:
+      - qmnn-network
+    profiles:
+      - paper
+
+  # MLflow tracking server
+  mlflow:
+    image: python:3.11-slim
+    container_name: qmnn-mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      - qmnn-mlflow:/mlflow
+    environment:
+      - MLFLOW_BACKEND_STORE_URI=sqlite:///mlflow/mlflow.db
+      - MLFLOW_DEFAULT_ARTIFACT_ROOT=/mlflow/artifacts
+    networks:
+      - qmnn-network
+    command: >
+      bash -c "
+        pip install mlflow[extras] &&
+        mlflow server 
+          --backend-store-uri sqlite:///mlflow/mlflow.db 
+          --default-artifact-root /mlflow/artifacts 
+          --host 0.0.0.0 
+          --port 5000
+      "
+    profiles:
+      - mlflow
+
+  # Redis for caching (optional)
+  redis:
+    image: redis:7-alpine
+    container_name: qmnn-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - qmnn-redis:/data
+    networks:
+      - qmnn-network
+    profiles:
+      - cache
+
+  # PostgreSQL for metadata (optional)
+  postgres:
+    image: postgres:15-alpine
+    container_name: qmnn-postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - qmnn-postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=qmnn
+      - POSTGRES_USER=qmnn
+      - POSTGRES_PASSWORD=qmnn_password
+    networks:
+      - qmnn-network
+    profiles:
+      - database
+
+  # Quantum simulator service (if using remote simulators)
+  qsim:
+    image: qiskit/qasm-simulator
+    container_name: qmnn-qsim
+    ports:
+      - "8080:8080"
+    networks:
+      - qmnn-network
+    profiles:
+      - quantum
+
+networks:
+  qmnn-network:
+    driver: bridge
+
+volumes:
+  qmnn-data:
+    driver: local
+  qmnn-results:
+    driver: local
+  qmnn-models:
+    driver: local
+  qmnn-paper-output:
+    driver: local
+  qmnn-mlflow:
+    driver: local
+  qmnn-redis:
+    driver: local
+  qmnn-postgres:
+    driver: local

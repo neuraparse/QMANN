@@ -1,0 +1,74 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "QMNN: Quantum Memory-Augmented Neural Networks"
+version: 1.0.0
+date-released: 2025-07-08
+url: "https://github.com/neuraparse/QMANN"
+repository-code: "https://github.com/neuraparse/QMANN"
+license: MIT
+doi: 10.5281/zenodo.XXXXXXX
+
+authors:
+  - family-names: "Eker"
+    given-names: "Bayram"
+    orcid: "https://orcid.org/0000-0002-XXXX-XXXX"
+    email: "info@neuraparse.com"
+    affiliation: "Neura Parse Research"
+  - family-names: "Research Team"
+    given-names: "Neura Parse"
+    email: "info@neuraparse.com"
+    affiliation: "Neura Parse"
+
+abstract: >-
+  QMNN introduces Quantum Memory-Augmented Neural Networks, a novel architecture 
+  that combines classical neural networks with quantum random access memory (QRAM) 
+  to enhance learning capabilities. The framework leverages quantum superposition 
+  and entanglement to provide exponential memory capacity scaling with logarithmic 
+  access complexity, demonstrating significant improvements over classical 
+  memory-augmented approaches.
+
+keywords:
+  - quantum computing
+  - neural networks
+  - quantum memory
+  - QRAM
+  - machine learning
+  - quantum machine learning
+  - hybrid quantum-classical systems
+
+preferred-citation:
+  type: article
+  title: "Quantum Memory-Augmented Neural Networks: A Novel Architecture for Enhanced Learning"
+  authors:
+    - family-names: "Eker"
+      given-names: "Bayram"
+      orcid: "https://orcid.org/0000-0002-XXXX-XXXX"
+      affiliation: "Neura Parse Research"
+    - family-names: "Research Team"
+      given-names: "Neura Parse"
+      affiliation: "Neura Parse"
+  journal: "arXiv preprint"
+  year: 2025
+  url: "https://arxiv.org/abs/2025.XXXXX"
+  doi: "10.48550/arXiv.2025.XXXXX"
+
+references:
+  - type: software
+    title: "Qiskit: An Open-source Framework for Quantum Computing"
+    authors:
+      - name: "Qiskit Contributors"
+    url: "https://qiskit.org/"
+    version: "0.45.0"
+  - type: software
+    title: "PennyLane: A cross-platform Python library for differentiable programming of quantum computers"
+    authors:
+      - name: "PennyLane Contributors"
+    url: "https://pennylane.ai/"
+    version: "0.32.0"
+  - type: software
+    title: "PyTorch: An Imperative Style, High-Performance Deep Learning Library"
+    authors:
+      - name: "PyTorch Contributors"
+    url: "https://pytorch.org/"
+    version: "1.12.0"
