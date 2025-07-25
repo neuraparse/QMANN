@@ -40,7 +40,10 @@ dependencies = [
     "qiskit>=1.0.0",  # Qiskit 1.0+ with stable API
     "qiskit-aer>=0.13.0",  # GPU-accelerated quantum simulation
     "qiskit-ibm-runtime>=0.20.0",  # IBM Quantum cloud access
+    "qiskit-ibm-provider>=0.8.0",  # IBM Quantum provider
     "pennylane>=0.35.0",  # Latest PennyLane with fault-tolerant features
+    "cirq>=1.3.0",  # Google Quantum AI interface
+    "cirq-google>=1.3.0",  # Google Quantum hardware access
 
     # Scientific Computing
     "scipy>=1.11.0",
@@ -99,7 +102,24 @@ gpu = [
     "cupy-cuda12x>=11.0.0",
     "qiskit-aer-gpu>=0.12.0",
 ]
-all = ["qmnn[dev,docs,gpu]"]
+hardware = [
+    # Real quantum hardware access (optional - requires API credentials)
+    "qiskit-ibm-provider>=0.8.0",
+    "cirq>=1.3.0",
+    "cirq-google>=1.3.0",
+    "pennylane-qiskit>=0.35.0",
+    "amazon-braket-sdk>=1.70.0",  # AWS Braket
+    "azure-quantum>=0.28.0",  # Azure Quantum
+]
+experimental = [
+    # Cutting-edge quantum features
+    "qiskit-nature>=0.7.0",  # Quantum chemistry
+    "qiskit-optimization>=0.6.0",  # Quantum optimization
+    "qiskit-machine-learning>=0.7.0",  # Quantum ML algorithms
+    "mitiq>=0.30.0",  # Error mitigation
+    "pyquil>=4.0.0",  # Rigetti quantum computing
+]
+all = ["qmnn[dev,docs,gpu,hardware,experimental]"]
 
 [project.urls]
 Homepage = "https://github.com/neuraparse/QMANN"

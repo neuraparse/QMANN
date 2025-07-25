@@ -93,6 +93,36 @@ try:
 except ImportError:
     HYBRID_LAYERS_AVAILABLE = False
 
+# Real Quantum Hardware Interface (2025)
+try:
+    from .hardware import (
+        QuantumBackendManager,
+        IBMQuantumBackend,
+        GoogleQuantumBackend,
+        IonQBackend,
+        ExperimentalQMNN,
+        HardwareAwareQRAM,
+        NISQOptimizedLayers
+    )
+    QUANTUM_HARDWARE_AVAILABLE = True
+except ImportError:
+    QUANTUM_HARDWARE_AVAILABLE = False
+
+# Experimental Configuration (2025)
+try:
+    from .config import (
+        ExperimentalConfig,
+        ExperimentMode,
+        THEORETICAL_ANALYSIS,
+        SIMULATION_VALIDATION,
+        HARDWARE_PROOF_OF_CONCEPT,
+        get_recommended_config,
+        validate_experimental_setup
+    )
+    CONFIG_AVAILABLE = True
+except ImportError:
+    CONFIG_AVAILABLE = False
+
 try:
     from .quantum_advantage import QuantumAdvantageMetrics
     QUANTUM_ADVANTAGE_AVAILABLE = True
@@ -168,6 +198,30 @@ if HYBRID_LAYERS_AVAILABLE:
         "HybridResidualBlock",
     ])
 
+# Add quantum hardware components if available
+if QUANTUM_HARDWARE_AVAILABLE:
+    __all__.extend([
+        "QuantumBackendManager",
+        "IBMQuantumBackend",
+        "GoogleQuantumBackend",
+        "IonQBackend",
+        "ExperimentalQMNN",
+        "HardwareAwareQRAM",
+        "NISQOptimizedLayers",
+    ])
+
+# Add experimental configuration if available
+if CONFIG_AVAILABLE:
+    __all__.extend([
+        "ExperimentalConfig",
+        "ExperimentMode",
+        "THEORETICAL_ANALYSIS",
+        "SIMULATION_VALIDATION",
+        "HARDWARE_PROOF_OF_CONCEPT",
+        "get_recommended_config",
+        "validate_experimental_setup",
+    ])
+
 # Version info for 2025 features
 FEATURES_2025 = {
     "quantum_transformers": QUANTUM_TRANSFORMERS_AVAILABLE,
@@ -178,6 +232,8 @@ FEATURES_2025 = {
     "classical_controllers": CLASSICAL_CONTROLLER_AVAILABLE,
     "advanced_attention": ATTENTION_AVAILABLE,
     "hybrid_layers": HYBRID_LAYERS_AVAILABLE,
+    "real_quantum_hardware": QUANTUM_HARDWARE_AVAILABLE,
+    "experimental_configuration": CONFIG_AVAILABLE,
 }
 
 def get_available_features():

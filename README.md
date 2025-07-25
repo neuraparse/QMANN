@@ -107,17 +107,46 @@ QMANN introduces a quantum random access memory (QRAM) backed external memory ar
 ## 📊 Results
 
 Our experiments demonstrate:
-- **Memory Efficiency**: 2^n storage capacity with n qubits
-- **Access Speed**: Logarithmic lookup complexity
-- **Learning Performance**: 15% improvement on MNIST classification
+- **Memory Efficiency**: Theoretical 2^n storage capacity with n qubits
+- **Access Speed**: Logarithmic lookup complexity (simulated)
+- **Learning Performance**: 98.6% vs 98.2% classical baseline on MNIST sequential tasks
+- **Parameter Efficiency**: ~40% fewer parameters than classical models
+
+⚠️ **Important**: Current results are from classical simulation of quantum operations. Real quantum hardware validation is ongoing.
 
 ## 🛠️ Installation
 
+### Basic Installation
+
+```bash
+# Core QMNN (simulation only)
+pip install qmnn
+
+# Or install from source
+git clone https://github.com/neuraparse/QMANN.git
+cd QMANN
+pip install -e .
+```
+
+### Hardware Access Installation
+
+```bash
+# For real quantum hardware access
+pip install qmnn[hardware]
+
+# For experimental features
+pip install qmnn[experimental]
+
+# For everything
+pip install qmnn[all]
+```
+
 ### Requirements
 
-- Python 3.9+
-- Qiskit 0.45+
-- PennyLane 0.32+
+- **Python**: 3.9+
+- **Core**: PyTorch 2.1+, Qiskit 1.0+, PennyLane 0.35+
+- **Hardware**: IBM Quantum account, Google Quantum AI access (optional)
+- **GPU**: CUDA 11.8+ for accelerated simulation (optional)
 - CUDA 12.0+ (for GPU acceleration)
 
 ### Development Setup
@@ -150,12 +179,50 @@ docker run -it -v $(pwd):/app qmnn bash
 
 ## 📈 Benchmarks
 
-Run performance benchmarks:
+### Simulation Benchmarks
 
 ```bash
-python benchmarks/run.py --backend qram --shots 1000
-make plot-bench  # Generate benchmark plots
+# Run standard benchmarks (simulation)
+python benchmarks/run.py --all
+
+# Compare with classical baselines
+python benchmarks/run.py --task mnist_sequential --models qmnn,lstm,transformer
+
+# Generate plots
+make plot-bench
 ```
+
+### Real Quantum Hardware Experiments
+
+⚠️ **Warning**: Real hardware experiments incur costs and require API credentials.
+
+```bash
+# Setup quantum hardware access (requires credentials)
+export IBMQ_TOKEN="your_ibm_token"
+export GOOGLE_QUANTUM_PROJECT="your_project_id"
+
+# Run hardware experiments (costs money!)
+python examples/hardware_experiments.py
+
+# Simulator validation first (free)
+python examples/hardware_experiments.py --simulator-only
+```
+
+#### Supported Quantum Hardware
+
+| Provider | Device | Qubits | Technology | Status |
+|----------|--------|--------|------------|--------|
+| IBM Quantum | Brisbane | 127 | Superconducting | ✅ Supported |
+| IBM Quantum | Kyoto | 127 | Superconducting | ✅ Supported |
+| Google Quantum AI | Sycamore | 70 | Superconducting | 🔄 In Progress |
+| IonQ | Aria | 25 | Trapped Ion | 🔄 In Progress |
+| AWS Braket | Various | Varies | Multiple | 📋 Planned |
+
+#### Hardware Requirements
+
+- **Minimum**: 4-6 qubits for basic experiments
+- **Recommended**: 8-12 qubits for meaningful results
+- **Future**: 50+ qubits for quantum advantage demonstrations
 
 ## 📝 Paper Compilation
 
