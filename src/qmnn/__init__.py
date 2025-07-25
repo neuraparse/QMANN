@@ -222,6 +222,13 @@ if CONFIG_AVAILABLE:
         "validate_experimental_setup",
     ])
 
+# Add mode selection helpers
+__all__.extend([
+    "recommend_mode",
+    "print_mode_guide",
+    "quick_start"
+])
+
 # Version info for 2025 features
 FEATURES_2025 = {
     "quantum_transformers": QUANTUM_TRANSFORMERS_AVAILABLE,
@@ -262,3 +269,143 @@ def get_system_info():
     }
 
     return info
+
+def recommend_mode(purpose: str = None, budget_usd: float = 0.0, n_qubits: int = None) -> str:
+    """
+    Recommend the best QMNN mode based on user requirements.
+
+    Args:
+        purpose: Purpose of experiment ('research', 'development', 'validation', 'production')
+        budget_usd: Available budget in USD (0 = free only)
+        n_qubits: Required number of qubits
+
+    Returns:
+        Recommended mode with explanation
+    """
+    recommendations = []
+
+    # Budget-based recommendations
+    if budget_usd == 0.0:
+        if purpose in ['research', 'theory', 'paper']:
+            recommendations.append("🔬 THEORETICAL MODE - Perfect for research papers and theoretical analysis")
+        else:
+            recommendations.append("💻 SIMULATION MODE - Free classical simulation for development")
+    else:
+        recommendations.append("⚛️ HARDWARE MODE - Real quantum hardware experiments (costs money)")
+
+    # Qubit-based recommendations
+    if n_qubits is not None:
+        if n_qubits > 20:
+            recommendations.append("🔬 THEORETICAL MODE - Only theoretical mode supports >20 qubits")
+        elif n_qubits > 12:
+            recommendations.append("💻 SIMULATION MODE - Hardware limited to 12 qubits currently")
+        else:
+            if budget_usd > 0:
+                recommendations.append("⚛️ HARDWARE MODE - Suitable for real quantum hardware")
+            else:
+                recommendations.append("💻 SIMULATION MODE - Free simulation available")
+
+    # Purpose-based recommendations
+    purpose_map = {
+        'research': "🔬 THEORETICAL MODE",
+        'theory': "🔬 THEORETICAL MODE",
+        'paper': "🔬 THEORETICAL MODE",
+        'development': "💻 SIMULATION MODE",
+        'testing': "💻 SIMULATION MODE",
+        'education': "💻 SIMULATION MODE",
+        'validation': "⚛️ HARDWARE MODE (if budget allows)",
+        'production': "⚛️ HARDWARE MODE",
+        'benchmark': "⚛️ HARDWARE MODE"
+    }
+
+    if purpose and purpose.lower() in purpose_map:
+        recommendations.append(f"Based on purpose '{purpose}': {purpose_map[purpose.lower()]}")
+
+    # Default recommendation
+    if not recommendations:
+        recommendations.append("💻 SIMULATION MODE - Good default for most users (free)")
+
+    return "\n".join(recommendations)
+
+def print_mode_guide():
+    """Print comprehensive mode selection guide."""
+    print("🎮 QMNN MODE SELECTION GUIDE")
+    print("=" * 50)
+    print()
+
+    print("🔬 THEORETICAL MODE (FREE)")
+    print("  Purpose: Research papers, theoretical analysis, algorithm design")
+    print("  Resources: Unlimited qubits, perfect gates, infinite coherence")
+    print("  Example: python examples/01_theoretical_mode.py")
+    print()
+
+    print("💻 SIMULATION MODE (FREE)")
+    print("  Purpose: Algorithm development, testing, education")
+    print("  Resources: Up to 20 qubits, noise modeling, classical simulation")
+    print("  Example: python examples/02_simulation_mode.py")
+    print()
+
+    print("⚛️ HARDWARE MODE (PAID)")
+    print("  Purpose: Real quantum hardware validation, proof-of-concept")
+    print("  Resources: 4-12 qubits, real noise, actual quantum effects")
+    print("  Cost: IBM ~$0.001/shot, IonQ ~$0.01/shot")
+    print("  Example: python examples/03_hardware_mode.py")
+    print()
+
+    print("💡 QUICK RECOMMENDATIONS:")
+    print("  - Writing a paper? → Theoretical Mode")
+    print("  - Learning QMNN? → Simulation Mode")
+    print("  - Testing algorithms? → Simulation Mode")
+    print("  - Need real quantum results? → Hardware Mode (estimate costs first!)")
+    print()
+
+    print("💰 COST ESTIMATION:")
+    print("  python scripts/estimate_hardware_costs.py --qubits 6 --shots 1000")
+    print()
+
+    # Show available features
+    features = get_available_features()
+    print("✅ AVAILABLE FEATURES:")
+    for feature, available in features.items():
+        status = "✅" if available else "❌"
+        print(f"  {status} {feature}")
+
+def quick_start(mode: str = "simulation"):
+    """
+    Quick start function for different modes.
+
+    Args:
+        mode: Mode to start with ('theoretical', 'simulation', 'hardware')
+    """
+    mode = mode.lower()
+
+    if mode == "theoretical":
+        print("🔬 Starting QMNN in Theoretical Mode...")
+        if CONFIG_AVAILABLE:
+            from .config import THEORETICAL_ANALYSIS, validate_experimental_setup
+            validate_experimental_setup(THEORETICAL_ANALYSIS)
+            print("✅ Theoretical configuration validated")
+        print("📖 Run: python examples/01_theoretical_mode.py")
+
+    elif mode == "simulation":
+        print("💻 Starting QMNN in Simulation Mode...")
+        if CONFIG_AVAILABLE:
+            from .config import SIMULATION_VALIDATION, validate_experimental_setup
+            validate_experimental_setup(SIMULATION_VALIDATION)
+            print("✅ Simulation configuration validated")
+        print("📖 Run: python examples/02_simulation_mode.py")
+
+    elif mode == "hardware":
+        print("⚛️ Starting QMNN in Hardware Mode...")
+        print("⚠️  WARNING: This mode costs real money!")
+        if CONFIG_AVAILABLE:
+            from .config import HARDWARE_PROOF_OF_CONCEPT, validate_experimental_setup
+            validate_experimental_setup(HARDWARE_PROOF_OF_CONCEPT)
+            print("✅ Hardware configuration validated")
+        print("💰 Estimate costs first: python scripts/estimate_hardware_costs.py")
+        print("📖 Run: python examples/03_hardware_mode.py")
+
+    else:
+        print(f"❌ Unknown mode: {mode}")
+        print("Available modes: 'theoretical', 'simulation', 'hardware'")
+        print_mode_guide()
