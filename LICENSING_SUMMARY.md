@@ -1,110 +1,90 @@
-# 🔒 QMNN Licensing Summary
+# 📄 QMNN Licensing Summary
 
 ## 📋 Overview
 
-QMNN (Quantum Memory-Augmented Neural Networks) uses a **Dual Licensing** model with comprehensive patent protection to safeguard Neura Parse's intellectual property while enabling academic research.
+QMNN (Quantum Memory-Augmented Neural Networks) is released under the **Apache License 2.0** to encourage open collaboration and community development while maintaining appropriate intellectual property protections for core innovations.
 
 ---
 
-## 🎓 Academic License (FREE)
+## 🆓 Open Source License (Apache 2.0)
 
 ### ✅ What You CAN Do:
-- **Research**: Non-commercial academic research
-- **Education**: Teaching and learning purposes
-- **Experimentation**: Personal testing and development
-- **Publications**: Academic papers with proper citation
-- **Open Source**: Contributing back to this project
-
-### 🚫 What You CANNOT Do:
-- **Commercial Use**: Any revenue-generating application
-- **Product Integration**: Including in commercial products
-- **Patent Filing**: Filing patents based on our work
-- **Military Use**: Defense or weapons applications
-- **Sublicensing**: Licensing to third parties
+- **Commercial Use**: Use in commercial products and services
+- **Modification**: Modify and adapt the code
+- **Distribution**: Distribute original and modified versions
+- **Patent Use**: Use any patent claims in the code
+- **Private Use**: Use privately without disclosure
+- **Sublicensing**: Include in larger works under different licenses
 
 ### 📋 Requirements:
-- Keep all license notices intact
-- Cite Neura Parse in publications
-- No commercial use whatsoever
-- Notify us of significant research uses
+- **License Notice**: Include Apache 2.0 license text
+- **Copyright Notice**: Preserve copyright notices
+- **Attribution**: Credit original authors in documentation
+- **Change Documentation**: Document significant modifications
+
+### 🚫 Limitations:
+- **No Warranty**: Software provided "as is"
+- **No Liability**: Authors not liable for damages
+- **Trademark**: No rights to use Neura Parse trademarks
 
 ---
 
-## 💼 Commercial License (PAID)
+## 🔬 Academic and Research Use
 
-### 🏢 Required For:
-- **Commercial Products**: Integration into products/services
-- **SaaS Platforms**: Software-as-a-Service offerings
-- **Enterprise Use**: Business applications
-- **Revenue Generation**: Any monetization
-- **Patent Rights**: Patent licensing included
+### ✅ Encouraged Activities:
+- **Academic Research**: Full support for research projects
+- **Publications**: Cite our work in academic papers
+- **Teaching**: Use in educational settings
+- **Collaboration**: Contribute improvements back to community
+- **Experimentation**: Test and validate approaches
 
-### 💰 Pricing Models:
-- **Startup License**: Reduced rates for early-stage companies
-- **Enterprise License**: Full commercial rights
-- **Patent License**: Patent-only licensing
-- **Custom License**: Tailored agreements
-
-### 📞 Contact:
-- **Email**: info@neuraparse.com
-- **Website**: https://neuraparse.com/licensing
+### 📚 Citation Requirements:
+When using QMNN in academic work, please cite:
+```
+Eker, B., et al. (2025). Quantum Memory-Augmented Neural Networks:
+A Novel Architecture for Enhanced Learning. arXiv:2025.XXXXX
+```
 
 ---
 
-## 🔒 Patent Protection
+## 🔒 Patent Information
 
-### 📋 Protected Technologies:
-1. **Quantum Memory-Augmented Neural Networks**
-2. **Quantum Random Access Memory for ML**
-3. **Quantum Transformer Architectures**
-4. **Fault-Tolerant Quantum Machine Learning**
-5. **Quantum Federated Learning Protocols**
-6. **Entanglement-Based Attention Mechanisms**
+### 📋 Patent-Pending Technologies:
+1. **Quantum Memory-Augmented Neural Networks** (Pending)
+2. **QRAM-based Learning Architectures** (Pending)
+3. **Quantum Attention Mechanisms** (Pending)
 
-### 🌍 Geographic Coverage:
-- **United States**: Primary jurisdiction
-- **European Union**: Key markets
-- **China**: Manufacturing hub
-- **Japan**: Technology partnerships
-- **Other**: Strategic markets
+### 🛡️ Patent Grant:
+Under Apache 2.0, contributors and users receive an express grant of patent rights for the specific implementations in this repository. This provides protection against patent litigation related to the covered technologies.
 
 ### ⚖️ Patent Status:
-- 🟡 **Pending**: Multiple applications filed
-- 🔴 **Protected**: Core technologies covered
-- 🟢 **Defensive**: Anti-troll protection
+- 🟡 **Research Stage**: Core concepts under development
+- 🟢 **Open Grant**: Patent rights granted to users under Apache 2.0
+- 🔵 **Defensive**: Protection against patent trolls
 
 ---
 
-## 🚨 Violation Consequences
+## 🤝 Community Contributions
 
-### Patent Infringement:
-- **Cease & Desist**: Immediate stop order
-- **Financial Damages**: Monetary compensation
-- **Injunctive Relief**: Court-ordered cessation
-- **Legal Fees**: Attorney cost recovery
-- **Lost Profits**: Revenue compensation
+### 🎯 How to Contribute:
+- **Bug Reports**: Submit issues on GitHub
+- **Feature Requests**: Propose new capabilities
+- **Code Contributions**: Submit pull requests
+- **Documentation**: Improve guides and examples
+- **Research**: Share experimental results
 
-### License Violations:
-- **License Termination**: Loss of usage rights
-- **Access Revocation**: Repository blocking
-- **Public Notice**: Violation disclosure
-- **Legal Action**: Potential lawsuits
+### 📋 Contribution Process:
+1. **Fork Repository**: Create your own copy
+2. **Create Branch**: Work on feature/fix branches
+3. **Make Changes**: Follow coding standards
+4. **Test Changes**: Ensure all tests pass
+5. **Submit PR**: Request review and merge
 
----
-
-## 🛡️ Protection Measures
-
-### Technical:
-- **Code Watermarking**: Hidden identification
-- **Usage Analytics**: Monitoring systems
-- **Fingerprinting**: Unique signatures
-- **Alert Systems**: Violation detection
-
-### Legal:
-- **Patent Portfolio**: Comprehensive coverage
-- **Global Filing**: International protection
-- **Legal Partnerships**: Top IP law firms
-- **Active Enforcement**: Violation pursuit
+### 🏆 Recognition:
+Contributors will be acknowledged in:
+- Repository contributors list
+- Academic publications (where applicable)
+- Release notes and changelogs
 
 ---
 
@@ -113,142 +93,119 @@ QMNN (Quantum Memory-Augmented Neural Networks) uses a **Dual Licensing** model 
 ### General Inquiries:
 - **Email**: info@neuraparse.com
 - **Website**: https://neuraparse.com
+- **GitHub**: https://github.com/neuraparse/QMANN
 
-### Licensing:
-- **Commercial**: info@neuraparse.com
-- **Patents**: info@neuraparse.com
-- **Legal**: info@neuraparse.com
+### Technical Support:
+- **Issues**: GitHub Issues tracker
+- **Discussions**: GitHub Discussions
+- **Documentation**: Project Wiki
 
-### Emergency/Violations:
-- **Security**: info@neuraparse.com
-- **Legal**: info@neuraparse.com
+### Research Collaboration:
+- **Academic**: info@neuraparse.com
+- **Industry**: info@neuraparse.com
+- **Partnerships**: info@neuraparse.com
 
 ---
 
 ## 📚 Key Documents
 
-### Must Read:
-1. **[LICENSE](LICENSE)** - Full licensing terms
-2. **[PATENTS.md](PATENTS.md)** - Patent information
-3. **[USAGE_WARNING.md](USAGE_WARNING.md)** - Usage restrictions
+### Essential Reading:
+1. **[LICENSE](LICENSE)** - Apache 2.0 license text
+2. **[README.md](README.md)** - Project overview and setup
+3. **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contribution guidelines
 
-### Additional:
-4. **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contribution guidelines
-5. **[SECURITY.md](.github/SECURITY.md)** - Security policies
-6. **[ORGANIZATION.md](ORGANIZATION.md)** - About Neura Parse
-
----
-
-## ⚠️ Important Warnings
-
-### Before Using:
-1. **Read All License Terms**: Understand restrictions
-2. **Assess Your Use Case**: Academic vs commercial
-3. **Contact Us**: When in doubt, ask first
-4. **Get Proper License**: Don't risk infringement
-
-### Red Flags:
-- ❌ Any revenue generation
-- ❌ Commercial product integration
-- ❌ Patent filing attempts
-- ❌ Military applications
-- ❌ Cryptocurrency/blockchain use
-
-### Safe Uses:
-- ✅ Academic research papers
-- ✅ University coursework
-- ✅ Personal learning
-- ✅ Open source contributions
-- ✅ Non-commercial experiments
+### Additional Resources:
+4. **[PATENTS.md](PATENTS.md)** - Patent information
+5. **[ORGANIZATION.md](ORGANIZATION.md)** - About Neura Parse
+6. **[SECURITY.md](.github/SECURITY.md)** - Security policies
 
 ---
 
-## 🔍 Compliance Monitoring
+## ✅ Usage Guidelines
 
-We actively monitor for violations through:
+### Recommended Practices:
+- ✅ **Commercial Use**: Fully supported under Apache 2.0
+- ✅ **Academic Research**: Encouraged with proper citation
+- ✅ **Open Source Projects**: Compatible with most licenses
+- ✅ **Educational Use**: Perfect for learning and teaching
+- ✅ **Industry Applications**: Suitable for production use
 
-### Automated Systems:
-- **Code Scanning**: GitHub, GitLab repositories
-- **App Store Monitoring**: Mobile applications
-- **Web Crawling**: Commercial platforms
-- **Patent Databases**: Filing detection
-
-### Manual Reviews:
-- **Market Analysis**: Commercial use detection
-- **Publication Monitoring**: Academic papers
-- **Conference Surveillance**: Presentation monitoring
-- **Partnership Intelligence**: Business relationships
-
----
-
-## 📈 Licensing Process
-
-### For Commercial Use:
-
-1. **Initial Contact**
-   - Email: info@neuraparse.com
-   - Describe your use case
-   - Include timeline and scale
-
-2. **Technical Review**
-   - We assess requirements
-   - Determine licensing needs
-   - Provide technical guidance
-
-3. **Commercial Terms**
-   - Negotiate pricing
-   - Define scope and duration
-   - Establish support levels
-
-4. **Legal Agreement**
-   - Draft licensing contract
-   - Review terms and conditions
-   - Execute final agreement
-
-5. **Implementation**
-   - Begin commercial use
-   - Ongoing support
-   - Compliance monitoring
+### Best Practices:
+- 📖 **Read Documentation**: Understand capabilities and limitations
+- 🧪 **Start Small**: Begin with simple examples
+- 🤝 **Engage Community**: Ask questions and share experiences
+- 📊 **Share Results**: Contribute back improvements and findings
+- 🔄 **Stay Updated**: Follow releases and updates
 
 ---
 
-## 🎯 Best Practices
+## 🔍 License Compliance
 
-### For Academic Users:
-- Always cite Neura Parse
-- Keep license notices intact
-- Report significant findings
-- Contribute improvements back
-- Avoid commercial temptations
+### Apache 2.0 Compliance:
+The Apache 2.0 license is widely adopted and compatible with most commercial and open source projects. Key compliance points:
 
-### For Commercial Users:
-- Get proper licensing first
-- Maintain compliance records
-- Pay royalties on time
-- Report usage metrics
-- Respect patent boundaries
+- **Include License**: Copy of Apache 2.0 license must be included
+- **Preserve Notices**: Keep copyright and attribution notices
+- **Document Changes**: Note any modifications made to the code
+- **No Trademark Use**: Don't use Neura Parse trademarks without permission
 
-### For Contributors:
-- Understand IP implications
-- Sign contributor agreements
-- Follow coding standards
-- Document contributions
-- Respect patent rights
+### Compatibility:
+Apache 2.0 is compatible with:
+- ✅ **GPL v3**: Can be combined in larger GPL projects
+- ✅ **MIT License**: Fully compatible
+- ✅ **BSD Licenses**: Compatible with all variants
+- ✅ **Commercial Licenses**: Can be used in proprietary software
+
+---
+
+## 🚀 Getting Started
+
+### Quick Start:
+1. **Clone Repository**: `git clone https://github.com/neuraparse/QMANN.git`
+2. **Install Dependencies**: `pip install -e .`
+3. **Run Examples**: Check `examples/` directory
+4. **Read Documentation**: Visit project wiki
+5. **Join Community**: Participate in discussions
+
+### Support Channels:
+- 📖 **Documentation**: Comprehensive guides and API reference
+- 💬 **GitHub Discussions**: Community Q&A and feature requests
+- 🐛 **Issue Tracker**: Bug reports and technical issues
+- 📧 **Email Support**: info@neuraparse.com for complex inquiries
 
 ---
 
 ## 📊 Quick Reference
 
-| Use Case | License Required | Patent Rights | Contact |
-|----------|------------------|---------------|---------|
-| Academic Research | Academic (Free) | None | info@neuraparse.com |
-| Commercial Product | Commercial (Paid) | Included | info@neuraparse.com |
-| Patent Filing | Special License | Required | info@neuraparse.com |
-| Military Use | Special License | Required | info@neuraparse.com |
-| Open Source Contribution | Academic (Free) | None | info@neuraparse.com |
+| Use Case | License | Patent Rights | Support |
+|----------|---------|---------------|---------|
+| Academic Research | Apache 2.0 (Free) | Granted | Community + Email |
+| Commercial Product | Apache 2.0 (Free) | Granted | Community + Email |
+| Open Source Project | Apache 2.0 (Free) | Granted | Community |
+| Educational Use | Apache 2.0 (Free) | Granted | Community |
+| Industry R&D | Apache 2.0 (Free) | Granted | Community + Email |
 
 ---
 
-*Last Updated: July 2025*  
-*Version: 1.0*  
-*© 2025 Neura Parse - All Rights Reserved*
+## 🎯 Disclaimer
+
+### Research Stage Notice:
+QMNN is currently in active research and development. While the theoretical foundations are solid, practical implementations may have limitations:
+
+- **Simulation-Based**: Current results from classical simulation of quantum algorithms
+- **Scalability**: Real quantum hardware limitations apply
+- **Experimental**: Some features are proof-of-concept implementations
+- **Performance Claims**: Based on theoretical analysis and limited experiments
+
+### Production Use:
+For production applications, please:
+- Thoroughly test with your specific use cases
+- Understand current limitations and constraints
+- Consider hybrid classical-quantum approaches
+- Stay updated with latest developments
+
+---
+
+*Last Updated: July 2025*
+*Version: 2.0 - Apache 2.0 Release*
+*© 2025 Neura Parse - Licensed under Apache 2.0*

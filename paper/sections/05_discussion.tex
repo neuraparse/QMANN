@@ -7,9 +7,9 @@ The experimental results presented in Section~\ref{sec:results} demonstrate the 
 
 \subsubsection{Quantum Memory Advantages}
 
-The 15\% accuracy improvement on MNIST classification, while maintaining 60\% fewer parameters, suggests that quantum memory provides genuine computational advantages beyond classical approaches. This improvement can be attributed to several factors:
+The modest accuracy improvement on MNIST sequential classification (98.6\% vs 98.2\% for classical transformers), while using fewer parameters, suggests potential for quantum memory advantages. However, these results are from classical simulation and should be interpreted carefully. The improvements can be attributed to several factors:
 
-\textbf{Exponential Storage Capacity}: The ability to store $2^n$ patterns with $n$ qubits enables the network to maintain richer internal representations without proportional increases in physical resources. This is particularly evident in the memory scaling experiments (Figure~\ref{fig:memory_scaling}), where quantum memory maintains logarithmic resource scaling even as storage requirements grow exponentially.
+\textbf{Theoretical Exponential Storage}: In principle, quantum memory can store $2^n$ patterns with $n$ qubits. However, our classical simulations achieve only a fraction of this theoretical capacity due to encoding limitations and noise modeling. Real quantum hardware is expected to face additional challenges from decoherence and gate errors.
 
 \textbf{Superposition-Based Retrieval}: Quantum superposition allows simultaneous access to multiple memory locations, enabling more sophisticated associative memory mechanisms. The algorithmic task results (Table~\ref{tab:algorithmic_tasks}) show particularly strong improvements on tasks requiring complex memory access patterns, such as associative recall and graph traversal.
 
@@ -19,7 +19,7 @@ The 15\% accuracy improvement on MNIST classification, while maintaining 60\% fe
 
 The logarithmic scaling of memory access operations represents a fundamental computational advantage. While classical associative memory requires $O(N)$ comparisons to search through $N$ stored patterns, quantum memory achieves $O(\log N)$ complexity through quantum parallelism. This advantage becomes increasingly significant as memory requirements grow, suggesting particular promise for large-scale learning applications.
 
-The 40\% reduction in training time, despite the overhead of quantum simulation, indicates that these complexity advantages translate to practical benefits even in current implementations. On fault-tolerant quantum hardware, we expect these advantages to be even more pronounced.
+The observed training time improvements are primarily due to reduced model complexity rather than quantum speedup, as all operations are classically simulated. On real quantum hardware, quantum operations may initially be slower due to gate times and error correction overhead, though fault-tolerant quantum computers could eventually provide genuine speedups.
 
 \subsubsection{Noise Resilience}
 
@@ -84,7 +84,13 @@ The hybrid approach appears particularly promising, combining the stability of c
 
 Several technical limitations constrain current \qmnn implementations:
 
-\textbf{Quantum Simulation Overhead}: Current experiments rely on classical simulation of quantum operations, introducing computational overhead that masks some quantum advantages. Real quantum hardware implementation is needed to fully realize benefits.
+\textbf{Classical Simulation Limitations}: All results presented are from classical simulation of quantum operations. This introduces several important caveats:
+\begin{itemize}
+    \item Quantum advantages may be overestimated due to idealized noise models
+    \item Classical simulation overhead masks true quantum operation costs
+    \item Real quantum hardware will face additional challenges not captured in simulation
+    \item Scalability beyond 12-15 qubits becomes computationally intractable for classical simulation
+\end{itemize}
 
 \textbf{Limited Qubit Count}: Current quantum devices provide limited qubit counts, constraining memory capacity. Fault-tolerant quantum computers with hundreds of logical qubits will be needed for large-scale applications.
 

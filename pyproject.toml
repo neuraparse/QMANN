@@ -7,7 +7,7 @@ name = "qmnn"
 version = "1.0.0"
 description = "Quantum Memory-Augmented Neural Networks"
 readme = "README.md"
-license = {text = "Neura Parse Dual License (Academic/Commercial)"}
+license = {text = "Apache-2.0"}
 authors = [
     {name = "Bayram Eker", email = "info@neuraparse.com"},
     {name = "Neura Parse Research Team", email = "info@neuraparse.com"},
@@ -19,7 +19,7 @@ keywords = ["quantum", "machine-learning", "neural-networks", "qram", "quantum-c
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
-    "License :: Other/Proprietary License",
+    "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",

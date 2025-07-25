@@ -1,192 +1,196 @@
-# ⚠️ IMPORTANT USAGE WARNING ⚠️
+# 📋 QMANN Usage Guidelines
 
-## 🚨 READ BEFORE USING THIS SOFTWARE 🚨
+## 🎯 Apache 2.0 Open Source License
 
-This repository contains **patent-protected quantum machine learning technologies** developed by **Neura Parse**. Improper use may result in legal consequences.
+This repository is licensed under the **Apache License 2.0**, providing broad permissions for both commercial and non-commercial use while maintaining appropriate protections.
 
 ---
 
-## 🔒 PATENT PROTECTION NOTICE
+## 🔒 Patent Information
 
-### Technologies Covered by Patents:
-- ✅ Quantum Memory-Augmented Neural Networks (QMNN)
-- ✅ Quantum Random Access Memory for ML
-- ✅ Quantum Transformer Architectures
-- ✅ Fault-Tolerant Quantum Machine Learning
-- ✅ Quantum Federated Learning Protocols
-- ✅ Entanglement-Based Attention Mechanisms
+### Patent-Pending Technologies:
+- 🟡 **Quantum Memory-Augmented Neural Networks (QMANN)** - Patent Pending
+- 🟡 **QRAM-based Learning Architectures** - Patent Pending
+- 🟡 **Quantum Attention Mechanisms** - Patent Pending
+
+### Patent Grant:
+Under Apache 2.0, all users receive an **express grant of patent rights** for the implementations in this repository. This means:
+- ✅ **Patent Protection**: You can use patented technologies in this code
+- ✅ **No Patent Litigation**: Protection against patent claims for covered implementations
+- ✅ **Commercial Use**: Patent rights extend to commercial applications
 
 ### Patent Status:
-- 🟡 **Pending**: Multiple patent applications filed
-- 🔴 **Protected**: Core technologies under patent protection
-- 🟢 **Defensive**: Patents filed to protect against trolls
+- 🟡 **Research Stage**: Technologies under active development
+- 🟢 **Open Grant**: Patent rights granted under Apache 2.0
+- 🔵 **Defensive**: Protection against patent trolls
 
 ---
 
-## ✅ WHAT YOU CAN DO (Academic License)
+## ✅ What You CAN Do (Apache 2.0)
 
-### ✅ PERMITTED USES:
-- 🎓 **Academic Research**: Non-commercial research only
+### ✅ FULL PERMISSIONS:
+- 💼 **Commercial Use**: Use in commercial products and services
+- 🔧 **Modification**: Modify and adapt the code
+- 📦 **Distribution**: Distribute original and modified versions
+- 🏢 **Private Use**: Use privately without disclosure
+- 🔄 **Sublicensing**: Include in larger works under different licenses
+- 📋 **Patent Use**: Use any patent claims in the code
+
+### ✅ ENCOURAGED USES:
+- 🎓 **Academic Research**: Full support for research projects
 - 📚 **Education**: Teaching and learning purposes
-- 🔬 **Experimentation**: Personal learning and testing
-- 🤝 **Open Source Contributions**: Contributing back to this project
+- 🔬 **Experimentation**: Testing and validation
+- 🤝 **Open Source Contributions**: Contributing back to community
 - 📄 **Publications**: Academic papers with proper citation
+- 🏭 **Industry Applications**: Production use in commercial systems
 
 ### ✅ REQUIREMENTS:
-- 📝 **Attribution**: Must cite Neura Parse in all uses
-- 🚫 **Non-Commercial**: No revenue generation allowed
-- 📋 **License Notice**: Keep all license notices intact
-- 📧 **Notification**: Inform us of significant research uses
+- 📝 **License Notice**: Include Apache 2.0 license text
+- 📋 **Copyright Notice**: Preserve copyright notices
+- 🏷️ **Attribution**: Credit original authors
+- 📝 **Change Documentation**: Document significant modifications
 
 ---
 
-## 🚫 WHAT YOU CANNOT DO (Without Commercial License)
+## 🚫 License Limitations
 
-### 🚫 STRICTLY PROHIBITED:
-- 💰 **Commercial Use**: Any revenue-generating application
-- 🏭 **Product Integration**: Including in commercial products
-- 🌐 **Commercial Deployment**: Hosting for commercial purposes
-- 📈 **Business Applications**: Any business or enterprise use
-- 🪙 **Cryptocurrency**: Blockchain or crypto applications
-- ⚔️ **Military Use**: Defense or weapons applications
-- 📋 **Patent Filing**: Filing patents based on our work
-- 🔄 **Sublicensing**: Licensing to third parties
+### 🚫 WHAT THE LICENSE DOESN'T PROVIDE:
+- ❌ **No Warranty**: Software provided "as is" without warranty
+- ❌ **No Liability**: Authors not liable for damages
+- ❌ **No Trademark Rights**: Cannot use Neura Parse trademarks
+- ❌ **No Support Guarantee**: Community-based support
 
-### 🚫 SPECIFIC RESTRICTIONS:
-- ❌ **SaaS Platforms**: Software-as-a-Service offerings
-- ❌ **Cloud Services**: Commercial cloud deployments
-- ❌ **Consulting**: Paid consulting using our technology
-- ❌ **Training Services**: Commercial training programs
-- ❌ **API Services**: Commercial API offerings
-- ❌ **White-labeling**: Rebranding for commercial use
+### ⚠️ IMPORTANT DISCLAIMERS:
+- 🔬 **Research Stage**: Technology under active development
+- 🖥️ **Simulation-Based**: Current results from classical simulation
+- 📏 **Scalability Limits**: Real quantum hardware constraints apply
+- 🧪 **Experimental Features**: Some components are proof-of-concept
 
 ---
 
-## 💼 COMMERCIAL LICENSING
+## 🤝 Community and Support
 
-### 🏢 NEED COMMERCIAL USE?
-Contact us for commercial licensing:
+### 🌟 GETTING HELP:
+- 📖 **Documentation**: Comprehensive guides and API reference
+- 💬 **GitHub Discussions**: Community Q&A and feature requests
+- 🐛 **Issue Tracker**: Bug reports and technical issues
+- 📧 **Email Support**: info@neuraparse.com for complex inquiries
 
-- 📧 **Email**: info@neuraparse.com
-- 🌐 **Website**: https://neuraparse.com/licensing
-- 📞 **Phone**: Available upon request
+### 🎯 CONTRIBUTING:
+- 🔧 **Bug Fixes**: Submit pull requests for improvements
+- 📚 **Documentation**: Help improve guides and examples
+- 🧪 **Testing**: Add test cases and validation
+- 💡 **Features**: Propose and implement new capabilities
 
-### 💰 LICENSING OPTIONS:
-1. **Startup License**: Reduced rates for early-stage companies
-2. **Enterprise License**: Full commercial rights
-3. **Patent License**: Patent-only licensing
-4. **Custom License**: Tailored to specific needs
-
-### 📋 LICENSING PROCESS:
-1. **Initial Contact**: Describe your use case
-2. **Technical Review**: We assess your requirements
-3. **Commercial Terms**: Negotiate pricing and terms
-4. **Legal Agreement**: Sign licensing contract
-5. **Implementation**: Begin commercial use
+### 🏆 RECOGNITION:
+Contributors are acknowledged in:
+- Repository contributors list
+- Academic publications (where applicable)
+- Release notes and changelogs
 
 ---
 
-## 🔍 COMPLIANCE MONITORING
+## 📋 Compliance Guidelines
 
-### 🕵️ WE MONITOR:
-- 🌐 **Public Repositories**: GitHub, GitLab, etc.
-- 📱 **App Stores**: Mobile and web applications
-- 🏢 **Commercial Platforms**: SaaS and cloud services
-- 📄 **Patent Databases**: Patent applications and filings
-- 📰 **Publications**: Academic and commercial papers
+### ✅ APACHE 2.0 COMPLIANCE:
+- 📄 **Include License**: Copy of Apache 2.0 license must be included
+- 📝 **Preserve Notices**: Keep copyright and attribution notices
+- 📋 **Document Changes**: Note any modifications made
+- 🏷️ **No Trademark Use**: Don't use Neura Parse trademarks without permission
 
-### 🚨 VIOLATION DETECTION:
-- 🤖 **Automated Scanning**: AI-powered code detection
-- 👥 **Community Reports**: User-reported violations
-- 🔍 **Manual Audits**: Regular compliance checks
-- 📊 **Market Analysis**: Commercial use monitoring
-
----
-
-## ⚖️ LEGAL CONSEQUENCES
-
-### 🚨 PATENT INFRINGEMENT:
-- 📜 **Cease & Desist**: Immediate stop order
-- 💰 **Damages**: Financial compensation required
-- 🚫 **Injunction**: Court order to stop use
-- ⚖️ **Legal Fees**: Pay our attorney costs
-- 📈 **Lost Profits**: Compensation for our losses
-
-### 📋 LICENSE VIOLATIONS:
-- 🔒 **License Termination**: Immediate loss of rights
-- 🚫 **Access Revocation**: Blocked from repositories
-- 📢 **Public Notice**: Violation may be publicized
-- ⚖️ **Legal Action**: Potential lawsuit
-
-### 💼 BUSINESS CONSEQUENCES:
-- 🏢 **Reputation Damage**: Public violation notices
-- 💰 **Financial Liability**: Significant monetary damages
-- 📈 **Business Disruption**: Forced to stop operations
-- 🤝 **Partnership Loss**: Damage to business relationships
+### 🔗 LICENSE COMPATIBILITY:
+Apache 2.0 is compatible with:
+- ✅ **GPL v3**: Can be combined in larger GPL projects
+- ✅ **MIT License**: Fully compatible
+- ✅ **BSD Licenses**: Compatible with all variants
+- ✅ **Commercial Licenses**: Can be used in proprietary software
 
 ---
 
-## 🛡️ PROTECTION MEASURES
+## 🎯 Best Practices
 
-### 🔒 TECHNICAL PROTECTION:
-- 🔐 **Code Watermarking**: Hidden identification markers
-- 📊 **Usage Analytics**: Monitoring and tracking
-- 🔍 **Fingerprinting**: Unique code signatures
-- 🚨 **Alert Systems**: Automated violation detection
+### 📚 FOR ACADEMIC USERS:
+- 📖 **Cite Properly**: Reference our work in publications
+- 🤝 **Collaborate**: Engage with the research community
+- 📊 **Share Results**: Contribute findings back to the project
+- 🔄 **Stay Updated**: Follow latest developments
 
-### ⚖️ LEGAL PROTECTION:
-- 📋 **Patent Portfolio**: Comprehensive patent coverage
-- 🌍 **Global Filing**: International patent protection
-- 🤝 **Legal Partnerships**: Top IP law firms
-- 🔍 **Enforcement Strategy**: Active violation pursuit
+### 🏢 FOR COMMERCIAL USERS:
+- 📋 **Understand Limitations**: Know current constraints
+- 🧪 **Test Thoroughly**: Validate for your specific use case
+- 🤝 **Engage Community**: Participate in discussions
+- 💡 **Contribute Back**: Share improvements when possible
 
----
-
-## 📞 CONTACT FOR QUESTIONS
-
-### 🤔 UNSURE ABOUT YOUR USE CASE?
-**Contact us BEFORE using the software:**
-
-- 📧 **General**: info@neuraparse.com
-- 📋 **Licensing**: info@neuraparse.com
-- ⚖️ **Legal**: info@neuraparse.com
-- 📋 **Patents**: info@neuraparse.com
-
-### 📝 INCLUDE IN YOUR MESSAGE:
-- 🎯 **Use Case**: Detailed description of intended use
-- 🏢 **Organization**: Academic institution or company
-- 💰 **Commercial Intent**: Any revenue generation plans
-- 📅 **Timeline**: When you plan to start using
-- 🌍 **Geographic Scope**: Where you'll use the technology
+### 👥 FOR CONTRIBUTORS:
+- 📝 **Follow Guidelines**: Adhere to contribution standards
+- 🧪 **Test Changes**: Ensure all tests pass
+- 📚 **Document Work**: Provide clear documentation
+- 🤝 **Be Respectful**: Maintain professional communication
 
 ---
 
-## 📚 ADDITIONAL RESOURCES
+## 📞 Contact Information
 
-### 📖 DOCUMENTATION:
-- 📄 **[LICENSE](LICENSE)**: Full license terms
-- 📋 **[PATENTS.md](PATENTS.md)**: Patent information
+### 🤔 QUESTIONS OR SUPPORT:
+- 📧 **General Inquiries**: info@neuraparse.com
+- 💬 **GitHub Discussions**: Community Q&A platform
+- 🐛 **Bug Reports**: GitHub Issues tracker
+- 🌐 **Website**: https://neuraparse.com
+
+### 📝 WHEN CONTACTING US:
+- 🎯 **Be Specific**: Describe your use case clearly
+- 🏢 **Organization**: Mention your institution or company
+- 📋 **Technical Details**: Include relevant technical information
+- 🤝 **Collaboration**: Express interest in contributing back
+
+---
+
+## 📚 Additional Resources
+
+### 📖 ESSENTIAL DOCUMENTATION:
+- 📄 **[LICENSE](LICENSE)**: Apache 2.0 license text
+- 📋 **[README.md](README.md)**: Project overview and setup
 - 🤝 **[CONTRIBUTING.md](CONTRIBUTING.md)**: Contribution guidelines
-- 🔒 **[SECURITY.md](.github/SECURITY.md)**: Security policies
+- 📋 **[PATENTS.md](PATENTS.md)**: Patent information
 
 ### 🌐 EXTERNAL LINKS:
 - 🏢 **[Neura Parse Website](https://neuraparse.com)**
 - 📧 **[Contact Form](https://neuraparse.com/contact)**
-- 📋 **[Licensing Portal](https://neuraparse.com/licensing)**
-- ⚖️ **[Legal Information](https://neuraparse.com/legal)**
+- 📚 **[Documentation](https://qmnn.readthedocs.io)**
+- 🔬 **[Research Papers](https://arxiv.org/abs/2025.XXXXX)**
 
 ---
 
-## ⚠️ FINAL WARNING
+## 🚀 Getting Started
 
-**By downloading, cloning, or using this software, you acknowledge that you have read, understood, and agree to comply with all licensing terms and patent restrictions.**
+### 📋 QUICK START:
+1. **Clone Repository**: `git clone https://github.com/neuraparse/QMANN.git`
+2. **Install Dependencies**: `pip install -e .`
+3. **Run Examples**: Check `examples/` directory
+4. **Read Documentation**: Visit project wiki
+5. **Join Community**: Participate in GitHub Discussions
 
-**Ignorance of these terms is not a defense against patent infringement or license violations.**
-
-**When in doubt, contact us FIRST: info@neuraparse.com**
+### 🎯 NEXT STEPS:
+- 📖 **Study Examples**: Learn from provided code samples
+- 🧪 **Run Benchmarks**: Test performance on your hardware
+- 🤝 **Engage Community**: Ask questions and share experiences
+- 💡 **Contribute**: Help improve the project
 
 ---
 
-*Last Updated: July 2025*  
-*Version: 1.0*  
-*© 2025 Neura Parse - All Rights Reserved*
+## ✅ License Acknowledgment
+
+**By using this software, you acknowledge that:**
+
+- ✅ You have read and understood the Apache 2.0 license terms
+- ✅ You will comply with attribution and notice requirements
+- ✅ You understand the current limitations and experimental nature
+- ✅ You will respect patent rights and community guidelines
+
+**The Apache 2.0 license provides broad permissions while protecting both users and contributors. Enjoy exploring quantum machine learning!**
+
+---
+
+*Last Updated: July 2025*
+*Version: 2.0 - Apache 2.0 Release*
+*© 2025 Neura Parse - Licensed under Apache 2.0*

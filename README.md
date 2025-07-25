@@ -1,44 +1,74 @@
-# QMANN: Quantum Memory-Augmented Neural Networks (2025)
+# QMANN: Quantum Memory-Augmented Neural Networks
 
-> ⚠️ **IMPORTANT**: This software is patent-protected. Read [USAGE_WARNING.md](USAGE_WARNING.md) before use.
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![CI](https://github.com/neuraparse/QMANN/workflows/CI/badge.svg)](https://github.com/neuraparse/QMANN/actions)
+[![codecov](https://codecov.io/gh/neuraparse/QMANN/branch/main/graph/badge.svg)](https://codecov.io/gh/neuraparse/QMANN)
+[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](docs/)
+[![Quantum Computing](https://img.shields.io/badge/Quantum-Computing-purple.svg)](#quantum-features)
+[![Open Source](https://img.shields.io/badge/Open-Source-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
-[![arXiv](https://img.shields.io/badge/arXiv-2025.XXXXX-b31b1b.svg)](https://arxiv.org/abs/2025.XXXXX)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
-[![License: Dual](https://img.shields.io/badge/License-Dual%20(Academic%2FCommercial)-red.svg)](LICENSE)
-[![Paper License: CC BY 4.0](https://img.shields.io/badge/Paper%20License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Quantum Advantage](https://img.shields.io/badge/Quantum-Advantage%20Verified-green.svg)](#quantum-advantage)
-[![Fault Tolerant](https://img.shields.io/badge/Fault-Tolerant-blue.svg)](#error-correction)
-[![Patent Protected](https://img.shields.io/badge/Patent-Protected-red.svg)](PATENTS.md)
-[![Commercial License Required](https://img.shields.io/badge/Commercial-License%20Required-orange.svg)](LICENSE)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![GitHub](https://img.shields.io/badge/GitHub-neuraparse-blue.svg)](https://github.com/neuraparse)
-[![Website](https://img.shields.io/badge/Website-neuraparse.com-green.svg)](https://neuraparse.com)
+> **Quantum Memory-Augmented Neural Networks: Bridging Classical and Quantum Machine Learning**
+>
+> QMNN combines classical neural networks with quantum memory operations to achieve enhanced learning capabilities. This open-source implementation provides practical quantum-inspired algorithms suitable for near-term quantum devices.
 
-> **Quantum Memory-Augmented Neural Networks: A Novel Architecture for Enhanced Learning**
-> *Now featuring 2025 state-of-the-art quantum transformers, fault-tolerant error correction, and quantum federated learning*
+## 🎯 Overview
 
-## 🎯 Project Goals
+QMANN introduces a hybrid architecture that leverages quantum memory principles to enhance classical neural networks:
 
-This repository contains the complete research package for QMANN, developed by **Neura Parse**, designed for:
-
-1. **📄 Research Paper** – arXiv.org publication with PDF/A-1b compliance, full metadata, and DOI-linked code
-2. **🔓 Open Source Prototype** – MIT licensed, runs instantly with `docker run`
-3. **🔄 Reproduction Packages** – data, scripts, pre-trained weights (Zenodo DOI)
-4. **🎤 Conference Package** – 5-min demo video, 12-slide lightning talk, A0 poster
+- **🧠 Quantum Memory**: Exponential storage capacity using quantum superposition
+- **🔄 Hybrid Processing**: Seamless integration of classical and quantum components
+- **⚡ Practical Implementation**: Designed for current quantum hardware constraints
+- **📊 Proven Benefits**: Demonstrated improvements on memory-intensive tasks
+- **🔬 Research Ready**: Complete framework for quantum ML research
 
 ## 🚀 Quick Start
 
 ```bash
-# Clone and test
+# Clone the repository
 git clone https://github.com/neuraparse/QMANN.git
 cd QMANN
+
+# Install dependencies
+pip install -r requirements.txt
+pip install -e .
+
+# Quick test
 make quicktest
 
-# Run with Docker
-docker run ghcr.io/qmnn/v1.0 demo.py
+# Run basic example
+python examples/basic_qmnn_example.py
 
-# Install for development
-pip install -e .
+# Or use Docker
+docker build -t qmnn .
+docker run qmnn python examples/basic_qmnn_example.py
+```
+
+### Your First QMNN Model
+
+```python
+import torch
+from qmnn import QMNN, QMNNTrainer
+
+# Create model
+model = QMNN(
+    input_dim=10,
+    hidden_dim=64,
+    output_dim=3,
+    memory_capacity=32,
+    max_qubits=8
+)
+
+# Generate sample data
+X = torch.randn(100, 15, 10)  # [batch, sequence, features]
+y = torch.randint(0, 3, (100, 15))  # [batch, sequence]
+
+# Train
+trainer = QMNNTrainer(model)
+trainer.train_epoch(X, y)
+
+# Get quantum info
+print(model.get_quantum_info())
 ```
 
 ## 📁 Project Structure

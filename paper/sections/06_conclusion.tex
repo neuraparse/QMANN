@@ -1,7 +1,7 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-This work introduces Quantum Memory-Augmented Neural Networks (\qmnn), a novel hybrid architecture that combines classical neural networks with quantum random access memory to achieve significant improvements in learning efficiency and memory capacity. Our comprehensive experimental evaluation demonstrates clear advantages over classical approaches across multiple benchmarks and provides a concrete pathway toward practical quantum advantage in machine learning.
+This work introduces Quantum Memory-Augmented Neural Networks (\qmnn), a novel hybrid architecture that combines classical neural networks with quantum-inspired memory operations. Through classical simulation of quantum operations, we demonstrate potential advantages in memory efficiency and learning performance. While our results are promising, they represent simulated quantum advantages that require validation on real quantum hardware.
 
 \subsection{Summary of Contributions}
 
@@ -11,7 +11,7 @@ We have made several key contributions to the field of quantum machine learning:
 
 \textbf{Theoretical Analysis}: We provided rigorous theoretical analysis of the memory capacity and computational complexity advantages offered by quantum memory augmentation. Our analysis establishes exponential memory scaling ($2^n$ capacity with $n$ qubits) and logarithmic access complexity ($O(\log N)$ vs. $O(N)$ classical), providing fundamental insights into quantum advantages in memory-intensive learning tasks.
 
-\textbf{Experimental Validation}: We conducted comprehensive experimental evaluation on standard machine learning benchmarks, demonstrating 15\% improvement in classification accuracy on MNIST while using 60\% fewer parameters. Our results show consistent improvements across diverse tasks including image classification, sequence learning, and algorithmic problems.
+\textbf{Simulation-Based Validation}: We conducted experimental evaluation using classical simulation of quantum operations, showing modest improvements in classification accuracy on MNIST sequential tasks (98.6\% vs 98.2\% classical baseline) while using fewer parameters. These results demonstrate the potential of quantum-inspired approaches, though real quantum hardware validation is needed.
 
 \textbf{Practical Implementation}: We developed a complete open-source implementation using modern quantum computing frameworks (Qiskit, PennyLane) with full reproducibility guarantees. Our implementation includes comprehensive testing, benchmarking, and documentation to enable further research and development.
 
@@ -21,7 +21,7 @@ We have made several key contributions to the field of quantum machine learning:
 
 Our experimental results reveal several important findings:
 
-\textbf{Quantum Memory Advantages Are Real}: The consistent performance improvements across multiple benchmarks demonstrate that quantum memory provides genuine computational advantages beyond what can be achieved with classical approaches alone.
+\textbf{Simulated Quantum Advantages Show Promise}: The performance improvements in classical simulation suggest potential for quantum memory advantages, though these must be validated on real quantum hardware to confirm genuine quantum benefits.
 
 \textbf{Hybrid Architectures Are Effective}: The combination of classical neural network components with targeted quantum memory operations provides the best of both worlds: quantum advantages where they matter most, with classical stability for overall system behavior.
 
@@ -45,7 +45,7 @@ Our work has several important implications for the broader field of quantum mac
 
 While our results are encouraging, several limitations point toward important directions for future research:
 
-\textbf{Hardware Implementation}: Current results rely on classical simulation of quantum operations. Implementation on real quantum hardware is essential to fully validate quantum advantages and explore hardware-specific optimizations.
+\textbf{Hardware Implementation}: \textit{Critical limitation}: All results are from classical simulation. Real quantum hardware implementation is essential to validate claimed advantages. Current quantum devices may show different performance due to noise, decoherence, and limited connectivity not fully captured in simulation.
 
 \textbf{Scaling Studies}: Larger-scale experiments with more qubits and larger datasets are needed to fully characterize the scaling behavior of quantum advantages.
 

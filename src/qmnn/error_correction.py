@@ -1,14 +1,17 @@
 """
-Fault-Tolerant Quantum Error Correction for QMNN (2025)
+Practical Quantum Error Correction for QMNN
 
-This module implements state-of-the-art quantum error correction
-based on the latest 2025 breakthroughs in surface codes and logical qubits.
+This module implements realistic quantum error correction techniques
+suitable for near-term quantum devices with limited qubit counts and
+high error rates.
 """
 
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import numpy as np
-from typing import Dict, List, Tuple, Optional
+import warnings
+from typing import Dict, List, Tuple, Optional, Union
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import Statevector, DensityMatrix
 from qiskit.providers.aer.noise import NoiseModel, depolarizing_error, thermal_relaxation_error
@@ -17,54 +20,225 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class SurfaceCodeQRAM(nn.Module):
+class PracticalErrorCorrection(nn.Module):
     """
-    Surface Code Protected Quantum Random Access Memory.
-    
-    Based on 2025 Google/IBM breakthroughs in logical qubit scaling
-    and fault-tolerant quantum memory operations.
+    Practical quantum error correction for near-term devices.
+
+    Implements realistic error correction strategies suitable for
+    current quantum hardware with limited qubit counts and high error rates.
     """
-    
-    def __init__(self, memory_size: int, code_distance: int = 3, 
-                 error_threshold: float = 1e-3):
+
+    def __init__(self, n_qubits: int, error_rate: float = 0.01,
+                 correction_method: str = "repetition", code_distance: int = 3):
         super().__init__()
-        self.memory_size = memory_size
+
+        # Validate hardware constraints
+        if n_qubits > 50:
+            warnings.warn(f"n_qubits={n_qubits} > 50 may exceed current hardware limits")
+
+        self.n_qubits = n_qubits
+        self.error_rate = error_rate
+        self.correction_method = correction_method
         self.code_distance = code_distance
-        self.error_threshold = error_threshold
-        
-        # Calculate number of physical qubits needed
-        self.physical_qubits_per_logical = code_distance ** 2
-        self.total_physical_qubits = memory_size * self.physical_qubits_per_logical
-        
-        # Error correction parameters
-        self.syndrome_extraction_rounds = 3
-        self.error_correction_threshold = 0.1
-        
-        # Logical qubit operations
-        self.logical_operations = self._initialize_logical_operations()
-        
-        # Error tracking
+
+        # Calculate overhead for different correction methods
+        if correction_method == "repetition":
+            self.physical_qubits_per_logical = code_distance
+        elif correction_method == "surface":
+            self.physical_qubits_per_logical = code_distance ** 2
+        elif correction_method == "steane":
+            self.physical_qubits_per_logical = 7  # Steane code uses 7 qubits
+        else:
+            self.physical_qubits_per_logical = 1  # No error correction
+
+        self.total_physical_qubits = n_qubits * self.physical_qubits_per_logical
+
+        # Error tracking and statistics
         self.error_history = []
+        self.correction_success_rate = 0.0
+        self.total_corrections = 0
         
-    def _initialize_logical_operations(self) -> Dict[str, QuantumCircuit]:
-        """Initialize logical qubit operations for surface code."""
-        operations = {}
-        
-        # Logical X gate
-        logical_x = QuantumCircuit(self.physical_qubits_per_logical)
-        # Implementation depends on surface code layout
-        operations['X'] = logical_x
-        
-        # Logical Z gate
-        logical_z = QuantumCircuit(self.physical_qubits_per_logical)
-        operations['Z'] = logical_z
-        
-        # Logical CNOT gate
-        logical_cnot = QuantumCircuit(2 * self.physical_qubits_per_logical)
-        operations['CNOT'] = logical_cnot
-        
-        return operations
-    
+    def create_error_correction_circuit(self, logical_qubits: int) -> QuantumCircuit:
+        """Create error correction circuit for given number of logical qubits."""
+
+        if self.correction_method == "repetition":
+            return self._create_repetition_code_circuit(logical_qubits)
+        elif self.correction_method == "surface":
+            return self._create_surface_code_circuit(logical_qubits)
+        elif self.correction_method == "steane":
+            return self._create_steane_code_circuit(logical_qubits)
+        else:
+            # No error correction - just return identity circuit
+            return QuantumCircuit(logical_qubits)
+
+    def _create_repetition_code_circuit(self, logical_qubits: int) -> QuantumCircuit:
+        """Create repetition code circuit (simplest error correction)."""
+        total_qubits = logical_qubits * self.code_distance
+        circuit = QuantumCircuit(total_qubits)
+
+        # For each logical qubit, create repetition code
+        for logical_idx in range(logical_qubits):
+            start_idx = logical_idx * self.code_distance
+
+            # Copy logical qubit to all physical qubits
+            for i in range(1, self.code_distance):
+                circuit.cx(start_idx, start_idx + i)
+
+        return circuit
+
+    def _create_surface_code_circuit(self, logical_qubits: int) -> QuantumCircuit:
+        """Create simplified surface code circuit."""
+        if self.code_distance < 3:
+            warnings.warn("Surface code requires distance >= 3, using repetition code instead")
+            return self._create_repetition_code_circuit(logical_qubits)
+
+        total_qubits = logical_qubits * self.physical_qubits_per_logical
+        circuit = QuantumCircuit(total_qubits)
+
+        # Simplified surface code implementation
+        for logical_idx in range(logical_qubits):
+            start_idx = logical_idx * self.physical_qubits_per_logical
+
+            # Create basic stabilizer structure
+            for i in range(self.code_distance - 1):
+                for j in range(self.code_distance - 1):
+                    qubit_idx = start_idx + i * self.code_distance + j
+                    if qubit_idx + 1 < start_idx + self.physical_qubits_per_logical:
+                        circuit.cx(qubit_idx, qubit_idx + 1)
+
+        return circuit
+
+    def _create_steane_code_circuit(self, logical_qubits: int) -> QuantumCircuit:
+        """Create Steane [[7,1,3]] code circuit."""
+        total_qubits = logical_qubits * 7
+        circuit = QuantumCircuit(total_qubits)
+
+        # Steane code encoding for each logical qubit
+        for logical_idx in range(logical_qubits):
+            start_idx = logical_idx * 7
+
+            # Steane code encoding circuit
+            circuit.h(start_idx + 1)
+            circuit.h(start_idx + 2)
+            circuit.h(start_idx + 3)
+
+            circuit.cx(start_idx + 1, start_idx + 4)
+            circuit.cx(start_idx + 2, start_idx + 4)
+            circuit.cx(start_idx + 3, start_idx + 5)
+            circuit.cx(start_idx + 1, start_idx + 5)
+            circuit.cx(start_idx + 2, start_idx + 6)
+            circuit.cx(start_idx + 3, start_idx + 6)
+
+        return circuit
+
+    def detect_errors(self, quantum_state: torch.Tensor,
+                     measurement_results: Optional[torch.Tensor] = None) -> Dict[str, torch.Tensor]:
+        """
+        Detect errors in quantum state using syndrome extraction.
+
+        Args:
+            quantum_state: Current quantum state representation
+            measurement_results: Optional measurement results for syndrome extraction
+
+        Returns:
+            Dictionary containing error information
+        """
+        batch_size = quantum_state.shape[0]
+
+        if self.correction_method == "repetition":
+            return self._detect_repetition_errors(quantum_state)
+        elif self.correction_method == "surface":
+            return self._detect_surface_errors(quantum_state)
+        elif self.correction_method == "steane":
+            return self._detect_steane_errors(quantum_state)
+        else:
+            # No error correction
+            return {
+                'error_detected': torch.zeros(batch_size, dtype=torch.bool),
+                'error_locations': torch.zeros(batch_size, self.n_qubits, dtype=torch.long),
+                'error_types': torch.zeros(batch_size, self.n_qubits, dtype=torch.long),
+                'syndrome': torch.zeros(batch_size, 1)
+            }
+
+    def _detect_repetition_errors(self, quantum_state: torch.Tensor) -> Dict[str, torch.Tensor]:
+        """Detect errors using repetition code."""
+        batch_size, state_dim = quantum_state.shape
+        n_logical = self.n_qubits
+
+        # Simulate parity check measurements
+        error_detected = torch.zeros(batch_size, dtype=torch.bool)
+        error_locations = torch.zeros(batch_size, n_logical, dtype=torch.long)
+        syndrome = torch.zeros(batch_size, n_logical * (self.code_distance - 1))
+
+        for logical_idx in range(n_logical):
+            # Check parity between adjacent physical qubits
+            for i in range(self.code_distance - 1):
+                # Simulate parity measurement
+                parity = torch.rand(batch_size) < self.error_rate
+                syndrome[:, logical_idx * (self.code_distance - 1) + i] = parity.float()
+
+                if torch.any(parity):
+                    error_detected[parity] = True
+                    error_locations[parity, logical_idx] = i
+
+        return {
+            'error_detected': error_detected,
+            'error_locations': error_locations,
+            'error_types': torch.ones_like(error_locations),  # Assume X errors
+            'syndrome': syndrome
+        }
+
+    def _detect_surface_errors(self, quantum_state: torch.Tensor) -> Dict[str, torch.Tensor]:
+        """Detect errors using surface code (simplified)."""
+        batch_size, state_dim = quantum_state.shape
+        n_logical = self.n_qubits
+
+        # Simplified surface code error detection
+        syndrome_length = n_logical * (self.code_distance - 1) ** 2
+        syndrome = torch.rand(batch_size, syndrome_length) < self.error_rate
+
+        error_detected = torch.any(syndrome, dim=1)
+        error_locations = torch.zeros(batch_size, n_logical, dtype=torch.long)
+
+        # Simple error location estimation
+        for i in range(batch_size):
+            if error_detected[i]:
+                error_locations[i, :] = torch.randint(0, self.physical_qubits_per_logical, (n_logical,))
+
+        return {
+            'error_detected': error_detected,
+            'error_locations': error_locations,
+            'error_types': torch.randint(1, 4, (batch_size, n_logical)),  # X, Y, Z errors
+            'syndrome': syndrome.float()
+        }
+
+    def _detect_steane_errors(self, quantum_state: torch.Tensor) -> Dict[str, torch.Tensor]:
+        """Detect errors using Steane code."""
+        batch_size, state_dim = quantum_state.shape
+        n_logical = self.n_qubits
+
+        # Steane code has 6 syndrome bits per logical qubit
+        syndrome_length = n_logical * 6
+        syndrome = torch.rand(batch_size, syndrome_length) < self.error_rate
+
+        error_detected = torch.any(syndrome, dim=1)
+        error_locations = torch.zeros(batch_size, n_logical, dtype=torch.long)
+
+        # Steane code error location from syndrome
+        for i in range(batch_size):
+            if error_detected[i]:
+                for logical_idx in range(n_logical):
+                    syndrome_bits = syndrome[i, logical_idx*6:(logical_idx+1)*6]
+                    # Convert syndrome to error location (simplified)
+                    error_locations[i, logical_idx] = torch.sum(syndrome_bits * torch.arange(6)).long()
+
+        return {
+            'error_detected': error_detected,
+            'error_locations': error_locations,
+            'error_types': torch.randint(1, 4, (batch_size, n_logical)),
+            'syndrome': syndrome.float()
+        }
+
     def create_surface_code_layout(self) -> QuantumCircuit:
         """Create surface code layout for error correction."""
         # Create grid of physical qubits

@@ -9,7 +9,7 @@ and quantum federated learning capabilities.
 __version__ = "1.0.0"
 __author__ = "Bayram Eker, Neura Parse Research Team"
 __email__ = "info@neuraparse.com"
-__license__ = "MIT"
+__license__ = "Apache-2.0"
 __organization__ = "Neura Parse"
 __website__ = "https://neuraparse.com"
 
@@ -50,6 +50,48 @@ try:
     QUANTUM_FEDERATED_AVAILABLE = True
 except ImportError:
     QUANTUM_FEDERATED_AVAILABLE = False
+
+# Modular Components (2025)
+try:
+    from .quantum_memory import (
+        QuantumMemoryManager,
+        AdaptiveQuantumMemory
+    )
+    QUANTUM_MEMORY_AVAILABLE = True
+except ImportError:
+    QUANTUM_MEMORY_AVAILABLE = False
+
+try:
+    from .classical_controller import (
+        ClassicalEncoder,
+        LSTMController,
+        ClassicalDecoder,
+        HybridController
+    )
+    CLASSICAL_CONTROLLER_AVAILABLE = True
+except ImportError:
+    CLASSICAL_CONTROLLER_AVAILABLE = False
+
+try:
+    from .attention import (
+        MultiHeadAttention,
+        QuantumInspiredAttention,
+        AdaptiveAttention
+    )
+    ATTENTION_AVAILABLE = True
+except ImportError:
+    ATTENTION_AVAILABLE = False
+
+try:
+    from .hybrid_layers import (
+        HybridTransformerLayer,
+        QuantumClassicalFusion,
+        AdaptiveHybridLayer,
+        HybridResidualBlock
+    )
+    HYBRID_LAYERS_AVAILABLE = True
+except ImportError:
+    HYBRID_LAYERS_AVAILABLE = False
 
 try:
     from .quantum_advantage import QuantumAdvantageMetrics
@@ -96,10 +138,71 @@ if QUANTUM_ADVANTAGE_AVAILABLE:
         "QuantumAdvantageMetrics",
     ])
 
+# Add modular components if available
+if QUANTUM_MEMORY_AVAILABLE:
+    __all__.extend([
+        "QuantumMemoryManager",
+        "AdaptiveQuantumMemory",
+    ])
+
+if CLASSICAL_CONTROLLER_AVAILABLE:
+    __all__.extend([
+        "ClassicalEncoder",
+        "LSTMController",
+        "ClassicalDecoder",
+        "HybridController",
+    ])
+
+if ATTENTION_AVAILABLE:
+    __all__.extend([
+        "MultiHeadAttention",
+        "QuantumInspiredAttention",
+        "AdaptiveAttention",
+    ])
+
+if HYBRID_LAYERS_AVAILABLE:
+    __all__.extend([
+        "HybridTransformerLayer",
+        "QuantumClassicalFusion",
+        "AdaptiveHybridLayer",
+        "HybridResidualBlock",
+    ])
+
 # Version info for 2025 features
 FEATURES_2025 = {
     "quantum_transformers": QUANTUM_TRANSFORMERS_AVAILABLE,
     "fault_tolerant_qec": ERROR_CORRECTION_AVAILABLE,
     "quantum_federated": QUANTUM_FEDERATED_AVAILABLE,
     "advantage_verification": QUANTUM_ADVANTAGE_AVAILABLE,
+    "modular_quantum_memory": QUANTUM_MEMORY_AVAILABLE,
+    "classical_controllers": CLASSICAL_CONTROLLER_AVAILABLE,
+    "advanced_attention": ATTENTION_AVAILABLE,
+    "hybrid_layers": HYBRID_LAYERS_AVAILABLE,
 }
+
+def get_available_features():
+    """Get information about available features and modules."""
+    return FEATURES_2025
+
+def get_system_info():
+    """Get comprehensive system information."""
+    import torch
+
+    info = {
+        'qmnn_version': __version__,
+        'pytorch_version': torch.__version__,
+        'cuda_available': torch.cuda.is_available(),
+        'available_features': get_available_features(),
+        'recommended_config': {
+            'max_qubits': 12,
+            'max_memory_capacity': 512,
+            'recommended_batch_size': 32,
+            'hardware_requirements': {
+                'min_ram_gb': 8,
+                'recommended_ram_gb': 16,
+                'gpu_memory_gb': 4
+            }
+        }
+    }
+
+    return info
