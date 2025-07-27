@@ -1,0 +1,4 @@
+[console_scripts]
+qmann = qmann.cli:main
+qmann-benchmark = qmann.benchmarks:main
+qmann-train = qmann.training:main

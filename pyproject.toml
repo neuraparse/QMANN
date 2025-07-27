@@ -129,7 +129,7 @@ Repository = "https://github.com/neuraparse/QMANN.git"
 "arXiv Paper" = "https://arxiv.org/abs/2025.XXXXX"
 "Zenodo DOI" = "https://doi.org/10.5281/zenodo.XXXXXXX"
 "Organization" = "https://neuraparse.com"
-"Contact" = "mailto:info@neuraparse.com"
+"Contact" = "https://neuraparse.com/contact"
 
 [project.scripts]
 qmann = "qmann.cli:main"
