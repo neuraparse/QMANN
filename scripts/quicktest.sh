@@ -77,14 +77,25 @@ echo -e "${BLUE}========================================${NC}"
 # Check system requirements
 print_info "Checking system requirements..."
 
-check_command "python3" "Python 3"
+# Check for python command (Windows uses 'python', Linux uses 'python3')
+if command -v python3 &> /dev/null; then
+    PYTHON_CMD="python3"
+    print_status "✓ Python 3 (python3 found)"
+elif command -v python &> /dev/null; then
+    PYTHON_CMD="python"
+    print_status "✓ Python 3 (python found)"
+else
+    print_error "✗ Python 3 (neither python3 nor python found)"
+    exit 1
+fi
 check_command "pip" "pip package manager"
 check_command "git" "Git version control"
 
 # Check Python version
 print_info "Checking Python version..."
-python_version=$(python3 -c "import sys; print('.'.join(map(str, sys.version_info[:2])))")
-if [[ $(echo "$python_version >= 3.9" | bc -l 2>/dev/null || echo "0") -eq 1 ]]; then
+python_version=$($PYTHON_CMD -c "import sys; print('.'.join(map(str, sys.version_info[:2])))")
+python_check=$($PYTHON_CMD -c "import sys; print(1 if sys.version_info >= (3, 9) else 0)")
+if [[ "$python_check" -eq 1 ]]; then
     print_status "✓ Python version: $python_version"
 else
     print_error "✗ Python version: $python_version (requires 3.9+)"
@@ -105,19 +116,19 @@ fi
 
 # Test 1: Package installation
 print_info "Testing package installation..."
-run_test "Package importable" "python3 -c 'import qmann'"
+run_test "Package importable" "$PYTHON_CMD -c 'import qmann'"
 
 # Test 2: Core dependencies
 print_info "Testing core dependencies..."
-run_test "PyTorch import" "python3 -c 'import torch'"
-run_test "NumPy import" "python3 -c 'import numpy'"
-run_test "Qiskit import" "python3 -c 'import qiskit'"
+run_test "PyTorch import" "$PYTHON_CMD -c 'import torch'"
+run_test "NumPy import" "$PYTHON_CMD -c 'import numpy'"
+run_test "Qiskit import" "$PYTHON_CMD -c 'import qiskit'"
 
 # Test 3: QMANN core components
 print_info "Testing QMANN core components..."
-run_test "QRAM import" "python3 -c 'from qmann.core import QRAM'"
-run_test "QMANN model import" "python3 -c 'from qmann.models import QMANN'"
-run_test "Trainer import" "python3 -c 'from qmann.training import QMANNTrainer'"
+run_test "QRAM import" "$PYTHON_CMD -c 'from qmann.core import QRAM'"
+run_test "QMANN model import" "$PYTHON_CMD -c 'from qmann.models import QMANN'"
+run_test "Trainer import" "$PYTHON_CMD -c 'from qmann.training import QMANNTrainer'"
 
 # Test 4: Basic functionality
 print_info "Testing basic functionality..."
@@ -153,12 +164,12 @@ print(f"Forward pass successful: output shape {output.shape}")
 print("All basic functionality tests passed!")
 EOF
 
-run_test "Basic functionality" "python3 /tmp/qmann_test.py"
+run_test "Basic functionality" "$PYTHON_CMD /tmp/qmann_test.py"
 
 # Test 5: CLI interface
 print_info "Testing CLI interface..."
-run_test "CLI help" "python3 -m qmann.cli --help"
-run_test "CLI info command" "python3 -m qmann.cli info"
+run_test "CLI help" "$PYTHON_CMD -m qmann.cli --help"
+run_test "CLI info command" "$PYTHON_CMD -m qmann.cli info"
 
 # Test 6: Unit tests (if available)
 if [ -d "tests" ] && [ -f "tests/test_core.py" ]; then
@@ -166,7 +177,7 @@ if [ -d "tests" ] && [ -f "tests/test_core.py" ]; then
     if command -v pytest &> /dev/null; then
         run_test "Core unit tests" "pytest tests/test_core.py -v --tb=short"
     else
-        run_test "Core unit tests (unittest)" "python3 -m unittest tests.test_core -v"
+        run_test "Core unit tests (unittest)" "$PYTHON_CMD -m unittest tests.test_core -v"
     fi
 else
     print_warning "Unit tests not found, skipping"
