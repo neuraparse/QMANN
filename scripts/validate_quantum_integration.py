@@ -2,7 +2,7 @@
 """
 Quantum Integration Validation Script
 
-This script validates that QMNN is properly integrated with real quantum
+This script validates that QMANN is properly integrated with real quantum
 hardware interfaces and can distinguish between theoretical, simulation,
 and experimental modes.
 """
@@ -12,20 +12,20 @@ import warnings
 from typing import Dict, List, Any
 
 def test_basic_imports():
-    """Test basic QMNN imports."""
+    """Test basic QMANN imports."""
     print("Testing basic imports...")
     
     try:
-        import qmnn
-        print("  ✓ qmnn imported successfully")
+        import qmann
+        print("  ✓ qmann imported successfully")
         
         # Test core components
-        from qmnn import QMNN, QuantumMemory, QRAM
+        from qmann import QMANN, QuantumMemory, QRAM
         print("  ✓ Core components imported")
         
         # Test system info
-        info = qmnn.get_system_info()
-        print(f"  ✓ System info: QMNN v{info['qmnn_version']}")
+        info = qmann.get_system_info()
+        print(f"  ✓ System info: QMANN v{info['qmann_version']}")
         
         return True
     except ImportError as e:
@@ -37,7 +37,7 @@ def test_quantum_hardware_interface():
     print("\nTesting quantum hardware interface...")
     
     try:
-        from qmnn.hardware import QuantumBackendManager, ExperimentalQMNN
+        from qmann.hardware import QuantumBackendManager, ExperimentalQMANN
         print("  ✓ Hardware interface imported")
         
         # Test backend manager
@@ -60,7 +60,7 @@ def test_experimental_configuration():
     print("\nTesting experimental configuration...")
     
     try:
-        from qmnn.config import (
+        from qmann.config import (
             ExperimentalConfig, ExperimentMode,
             THEORETICAL_ANALYSIS, SIMULATION_VALIDATION, HARDWARE_PROOF_OF_CONCEPT,
             get_recommended_config, validate_experimental_setup
@@ -94,7 +94,7 @@ def test_mode_separation():
     print("\nTesting mode separation...")
     
     try:
-        from qmnn.config import ExperimentalConfig, ExperimentMode
+        from qmann.config import ExperimentalConfig, ExperimentMode
         
         # Test theoretical mode
         theoretical_config = ExperimentalConfig(mode=ExperimentMode.THEORETICAL)
@@ -132,8 +132,8 @@ def test_realistic_constraints():
     print("\nTesting realistic constraints...")
     
     try:
-        from qmnn.config import HardwareConfig
-        from qmnn.hardware import ExperimentalQMNN
+        from qmann.config import HardwareConfig
+        from qmann.hardware import ExperimentalQMANN
         
         # Test hardware config constraints
         hw_config = HardwareConfig()
@@ -147,7 +147,7 @@ def test_realistic_constraints():
             warnings.simplefilter("always")
             
             # This should trigger warnings for excessive qubits
-            model = ExperimentalQMNN(
+            model = ExperimentalQMANN(
                 input_dim=4,
                 hidden_dim=16,
                 output_dim=2,
@@ -169,7 +169,7 @@ def test_cost_estimation():
     print("\nTesting cost estimation...")
     
     try:
-        from qmnn.config import ExperimentalConfig, ExperimentMode, HardwareConfig
+        from qmann.config import ExperimentalConfig, ExperimentMode, HardwareConfig
         
         # Test free backends
         free_config = ExperimentalConfig(
@@ -207,9 +207,9 @@ def test_feature_availability():
     print("\nTesting feature availability...")
     
     try:
-        import qmnn
+        import qmann
         
-        features = qmnn.get_available_features()
+        features = qmann.get_available_features()
         
         print("  Available features:")
         for feature, available in features.items():
@@ -238,15 +238,15 @@ def run_integration_test():
     print("\nRunning integration test...")
     
     try:
-        from qmnn import QMNN
-        from qmnn.config import SIMULATION_VALIDATION, validate_experimental_setup
+        from qmann import QMANN
+        from qmann.config import SIMULATION_VALIDATION, validate_experimental_setup
         
         # Validate experimental setup
         is_valid = validate_experimental_setup(SIMULATION_VALIDATION)
         print(f"  ✓ Simulation config validation: {'passed' if is_valid else 'has warnings'}")
         
         # Create and test model
-        model = QMNN(
+        model = QMANN(
             input_dim=4,
             hidden_dim=16,
             output_dim=2,
@@ -276,7 +276,7 @@ def run_integration_test():
 
 def main():
     """Main validation function."""
-    print("QMNN Quantum Integration Validation")
+    print("QMANN Quantum Integration Validation")
     print("=" * 50)
     
     tests = [
@@ -314,7 +314,7 @@ def main():
     print(f"\nOverall: {passed}/{total} tests passed ({passed/total*100:.1f}%)")
     
     if passed == total:
-        print("🎉 All tests passed! QMNN is properly integrated with quantum hardware.")
+        print("🎉 All tests passed! QMANN is properly integrated with quantum hardware.")
         return 0
     else:
         print("⚠️  Some tests failed. Check the output above for details.")

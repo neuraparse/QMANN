@@ -1,5 +1,5 @@
 """
-Hybrid Quantum-Classical Layers for QMNN
+Hybrid Quantum-Classical Layers for QMANN
 
 This module contains hybrid layers that seamlessly integrate quantum
 and classical processing components.

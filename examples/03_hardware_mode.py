@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-QMNN Hardware Mode Example
+QMANN Hardware Mode Example
 
-This example demonstrates real quantum hardware experiments with QMNN,
+This example demonstrates real quantum hardware experiments with QMANN,
 including cost estimation, safety checks, and experimental validation.
 
 ⚛️ HARDWARE MODE:
@@ -22,15 +22,15 @@ import matplotlib.pyplot as plt
 import time
 from typing import Dict, List, Optional
 
-# QMNN imports
+# QMANN imports
 try:
-    from qmnn.hardware import ExperimentalQMNN, QuantumBackendManager
-    from qmnn.config import HARDWARE_PROOF_OF_CONCEPT, validate_experimental_setup
+    from qmann.hardware import ExperimentalQMANN, QuantumBackendManager
+    from qmann.config import HARDWARE_PROOF_OF_CONCEPT, validate_experimental_setup
     HARDWARE_AVAILABLE = True
 except ImportError:
     HARDWARE_AVAILABLE = False
     print("❌ Hardware interface not available!")
-    print("Install with: pip install qmnn[hardware]")
+    print("Install with: pip install qmann[hardware]")
 
 
 def check_hardware_prerequisites() -> bool:
@@ -182,7 +182,7 @@ def run_hardware_validation():
     print(f"Test data: {X_test.shape} (minimal for cost control)")
     
     # Create hardware-optimized model
-    model = ExperimentalQMNN(
+    model = ExperimentalQMANN(
         input_dim=4,
         hidden_dim=16,
         output_dim=2,
@@ -190,7 +190,7 @@ def run_hardware_validation():
         backend_manager=backend_manager
     )
     
-    print(f"\nExperimental QMNN Model:")
+    print(f"\nExperimental QMANN Model:")
     print(f"  - Input dim: 4")
     print(f"  - Hidden dim: 16") 
     print(f"  - Output dim: 2")
@@ -316,7 +316,7 @@ def generate_hardware_report(cost_estimate: Dict, simulator_results: Dict,
     """Generate comprehensive hardware experiment report."""
     
     report = []
-    report.append("QMNN HARDWARE MODE REPORT")
+    report.append("QMANN HARDWARE MODE REPORT")
     report.append("=" * 50)
     report.append("")
     
@@ -387,7 +387,7 @@ def generate_hardware_report(cost_estimate: Dict, simulator_results: Dict,
 
 def main():
     """Main hardware experiment workflow."""
-    print("⚛️ QMNN HARDWARE MODE EXPERIMENTS")
+    print("⚛️ QMANN HARDWARE MODE EXPERIMENTS")
     print("=" * 50)
     print("Real quantum hardware validation")
     print("⚠️  WARNING: This mode can cost real money!")
@@ -432,9 +432,9 @@ def main():
         print(report)
         
         # Save report
-        with open('qmnn_hardware_report.txt', 'w') as f:
+        with open('qmann_hardware_report.txt', 'w') as f:
             f.write(report)
-        print(f"\n📄 Report saved to: qmnn_hardware_report.txt")
+        print(f"\n📄 Report saved to: qmann_hardware_report.txt")
         
         # Save experimental summary
         experimental_summary = model.get_experimental_summary()

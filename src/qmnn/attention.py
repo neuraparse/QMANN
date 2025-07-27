@@ -1,5 +1,5 @@
 """
-Attention Mechanisms for QMNN
+Attention Mechanisms for QMANN
 
 This module contains various attention mechanisms including classical,
 quantum-inspired, and hybrid attention implementations.

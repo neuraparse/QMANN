@@ -10,11 +10,11 @@
 
 > **Quantum Memory-Augmented Neural Networks: Bridging Classical and Quantum Machine Learning**
 >
-> QMNN combines classical neural networks with quantum memory operations to achieve enhanced learning capabilities. This open-source implementation provides practical quantum-inspired algorithms suitable for near-term quantum devices.
+> QMANN combines classical neural networks with quantum memory operations to achieve enhanced learning capabilities. This open-source implementation provides practical quantum-inspired algorithms suitable for near-term quantum devices.
 
 ## 🎯 Overview
 
-QMNN provides **three distinct modes** for quantum machine learning research and development:
+QMANN provides **three distinct modes** for quantum machine learning research and development:
 
 ### 🔬 **Theoretical Mode** (Ideal Quantum Computer)
 - **Purpose**: Theoretical analysis and algorithm development
@@ -53,8 +53,8 @@ python examples/02_simulation_mode.py     # 💻 FREE - Classical simulation
 python examples/03_hardware_mode.py       # ⚛️ PAID - Real quantum hardware
 
 # Or use Docker
-docker build -t qmnn .
-docker run qmnn python examples/02_simulation_mode.py
+docker build -t qmann .
+docker run qmann python examples/02_simulation_mode.py
 ```
 
 ### 🎯 **Which Mode Should I Use?**
@@ -73,7 +73,7 @@ python examples/03_hardware_mode.py
 
 ## 🎮 **CRITICAL: Mode Selection Guide**
 
-> **⚠️ IMPORTANT**: QMNN has three distinct modes. Choose the right one for your needs!
+> **⚠️ IMPORTANT**: QMANN has three distinct modes. Choose the right one for your needs!
 
 | Mode | Purpose | Cost | Qubits | Use Case |
 |------|---------|------|--------|----------|
@@ -88,14 +88,14 @@ python examples/03_hardware_mode.py
 **Resources**: Unlimited (ideal quantum computer)
 
 ```python
-from qmnn.config import THEORETICAL_ANALYSIS, validate_experimental_setup
-from qmnn import QMNN
+from qmann.config import THEORETICAL_ANALYSIS, validate_experimental_setup
+from qmann import QMANN
 
 # Validate theoretical setup
 validate_experimental_setup(THEORETICAL_ANALYSIS)
 
 # Create theoretical model (unlimited resources)
-model = QMNN(
+model = QMANN(
     input_dim=100,      # Large input
     hidden_dim=512,     # Large hidden layer
     output_dim=10,
@@ -113,14 +113,14 @@ print("Theoretical capacity:", model.get_quantum_info()['theoretical_capacity'])
 **Resources**: Up to 20 qubits, noise modeling
 
 ```python
-from qmnn.config import SIMULATION_VALIDATION
-from qmnn import QMNN, QMNNTrainer
+from qmann.config import SIMULATION_VALIDATION
+from qmann import QMANN, QMANNTrainer
 
 # Validate simulation setup
 validate_experimental_setup(SIMULATION_VALIDATION)
 
 # Create simulation model (realistic limits)
-model = QMNN(
+model = QMANN(
     input_dim=10,
     hidden_dim=64,
     output_dim=3,
@@ -133,7 +133,7 @@ X = torch.randn(100, 15, 10)
 y = torch.randint(0, 3, (100, 15))
 
 # Train with simulation
-trainer = QMNNTrainer(model)
+trainer = QMANNTrainer(model)
 trainer.train_epoch(X, y)
 
 print("Simulation results:", model.get_quantum_info())
@@ -146,8 +146,8 @@ print("Simulation results:", model.get_quantum_info())
 **Resources**: 4-12 qubits, real noise, actual quantum effects
 
 ```python
-from qmnn.hardware import ExperimentalQMNN, QuantumBackendManager
-from qmnn.config import HARDWARE_PROOF_OF_CONCEPT
+from qmann.hardware import ExperimentalQMANN, QuantumBackendManager
+from qmann.config import HARDWARE_PROOF_OF_CONCEPT
 
 # ⚠️ WARNING: This costs real money on quantum hardware!
 # Setup quantum backends (requires API credentials)
@@ -157,7 +157,7 @@ backend_manager = QuantumBackendManager()
 validate_experimental_setup(HARDWARE_PROOF_OF_CONCEPT)
 
 # Create hardware model (NISQ constraints)
-model = ExperimentalQMNN(
+model = ExperimentalQMANN(
     input_dim=4,         # Small input for hardware
     hidden_dim=16,       # Small hidden layer
     output_dim=2,
@@ -182,13 +182,13 @@ print(f"Backend used: {exp_info['backend_info']['name']}")
 ## 📁 Project Structure
 
 ```
-qmnn/
+qmann/
 ├─ README.md
 ├─ .github/workflows/          # CI/CD pipelines
 │  ├─ ci.yml                  # Code → linters + unit-tests
 │  ├─ arxiv-build.yml         # Paper → LaTeX + PDF/A check
 │  └─ size-figs.yml           # Figure size validation
-├─ src/qmnn/                  # Python package
+├─ src/qmann/                  # Python package
 ├─ paper/                     # arXiv submission
 │  ├─ main.tex
 │  ├─ meta.yaml              # Metadata for arXiv
@@ -245,8 +245,8 @@ QMANN introduces a quantum random access memory (QRAM) backed external memory ar
 ### Basic Installation
 
 ```bash
-# Core QMNN (simulation only)
-pip install qmnn
+# Core QMANN (simulation only)
+pip install qmann
 
 # Or install from source
 git clone https://github.com/neuraparse/QMANN.git
@@ -258,13 +258,13 @@ pip install -e .
 
 ```bash
 # For real quantum hardware access
-pip install qmnn[hardware]
+pip install qmann[hardware]
 
 # For experimental features
-pip install qmnn[experimental]
+pip install qmann[experimental]
 
 # For everything
-pip install qmnn[all]
+pip install qmann[all]
 ```
 
 ### Requirements
@@ -294,13 +294,13 @@ pytest tests/
 
 ```bash
 # Build image
-docker build -t qmnn .
+docker build -t qmann .
 
 # Run experiments
-docker run -v $(pwd)/results:/app/results qmnn python scripts/run_experiments.py
+docker run -v $(pwd)/results:/app/results qmann python scripts/run_experiments.py
 
 # Interactive development
-docker run -it -v $(pwd):/app qmnn bash
+docker run -it -v $(pwd):/app qmann bash
 ```
 
 ## 📈 Benchmarks
@@ -322,7 +322,7 @@ python benchmarks/theoretical_analysis.py --plot-scaling
 python benchmarks/run.py --mode simulation --all
 
 # Compare with classical baselines
-python benchmarks/run.py --mode simulation --task mnist_sequential --models qmnn,lstm,transformer
+python benchmarks/run.py --mode simulation --task mnist_sequential --models qmann,lstm,transformer
 
 # Generate simulation plots
 make plot-bench
@@ -416,22 +416,22 @@ tasks = adapter.list_available_tasks()
 # Generate industry-specific dataset
 X, y = adapter.generate_synthetic_dataset('predictive_maintenance', n_samples=1000)
 
-# Train QMNN on industrial data
-model = QMNN(input_dim=X.shape[-1], hidden_dim=64, output_dim=3)
-trainer = QMNNTrainer(model)
+# Train QMANN on industrial data
+model = QMANN(input_dim=X.shape[-1], hidden_dim=64, output_dim=3)
+trainer = QMANNTrainer(model)
 trainer.train_epoch(X, y)
 ```
 
 ### Telemetry & Monitoring
 
 ```python
-from qmnn.telemetry import AgentOpsIntegration
+from qmann.telemetry import AgentOpsIntegration
 
 # Initialize telemetry (requires AgentOps API key)
 telemetry = AgentOpsIntegration(api_key="your_agentops_key")
 
-# Automatic metrics collection during QMNN operations
-model = QMNN(input_dim=10, hidden_dim=64, output_dim=3)
+# Automatic metrics collection during QMANN operations
+model = QMANN(input_dim=10, hidden_dim=64, output_dim=3)
 output, memory_info = model(X)  # Automatically logged
 
 # View real-time statistics
@@ -443,7 +443,7 @@ print(f"Total cost: ${stats['total_cost_usd']:.2f}")
 ### Data Protection & Watermarking
 
 ```python
-from qmnn.utils.watermark import prepare_dataset_with_watermark, verify_dataset_watermark
+from qmann.utils.watermark import prepare_dataset_with_watermark, verify_dataset_watermark
 
 # Protect your dataset with quantum watermarking
 watermarked_data, metadata = prepare_dataset_with_watermark(

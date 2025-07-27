@@ -85,7 +85,7 @@ Neura Parse maintains a defensive patent portfolio to protect against patent tro
 
 ### Commercial Licensing
 - **Email**: info@neuraparse.com
-- **Subject**: Commercial License Request - QMNN
+- **Subject**: Commercial License Request - QMANN
 - **Include**: Intended use case, scale, timeline
 
 ### Patent Licensing
@@ -110,7 +110,7 @@ Neura Parse maintains a defensive patent portfolio to protect against patent tro
 1. **Patent Applications**: Filed in major jurisdictions (US, EU, CN, JP)
 2. **Trade Secrets**: Core algorithms protected as trade secrets
 3. **Copyright**: All code and documentation copyrighted
-4. **Trademarks**: Neura Parse and QMNN are protected marks
+4. **Trademarks**: Neura Parse and QMANN are protected marks
 
 ## 📊 Patent Portfolio Strategy
 
@@ -122,7 +122,7 @@ Neura Parse maintains a defensive patent portfolio to protect against patent tro
 - **Other**: Strategic markets as needed
 
 ### Technology Areas
-1. **Core Algorithms**: Fundamental QMNN methods
+1. **Core Algorithms**: Fundamental QMANN methods
 2. **Hardware Integration**: Quantum device interfaces
 3. **Software Architecture**: System design patterns
 4. **Applications**: Specific use cases and implementations

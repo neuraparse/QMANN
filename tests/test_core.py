@@ -1,5 +1,5 @@
 """
-Unit tests for QMNN core components.
+Unit tests for QMANN core components.
 """
 
 import pytest
@@ -7,8 +7,8 @@ import numpy as np
 import torch
 from qiskit.quantum_info import Statevector
 
-from qmnn.core import QRAM, QuantumMemory
-from qmnn.utils import quantum_state_to_classical, classical_to_quantum_state
+from qmann.core import QRAM, QuantumMemory
+from qmann.utils import quantum_state_to_classical, classical_to_quantum_state
 
 
 class TestQRAM:

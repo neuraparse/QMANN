@@ -1,5 +1,5 @@
 """
-Real Quantum Hardware Backend Interface for QMNN
+Real Quantum Hardware Backend Interface for QMANN
 
 This module provides interfaces to real quantum hardware including IBM Quantum,
 Google Quantum AI, IonQ, and other NISQ devices for experimental validation.

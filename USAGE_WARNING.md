@@ -156,7 +156,7 @@ Apache 2.0 is compatible with:
 ### 🌐 EXTERNAL LINKS:
 - 🏢 **[Neura Parse Website](https://neuraparse.com)**
 - 📧 **[Contact Form](https://neuraparse.com/contact)**
-- 📚 **[Documentation](https://qmnn.readthedocs.io)**
+- 📚 **[Documentation](https://qmann.readthedocs.io)**
 - 🔬 **[Research Papers](https://arxiv.org/abs/2025.XXXXX)**
 
 ---

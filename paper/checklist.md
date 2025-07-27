@@ -36,7 +36,7 @@ This checklist ensures compliance with arXiv submission requirements and academi
 - [ ] **Quality**: Clear, readable, and professional
 
 ### Figure Content
-- [ ] **Architecture Diagram**: Clear QMNN architecture illustration
+- [ ] **Architecture Diagram**: Clear QMANN architecture illustration
 - [ ] **Results Plots**: Performance comparisons with error bars
 - [ ] **Memory Scaling**: Theoretical vs. practical scaling
 - [ ] **Noise Analysis**: Robustness under different noise levels

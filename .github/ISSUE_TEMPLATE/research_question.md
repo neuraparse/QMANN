@@ -1,13 +1,13 @@
 ---
 name: Research Question
-about: Ask a research-related question about QMNN
+about: Ask a research-related question about QMANN
 title: '[RESEARCH] '
 labels: ['research', 'question']
 assignees: ''
 ---
 
 ## Research Question
-A clear and specific research question about QMNN, quantum memory, or related topics.
+A clear and specific research question about QMANN, quantum memory, or related topics.
 
 ## Context
 **Background:**

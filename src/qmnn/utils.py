@@ -1,5 +1,5 @@
 """
-Utility functions for QMNN.
+Utility functions for QMANN.
 
 This module provides helper functions for quantum state manipulation,
 data preprocessing, and visualization.

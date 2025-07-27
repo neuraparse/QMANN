@@ -1,5 +1,5 @@
 """
-Quantum Watermarking for QMNN
+Quantum Watermarking for QMANN
 
 This module implements quantum-inspired watermarking techniques
 for protecting datasets and model outputs, based on TabWak methodology.
@@ -79,7 +79,7 @@ class QuantumWatermarkEmbedder:
         return matrix
         
     def embed_watermark(self, data: torch.Tensor, 
-                       watermark_id: str = "qmnn_default") -> Tuple[torch.Tensor, Dict[str, Any]]:
+                       watermark_id: str = "qmann_default") -> Tuple[torch.Tensor, Dict[str, Any]]:
         """
         Embed quantum watermark into data.
         
@@ -322,7 +322,7 @@ class QuantumWatermarkEmbedder:
 
 def prepare_dataset_with_watermark(dataset: torch.Tensor, 
                                   watermark_config: Optional[WatermarkConfig] = None,
-                                  watermark_id: str = "qmnn_dataset") -> Tuple[torch.Tensor, Dict[str, Any]]:
+                                  watermark_id: str = "qmann_dataset") -> Tuple[torch.Tensor, Dict[str, Any]]:
     """
     Prepare dataset with quantum watermarking.
     

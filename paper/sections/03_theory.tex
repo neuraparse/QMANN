@@ -1,7 +1,7 @@
 \section{Theoretical Framework}
 \label{sec:theory}
 
-This section presents the theoretical foundations of Quantum Memory-Augmented Neural Networks (\qmnn). We begin with formal definitions, analyze the computational complexity advantages, and establish theoretical bounds on memory capacity and access efficiency.
+This section presents the theoretical foundations of Quantum Memory-Augmented Neural Networks (\qmann). We begin with formal definitions, analyze the computational complexity advantages, and establish theoretical bounds on memory capacity and access efficiency.
 
 \subsection{Quantum Random Access Memory}
 
@@ -77,13 +77,13 @@ Quantum access complexity: The \qram circuit depth scales as $O(n) = O(\log N)$ 
 Classical access complexity: Associative search in classical memory requires comparing the query against all $N$ stored items, giving $O(N)$ complexity.
 \end{proof}
 
-\subsection{QMNN Architecture}
+\subsection{QMANN Architecture}
 
-We now formalize the \qmnn architecture that integrates quantum memory with classical neural networks.
+We now formalize the \qmann architecture that integrates quantum memory with classical neural networks.
 
 \begin{definition}[Quantum Memory-Augmented Neural Network]
-\label{def:qmnn}
-A \qmnn consists of:
+\label{def:qmann}
+A \qmann consists of:
 \begin{itemize}
     \item A classical neural network controller $f_{\theta}: \mathbb{R}^d \rightarrow \mathbb{R}^h$
     \item A quantum memory module $\mathcal{M}_Q$ with capacity $2^n$
@@ -92,11 +92,11 @@ A \qmnn consists of:
 \end{itemize}
 \end{definition}
 
-The forward pass of a \qmnn proceeds as follows:
+The forward pass of a \qmann proceeds as follows:
 
 \begin{algorithm}
-\caption{QMNN Forward Pass}
-\label{alg:qmnn_forward}
+\caption{QMANN Forward Pass}
+\label{alg:qmann_forward}
 \begin{algorithmic}
 \STATE \textbf{Input:} $x \in \mathbb{R}^d$
 \STATE $h \leftarrow f_{\theta}(x)$ \COMMENT{Classical processing}
@@ -110,24 +110,24 @@ The forward pass of a \qmnn proceeds as follows:
 
 \subsection{Learning Dynamics}
 
-We analyze the learning dynamics of \qmnn systems, focusing on how quantum memory affects gradient flow and optimization.
+We analyze the learning dynamics of \qmann systems, focusing on how quantum memory affects gradient flow and optimization.
 
-\begin{theorem}[QMNN Gradient Flow]
+\begin{theorem}[QMANN Gradient Flow]
 \label{thm:gradient_flow}
-For a \qmnn with loss function $L(y, \hat{y})$, the gradient with respect to classical parameters $\theta$ is:
+For a \qmann with loss function $L(y, \hat{y})$, the gradient with respect to classical parameters $\theta$ is:
 $$\frac{\partial L}{\partial \theta} = \frac{\partial L}{\partial y} \frac{\partial y}{\partial [h; m]} \left[ \frac{\partial h}{\partial \theta} + \frac{\partial m}{\partial h} \frac{\partial h}{\partial \theta} \right]$$
 where the quantum memory contributes through the term $\frac{\partial m}{\partial h}$.
 \end{theorem}
 
 \begin{proof}
-This follows from the chain rule applied to the \qmnn architecture, where quantum memory introduces an additional pathway for gradient flow through the encoding-access-decoding sequence.
+This follows from the chain rule applied to the \qmann architecture, where quantum memory introduces an additional pathway for gradient flow through the encoding-access-decoding sequence.
 \end{proof}
 
 The quantum memory contribution to gradients enables the network to learn how to effectively query and utilize stored information.
 
 \subsection{Noise and Decoherence Analysis}
 
-Real quantum systems are subject to noise and decoherence. We analyze the robustness of \qmnn to these effects.
+Real quantum systems are subject to noise and decoherence. We analyze the robustness of \qmann to these effects.
 
 \begin{definition}[Noisy Quantum Memory]
 \label{def:noisy_qram}
@@ -139,9 +139,9 @@ A noisy \qram is characterized by:
 \end{itemize}
 \end{definition}
 
-\begin{theorem}[QMNN Noise Resilience]
+\begin{theorem}[QMANN Noise Resilience]
 \label{thm:noise_resilience}
-For a \qmnn operating under noise model with error rate $\epsilon$, the memory retrieval fidelity is bounded by:
+For a \qmann operating under noise model with error rate $\epsilon$, the memory retrieval fidelity is bounded by:
 $$F \geq 1 - O(\epsilon \cdot d_{\text{circuit}})$$
 where $d_{\text{circuit}}$ is the quantum circuit depth.
 \end{theorem}
@@ -174,18 +174,18 @@ However, quantum memory can still provide advantages through:
 
 \subsection{Complexity Class Analysis}
 
-We analyze the computational complexity class of problems efficiently solvable by \qmnn.
+We analyze the computational complexity class of problems efficiently solvable by \qmann.
 
-\begin{theorem}[QMNN Computational Power]
+\begin{theorem}[QMANN Computational Power]
 \label{thm:computational_power}
-\qmnn with polynomial-size quantum memory can efficiently solve problems in the complexity class $\mathbf{BQP}^{\mathbf{QRAM}}$, which includes certain problems not known to be in $\mathbf{BPP}$.
+\qmann with polynomial-size quantum memory can efficiently solve problems in the complexity class $\mathbf{BQP}^{\mathbf{QRAM}}$, which includes certain problems not known to be in $\mathbf{BPP}$.
 \end{theorem}
 
-This positions \qmnn as potentially providing computational advantages for specific classes of learning problems, particularly those involving large-scale memory-intensive tasks.
+This positions \qmann as potentially providing computational advantages for specific classes of learning problems, particularly those involving large-scale memory-intensive tasks.
 
 \subsection{Summary}
 
-The theoretical analysis reveals several key advantages of \qmnn:
+The theoretical analysis reveals several key advantages of \qmann:
 
 \begin{enumerate}
     \item \textbf{Exponential Memory Capacity}: $O(2^n)$ storage with $O(n)$ physical qubits

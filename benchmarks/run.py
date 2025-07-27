@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-QMNN Comprehensive Benchmark Suite
+QMANN Comprehensive Benchmark Suite
 
 Enhanced benchmark suite with real datasets, improved baselines, and detailed analysis.
 Includes MNIST, CIFAR-10, memory tasks, and quantum advantage metrics.
@@ -31,9 +31,9 @@ from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.manifold import TSNE
 import wandb
 
-from qmnn.models import QMNN, QuantumNeuralNetwork
-from qmnn.training import QMNNTrainer
-from qmnn.utils import plot_training_history, create_benchmark_plot
+from qmann.models import QMANN, QuantumNeuralNetwork
+from qmann.training import QMANNTrainer
+from qmann.utils import plot_training_history, create_benchmark_plot
 
 
 # Configure logging
@@ -239,7 +239,7 @@ class DifferentiableNeuralComputer(nn.Module):
 
 
 class BenchmarkSuite:
-    """Comprehensive benchmark suite for QMNN with real datasets and advanced metrics."""
+    """Comprehensive benchmark suite for QMANN with real datasets and advanced metrics."""
 
     def __init__(self, output_dir: str = "benchmarks/results", use_wandb: bool = False):
         self.output_dir = Path(output_dir)
@@ -252,7 +252,7 @@ class BenchmarkSuite:
         self.use_wandb = use_wandb
 
         if use_wandb:
-            wandb.init(project="qmnn-benchmarks", config={
+            wandb.init(project="qmann-benchmarks", config={
                 "device": str(self.device),
                 "output_dir": str(self.output_dir)
             })
@@ -476,7 +476,7 @@ class BenchmarkSuite:
                 optimizer.zero_grad()
                 
                 # Forward pass
-                if isinstance(model, QMNN):
+                if isinstance(model, QMANN):
                     outputs, _ = model(data)
                 else:
                     outputs = model(data)
@@ -521,7 +521,7 @@ class BenchmarkSuite:
                 for data, targets in test_loader:
                     data, targets = data.to(self.device), targets.to(self.device)
 
-                    if isinstance(model, QMNN):
+                    if isinstance(model, QMANN):
                         outputs = model(data, store_memory=False)
                         if isinstance(outputs, tuple):
                             outputs = outputs[0]
@@ -614,10 +614,10 @@ class BenchmarkSuite:
         model_size = sum(p.numel() for p in model.parameters())
         trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
 
-        # Memory efficiency (for QMNN)
+        # Memory efficiency (for QMANN)
         memory_efficiency = 0.0
         quantum_info = {}
-        if isinstance(model, QMNN):
+        if isinstance(model, QMANN):
             memory_efficiency = model.memory_usage()
             quantum_info = model.get_model_info()
 
@@ -683,7 +683,7 @@ class BenchmarkSuite:
                 # Measure inference time
                 start_time = time.time()
 
-                if isinstance(model, QMNN):
+                if isinstance(model, QMANN):
                     outputs = model(data, store_memory=False)
                     if isinstance(outputs, tuple):
                         outputs = outputs[0]
@@ -775,8 +775,8 @@ class BenchmarkSuite:
             dataset = TensorDataset(X, y)
             loader = DataLoader(dataset, batch_size=16)
             
-            # Create QMNN with specific memory capacity
-            model = QMNN(
+            # Create QMANN with specific memory capacity
+            model = QMANN(
                 input_dim=8,
                 hidden_dim=32,
                 output_dim=3,
@@ -838,8 +838,8 @@ class BenchmarkSuite:
         for noise_level in noise_levels:
             logger.info(f"Testing noise level: {noise_level}")
             
-            # Create QMNN
-            model = QMNN(
+            # Create QMANN
+            model = QMANN(
                 input_dim=6,
                 hidden_dim=24,
                 output_dim=2,
@@ -856,7 +856,7 @@ class BenchmarkSuite:
                         
             # Quick training (reduced epochs for noise test)
             result = self.benchmark_model(
-                model, f"QMNN_noise_{noise_level}", 
+                model, f"QMANN_noise_{noise_level}", 
                 train_loader, test_loader, 
                 num_epochs=5
             )
@@ -887,7 +887,7 @@ class BenchmarkSuite:
             'LSTM': ClassicalLSTM(input_dim=10, hidden_dim=64, output_dim=5),
             'Transformer': ClassicalTransformer(input_dim=10, hidden_dim=64, output_dim=5),
             'QNN': QuantumNeuralNetwork(input_dim=10, output_dim=5, n_qubits=6),
-            'QMNN': QMNN(
+            'QMANN': QMANN(
                 input_dim=10,
                 hidden_dim=64,
                 output_dim=5,
@@ -898,7 +898,7 @@ class BenchmarkSuite:
 
         # Add 2025 advanced models if available
         try:
-            from qmnn.quantum_transformers import QuantumTransformerBlock
+            from qmann.quantum_transformers import QuantumTransformerBlock
             models['QuantumTransformer'] = QuantumTransformerBlock(
                 d_model=64, n_heads=8, d_ff=256, n_qubits=6
             )
@@ -906,7 +906,7 @@ class BenchmarkSuite:
             pass
 
         try:
-            from qmnn.error_correction import SurfaceCodeQRAM
+            from qmann.error_correction import SurfaceCodeQRAM
             models['SurfaceCodeQRAM'] = SurfaceCodeQRAM(
                 memory_size=32, code_distance=3
             )
@@ -995,7 +995,7 @@ class BenchmarkSuite:
             plt.plot(df['noise_level'], df['test_accuracy'], 'o-', linewidth=2, markersize=8)
             plt.xlabel('Noise Level')
             plt.ylabel('Test Accuracy')
-            plt.title('QMNN Noise Resilience')
+            plt.title('QMANN Noise Resilience')
             plt.grid(True, alpha=0.3)
             plt.savefig(self.output_dir / "noise_resilience.png", dpi=300, bbox_inches='tight')
             plt.close()
@@ -1005,7 +1005,7 @@ class BenchmarkSuite:
     def run_comprehensive_benchmark(self) -> Dict[str, Any]:
         """Run comprehensive benchmark suite with real datasets."""
 
-        logger.info("Starting comprehensive QMNN benchmark suite...")
+        logger.info("Starting comprehensive QMANN benchmark suite...")
 
         all_results = {
             'mnist_sequential': {},
@@ -1021,7 +1021,7 @@ class BenchmarkSuite:
             train_loader, test_loader = self.load_mnist_sequential(seq_len=28, batch_size=32)
 
             models = {
-                'QMNN': QMNN(28, 64, 10, memory_capacity=64, memory_embedding_dim=32, max_qubits=12),
+                'QMANN': QMANN(28, 64, 10, memory_capacity=64, memory_embedding_dim=32, max_qubits=12),
                 'LSTM': ClassicalLSTM(28, 64, 10, num_layers=2),
                 'Transformer': ClassicalTransformer(28, 64, 10, num_heads=4, num_layers=2),
             }
@@ -1047,7 +1047,7 @@ class BenchmarkSuite:
             )
 
             memory_models = {
-                'QMNN': QMNN(8, 32, 8, memory_capacity=32, memory_embedding_dim=16),
+                'QMANN': QMANN(8, 32, 8, memory_capacity=32, memory_embedding_dim=16),
                 'LSTM': ClassicalLSTM(8, 32, 8),
             }
 
@@ -1086,7 +1086,7 @@ class BenchmarkSuite:
 def main():
     """Main benchmark execution."""
     
-    parser = argparse.ArgumentParser(description='QMNN Benchmark Suite')
+    parser = argparse.ArgumentParser(description='QMANN Benchmark Suite')
     parser.add_argument('--output', type=str, default='benchmarks/results.csv', 
                        help='Output file for results')
     parser.add_argument('--benchmarks', type=str, nargs='+',

@@ -23,7 +23,7 @@ Related to #(issue_number)
 ## Changes Made
 ### Core Changes
 - [ ] Modified QRAM implementation
-- [ ] Updated QMNN architecture
+- [ ] Updated QMANN architecture
 - [ ] Changed training algorithms
 - [ ] Added new quantum circuits
 - [ ] Updated classical components

@@ -1,4 +1,4 @@
-# QMNN API Reference
+# QMANN API Reference
 
 Complete API reference for Quantum Memory-Augmented Neural Networks.
 
@@ -55,11 +55,11 @@ class QuantumMemory:
 - `memory_usage() -> float`: Get current memory utilization
 - `capacity_bound() -> Dict`: Get capacity information
 
-### QMNN (Quantum Memory-Augmented Neural Network)
+### QMANN (Quantum Memory-Augmented Neural Network)
 
 ```python
-class QMNN(nn.Module):
-    """Main QMNN model combining classical and quantum components."""
+class QMANN(nn.Module):
+    """Main QMANN model combining classical and quantum components."""
     
     def __init__(self, input_dim: int, hidden_dim: int, output_dim: int,
                  memory_capacity: int = 128, memory_embedding_dim: int = 64,
@@ -67,7 +67,7 @@ class QMNN(nn.Module):
                  use_attention: bool = True, dropout: float = 0.1,
                  memory_regularizer: float = 0.01):
         """
-        Initialize QMNN model.
+        Initialize QMANN model.
         
         Args:
             input_dim: Input feature dimension
@@ -149,11 +149,11 @@ class PracticalErrorCorrection(nn.Module):
 
 ## Federated Learning
 
-### QuantumFederatedQMNN
+### QuantumFederatedQMANN
 
 ```python
-class QuantumFederatedQMNN(nn.Module):
-    """Quantum Federated QMNN System."""
+class QuantumFederatedQMANN(nn.Module):
+    """Quantum Federated QMANN System."""
     
     def __init__(self, base_model_config: Dict[str, Any],
                  n_clients: int = 10, privacy_epsilon: float = 1.0):
@@ -232,11 +232,11 @@ class HybridTransformerLayer(nn.Module):
 
 ## Training Utilities
 
-### QMNNTrainer
+### QMANNTrainer
 
 ```python
-class QMNNTrainer:
-    """Trainer for QMNN models with quantum-aware optimizations."""
+class QMANNTrainer:
+    """Trainer for QMANN models with quantum-aware optimizations."""
     
     def __init__(self, model: nn.Module, learning_rate: float = 1e-3,
                  device: str = 'cpu', use_wandb: bool = False):
@@ -269,7 +269,7 @@ def quantum_fidelity(state1: torch.Tensor, state2: torch.Tensor) -> float:
 def quantum_advantage_metric(quantum_model, classical_model, test_data) -> Dict:
     """Compute quantum advantage metrics."""
 
-def memory_efficiency(model: QMNN) -> Dict[str, float]:
+def memory_efficiency(model: QMANN) -> Dict[str, float]:
     """Compute memory efficiency metrics."""
 ```
 

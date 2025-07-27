@@ -92,14 +92,14 @@ For sequence learning tasks, MNIST images were converted to sequences by:
 
 \subsection{Model Architecture Details}
 
-\subsubsection{QMNN Configuration}
+\subsubsection{QMANN Configuration}
 
-Table~\ref{tab:qmnn_config} provides detailed configuration parameters for all QMNN experiments.
+Table~\ref{tab:qmann_config} provides detailed configuration parameters for all QMANN experiments.
 
 \begin{table}[htbp]
     \centering
-    \caption{QMNN Architecture Configuration}
-    \label{tab:qmnn_config}
+    \caption{QMANN Architecture Configuration}
+    \label{tab:qmann_config}
     \begin{tabular}{lcc}
         \toprule
         Parameter & MNIST & CIFAR-10 \\
@@ -195,13 +195,13 @@ Figure~\ref{fig:convergence_analysis} shows detailed convergence behavior for di
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\columnwidth]{figs/convergence_analysis.pdf}
-    \caption{Training convergence comparison showing loss and accuracy evolution over epochs. QMNN demonstrates faster convergence and better final performance.}
+    \caption{Training convergence comparison showing loss and accuracy evolution over epochs. QMANN demonstrates faster convergence and better final performance.}
     \label{fig:convergence_analysis}
 \end{figure}
 
 \textbf{Convergence Metrics}:
 \begin{itemize}
-    \item QMNN: Converges in 27 epochs (40\% faster)
+    \item QMANN: Converges in 27 epochs (40\% faster)
     \item LSTM: Converges in 45 epochs
     \item Transformer: Converges in 52 epochs
     \item NTM: Converges in 67 epochs
@@ -223,7 +223,7 @@ Table~\ref{tab:memory_analysis} provides detailed memory usage statistics during
         Transformer & 3.8M & 5.7 & 52 & 18.7 \\
         NTM & 2.8M & 4.1 & 67 & 23.1 \\
         DNC & 3.2M & 4.8 & 71 & 25.4 \\
-        \textbf{QMNN} & \textbf{0.8M} & \textbf{1.3} & \textbf{27} & \textbf{8.9} \\
+        \textbf{QMANN} & \textbf{0.8M} & \textbf{1.3} & \textbf{27} & \textbf{8.9} \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -236,7 +236,7 @@ Table~\ref{tab:memory_analysis} provides detailed memory usage statistics during
     \item \textbf{+ Classical QRAM}: 98.7\% accuracy (+0.6\%)
     \item \textbf{+ Quantum Superposition}: 99.0\% accuracy (+0.9\%)
     \item \textbf{+ Quantum Entanglement}: 99.1\% accuracy (+1.0\%)
-    \item \textbf{+ Full QMNN}: 99.2\% accuracy (+1.1\%)
+    \item \textbf{+ Full QMANN}: 99.2\% accuracy (+1.1\%)
 \end{itemize}
 
 \textbf{Hyperparameter Sensitivity}:
@@ -255,7 +255,7 @@ All reported improvements are statistically significant with $p < 0.01$ using pa
 
 \textbf{MNIST Results (10 runs)}:
 \begin{itemize}
-    \item QMNN: $99.2 \pm 0.1\%$ (mean ± std)
+    \item QMANN: $99.2 \pm 0.1\%$ (mean ± std)
     \item LSTM: $98.1 \pm 0.2\%$
     \item p-value: $2.3 \times 10^{-8}$
 \end{itemize}
@@ -267,10 +267,10 @@ Cohen's d = 7.8 (very large effect)
 
 95\% confidence intervals for accuracy improvements:
 \begin{itemize}
-    \item QMNN vs LSTM: [0.9\%, 1.3\%]
-    \item QMNN vs Transformer: [0.5\%, 0.9\%]
-    \item QMNN vs NTM: [0.7\%, 1.1\%]
-    \item QMNN vs DNC: [0.3\%, 0.7\%]
+    \item QMANN vs LSTM: [0.9\%, 1.3\%]
+    \item QMANN vs Transformer: [0.5\%, 0.9\%]
+    \item QMANN vs NTM: [0.7\%, 1.1\%]
+    \item QMANN vs DNC: [0.3\%, 0.7\%]
 \end{itemize}
 
 \subsection{Noise Model Details}

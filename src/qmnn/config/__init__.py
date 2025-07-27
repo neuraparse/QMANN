@@ -1,5 +1,5 @@
 """
-Configuration Module for QMNN
+Configuration Module for QMANN
 
 This module provides configuration management for different experimental modes:
 - Theoretical analysis (ideal quantum computers)

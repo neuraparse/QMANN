@@ -1,5 +1,5 @@
 """
-Training utilities for QMNN models.
+Training utilities for QMANN models.
 
 This module provides training loops, optimization strategies, and
 evaluation metrics for quantum memory-augmented neural networks.
@@ -16,17 +16,17 @@ import mlflow.pytorch
 from tqdm import tqdm
 import logging
 
-from .models import QMNN
+from .models import QMANN
 
 
-class QMNNTrainer:
+class QMANNTrainer:
     """
     Trainer class for Quantum Memory-Augmented Neural Networks.
     """
     
     def __init__(
         self,
-        model: QMNN,
+        model: QMANN,
         device: str = "auto",
         learning_rate: float = 1e-3,
         weight_decay: float = 1e-5,
@@ -34,10 +34,10 @@ class QMNNTrainer:
         log_mlflow: bool = True,
     ):
         """
-        Initialize QMNN trainer.
+        Initialize QMANN trainer.
         
         Args:
-            model: QMNN model to train
+            model: QMANN model to train
             device: Device to use ('cpu', 'cuda', or 'auto')
             learning_rate: Learning rate for optimizer
             weight_decay: Weight decay for regularization
@@ -75,7 +75,7 @@ class QMNNTrainer:
         self.logger = logging.getLogger(__name__)
         
         if self.log_mlflow:
-            mlflow.set_experiment("QMNN_Training")
+            mlflow.set_experiment("QMANN_Training")
             
     def train_epoch(
         self,
@@ -238,7 +238,7 @@ class QMNNTrainer:
         scheduler: Optional[Any] = None,
         early_stopping_patience: int = 10,
         save_best: bool = True,
-        checkpoint_path: str = "qmnn_checkpoint.pth",
+        checkpoint_path: str = "qmann_checkpoint.pth",
     ) -> Dict[str, List[float]]:
         """
         Full training loop.
@@ -267,7 +267,7 @@ class QMNNTrainer:
             mlflow.log_params({
                 'learning_rate': self.optimizer.param_groups[0]['lr'],
                 'num_epochs': num_epochs,
-                'model_type': 'QMNN',
+                'model_type': 'QMANN',
                 'memory_capacity': self.model.memory_capacity,
                 'memory_embedding_dim': self.model.memory_embedding_dim,
             })
@@ -368,7 +368,7 @@ def main():
     """CLI entry point for training."""
     import argparse
     
-    parser = argparse.ArgumentParser(description='Train QMNN model')
+    parser = argparse.ArgumentParser(description='Train QMANN model')
     parser.add_argument('--data-path', type=str, required=True, help='Path to training data')
     parser.add_argument('--epochs', type=int, default=100, help='Number of epochs')
     parser.add_argument('--batch-size', type=int, default=32, help='Batch size')
@@ -378,7 +378,7 @@ def main():
     args = parser.parse_args()
     
     # Implementation would load data and start training
-    print(f"Training QMNN with {args.epochs} epochs...")
+    print(f"Training QMANN with {args.epochs} epochs...")
 
 
 if __name__ == "__main__":

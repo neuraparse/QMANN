@@ -1,11 +1,11 @@
-# QMNN Makefile
+# QMANN Makefile
 # Provides convenient commands for development, testing, and deployment
 
 .PHONY: help install install-dev test lint format clean build docker paper benchmark reproduce
 
 # Default target
 help:
-	@echo "QMNN Development Commands"
+	@echo "QMANN Development Commands"
 	@echo "========================"
 	@echo ""
 	@echo "Setup:"
@@ -60,7 +60,7 @@ test-fast:
 	pytest tests/ -v -m "not slow"
 
 test-cov:
-	pytest tests/ -v --cov=src/qmnn --cov-report=html --cov-report=term-missing
+	pytest tests/ -v --cov=src/qmann --cov-report=html --cov-report=term-missing
 
 test-integration:
 	pytest tests/ -v -m "integration"
@@ -75,16 +75,16 @@ format:
 	isort src/ tests/ scripts/ benchmarks/
 
 type-check:
-	mypy src/qmnn/
+	mypy src/qmann/
 
 # Build targets
 build:
 	python -m build
 
 docker:
-	docker build -f docker/Dockerfile -t qmnn:latest .
-	docker build -f docker/Dockerfile --target development -t qmnn:dev .
-	docker build -f docker/Dockerfile --target benchmark -t qmnn:benchmark .
+	docker build -f docker/Dockerfile -t qmann:latest .
+	docker build -f docker/Dockerfile --target development -t qmann:dev .
+	docker build -f docker/Dockerfile --target benchmark -t qmann:benchmark .
 
 docker-compose-up:
 	docker-compose up -d
@@ -153,7 +153,7 @@ quicktest:
 
 # Development helpers
 dev-server:
-	docker-compose up qmnn-dev
+	docker-compose up qmann-dev
 
 jupyter:
 	jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
@@ -191,12 +191,12 @@ security-check:
 
 # Performance profiling
 profile:
-	python -m cProfile -o profile.stats scripts/profile_qmnn.py
+	python -m cProfile -o profile.stats scripts/profile_qmann.py
 	python -c "import pstats; pstats.Stats('profile.stats').sort_stats('cumulative').print_stats(20)"
 
 # Memory profiling
 memory-profile:
-	mprof run scripts/memory_profile_qmnn.py
+	mprof run scripts/memory_profile_qmann.py
 	mprof plot
 
 # Environment info

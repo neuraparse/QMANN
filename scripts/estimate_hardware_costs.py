@@ -2,7 +2,7 @@
 """
 Quantum Hardware Cost Estimation Tool
 
-This script estimates the cost of running QMNN experiments on real quantum hardware
+This script estimates the cost of running QMANN experiments on real quantum hardware
 before actually executing them, helping researchers budget their experiments.
 """
 
@@ -165,11 +165,11 @@ def estimate_experiment_cost(backend_name: str, n_qubits: int, shots: int,
     }
 
 
-def estimate_qmnn_experiment_cost(n_qubits: int, memory_capacity: int, 
+def estimate_qmann_experiment_cost(n_qubits: int, memory_capacity: int, 
                                  training_epochs: int = 10, 
                                  backends: List[str] = None) -> Dict:
     """
-    Estimate cost for complete QMNN experiment.
+    Estimate cost for complete QMANN experiment.
     
     Args:
         n_qubits: Number of qubits for quantum components
@@ -183,7 +183,7 @@ def estimate_qmnn_experiment_cost(n_qubits: int, memory_capacity: int,
     if backends is None:
         backends = ['ibm_brisbane', 'ionq_aria']
         
-    # QMNN experiment parameters
+    # QMANN experiment parameters
     shots_per_forward = 1024  # Standard shots for measurement
     forwards_per_epoch = memory_capacity // 4  # Rough estimate
     total_forwards = forwards_per_epoch * training_epochs
@@ -254,19 +254,19 @@ def print_cost_estimate(estimate: Dict, detailed: bool = False):
 
 def main():
     """Main cost estimation function."""
-    parser = argparse.ArgumentParser(description="Estimate quantum hardware costs for QMNN experiments")
+    parser = argparse.ArgumentParser(description="Estimate quantum hardware costs for QMANN experiments")
     
     parser.add_argument("--qubits", type=int, default=6, help="Number of qubits (default: 6)")
     parser.add_argument("--shots", type=int, default=1024, help="Shots per experiment (default: 1024)")
     parser.add_argument("--experiments", type=int, default=1, help="Number of experiments (default: 1)")
     parser.add_argument("--backends", nargs="+", default=["ibm_brisbane", "ionq_aria"], 
                        help="Backends to estimate (default: ibm_brisbane ionq_aria)")
-    parser.add_argument("--qmnn-experiment", action="store_true", 
-                       help="Estimate full QMNN training experiment")
+    parser.add_argument("--qmann-experiment", action="store_true", 
+                       help="Estimate full QMANN training experiment")
     parser.add_argument("--memory-capacity", type=int, default=32, 
-                       help="QMNN memory capacity (default: 32)")
+                       help="QMANN memory capacity (default: 32)")
     parser.add_argument("--epochs", type=int, default=10, 
-                       help="Training epochs for QMNN experiment (default: 10)")
+                       help="Training epochs for QMANN experiment (default: 10)")
     parser.add_argument("--list-backends", action="store_true", 
                        help="List available backends and exit")
     parser.add_argument("--detailed", action="store_true", help="Show detailed information")
@@ -302,18 +302,18 @@ def main():
             
         return
         
-    print("QMNN Quantum Hardware Cost Estimator")
+    print("QMANN Quantum Hardware Cost Estimator")
     print("=" * 50)
     
-    if args.qmnn_experiment:
-        print(f"Estimating QMNN training experiment:")
+    if args.qmann_experiment:
+        print(f"Estimating QMANN training experiment:")
         print(f"  - Qubits: {args.qubits}")
         print(f"  - Memory capacity: {args.memory_capacity}")
         print(f"  - Training epochs: {args.epochs}")
         print(f"  - Backends: {', '.join(args.backends)}")
         print()
         
-        estimate = estimate_qmnn_experiment_cost(
+        estimate = estimate_qmann_experiment_cost(
             n_qubits=args.qubits,
             memory_capacity=args.memory_capacity,
             training_epochs=args.epochs,

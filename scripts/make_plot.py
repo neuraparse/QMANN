@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate plots for QMNN paper from benchmark results.
+Generate plots for QMANN paper from benchmark results.
 
 This script creates publication-quality figures from benchmark CSV data.
 """
@@ -143,7 +143,7 @@ def plot_noise_resilience(noise_data, output_dir):
     
     plt.figure(figsize=(8, 6))
     plt.plot(noise_data['noise_level'], noise_data['test_accuracy'], 
-             'bo-', linewidth=2, markersize=6, label='QMNN')
+             'bo-', linewidth=2, markersize=6, label='QMANN')
     
     # Add threshold lines
     plt.axhline(y=0.95, color='r', linestyle='--', alpha=0.7, label='95% Threshold')
@@ -151,7 +151,7 @@ def plot_noise_resilience(noise_data, output_dir):
     
     plt.xlabel('Noise Level')
     plt.ylabel('Test Accuracy')
-    plt.title('QMNN Noise Resilience')
+    plt.title('QMANN Noise Resilience')
     plt.legend()
     plt.grid(True, alpha=0.3)
     
@@ -165,9 +165,9 @@ def plot_training_convergence(df, output_dir):
     # Generate sample convergence data
     epochs = np.arange(1, 51)
     
-    # QMNN converges faster
-    qmnn_loss = 0.1 * np.exp(-epochs/10) + 0.01
-    qmnn_acc = 0.992 * (1 - np.exp(-epochs/8))
+    # QMANN converges faster
+    qmann_loss = 0.1 * np.exp(-epochs/10) + 0.01
+    qmann_acc = 0.992 * (1 - np.exp(-epochs/8))
     
     # Classical methods
     lstm_loss = 0.15 * np.exp(-epochs/15) + 0.02
@@ -179,7 +179,7 @@ def plot_training_convergence(df, output_dir):
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
     
     # Loss plot
-    ax1.plot(epochs, qmnn_loss, 'b-', label='QMNN', linewidth=2)
+    ax1.plot(epochs, qmann_loss, 'b-', label='QMANN', linewidth=2)
     ax1.plot(epochs, lstm_loss, 'r-', label='LSTM', linewidth=2)
     ax1.plot(epochs, transformer_loss, 'g-', label='Transformer', linewidth=2)
     
@@ -191,7 +191,7 @@ def plot_training_convergence(df, output_dir):
     ax1.set_yscale('log')
     
     # Accuracy plot
-    ax2.plot(epochs, qmnn_acc, 'b-', label='QMNN', linewidth=2)
+    ax2.plot(epochs, qmann_acc, 'b-', label='QMANN', linewidth=2)
     ax2.plot(epochs, lstm_acc, 'r-', label='LSTM', linewidth=2)
     ax2.plot(epochs, transformer_acc, 'g-', label='Transformer', linewidth=2)
     
@@ -207,7 +207,7 @@ def plot_training_convergence(df, output_dir):
     plt.close()
 
 def plot_architecture_diagram(output_dir):
-    """Create QMNN architecture diagram."""
+    """Create QMANN architecture diagram."""
     
     fig, ax = plt.subplots(figsize=(10, 8))
     
@@ -249,7 +249,7 @@ def plot_architecture_diagram(output_dir):
     ax.set_ylim(2, 9)
     ax.set_aspect('equal')
     ax.axis('off')
-    ax.set_title('QMNN Architecture Overview', fontsize=16, weight='bold', pad=20)
+    ax.set_title('QMANN Architecture Overview', fontsize=16, weight='bold', pad=20)
     
     plt.tight_layout()
     plt.savefig(output_dir / 'architecture.pdf')
@@ -257,7 +257,7 @@ def plot_architecture_diagram(output_dir):
     plt.close()
 
 def main():
-    parser = argparse.ArgumentParser(description='Generate QMNN paper plots')
+    parser = argparse.ArgumentParser(description='Generate QMANN paper plots')
     parser.add_argument('--input', type=str, help='Input CSV/JSON file with benchmark data')
     parser.add_argument('--output', type=str, default='paper/figs/', 
                        help='Output directory for plots')

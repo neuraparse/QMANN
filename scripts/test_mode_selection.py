@@ -18,7 +18,7 @@ def test_mode_recommendations():
     print("=" * 50)
     
     try:
-        from qmnn import recommend_mode
+        from qmann import recommend_mode
         
         test_cases = [
             # (purpose, budget, qubits, expected_mode)
@@ -60,7 +60,7 @@ def test_mode_guide():
     print("=" * 50)
     
     try:
-        from qmnn import print_mode_guide
+        from qmann import print_mode_guide
         
         print("Testing print_mode_guide()...")
         print_mode_guide()
@@ -79,7 +79,7 @@ def test_quick_start():
     print("=" * 50)
     
     try:
-        from qmnn import quick_start
+        from qmann import quick_start
         
         modes = ["theoretical", "simulation", "hardware"]
         
@@ -105,7 +105,7 @@ def test_configuration_separation():
     print("=" * 50)
     
     try:
-        from qmnn.config import (
+        from qmann.config import (
             THEORETICAL_ANALYSIS, 
             SIMULATION_VALIDATION, 
             HARDWARE_PROOF_OF_CONCEPT,
@@ -157,7 +157,7 @@ def test_cost_awareness():
     print("=" * 50)
     
     try:
-        from qmnn.config import HARDWARE_PROOF_OF_CONCEPT
+        from qmann.config import HARDWARE_PROOF_OF_CONCEPT
         
         # Test cost estimation
         hw_config = HARDWARE_PROOF_OF_CONCEPT
@@ -169,7 +169,7 @@ def test_cost_awareness():
         print(f"  API credentials required: {hw_reqs.get('api_credentials_required', False)}")
         
         # Test free mode
-        from qmnn.config import SIMULATION_VALIDATION
+        from qmann.config import SIMULATION_VALIDATION
         sim_reqs = SIMULATION_VALIDATION.get_hardware_requirements()
         
         print("\nSimulation Mode Cost Analysis:")
@@ -273,7 +273,7 @@ def test_readme_mode_section():
 
 def main():
     """Run all mode selection tests."""
-    print("🧪 QMNN MODE SELECTION SYSTEM TESTS")
+    print("🧪 QMANN MODE SELECTION SYSTEM TESTS")
     print("=" * 60)
     
     tests = [

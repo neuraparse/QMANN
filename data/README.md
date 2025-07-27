@@ -1,6 +1,6 @@
-# QMNN Dataset Repository
+# QMANN Dataset Repository
 
-This directory contains datasets, download scripts, and data validation tools for the QMNN project.
+This directory contains datasets, download scripts, and data validation tools for the QMANN project.
 
 ## 📊 Available Datasets
 
@@ -307,5 +307,5 @@ To add new datasets:
 ---
 
 **Last Updated**: July 2025  
-**Maintainer**: QMNN Team  
-**Contact**: data@qmnn-project.org
+**Maintainer**: QMANN Team  
+**Contact**: data@qmann-project.org

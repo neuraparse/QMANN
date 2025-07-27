@@ -1,11 +1,11 @@
-# QMNN Paper Makefile
+# QMANN Paper Makefile
 # Provides commands for building, checking, and submitting the research paper
 
 .PHONY: help pdf clean check-pdfa check-refs check-figs submit-arxiv
 
 # Default target
 help:
-	@echo "QMNN Paper Build Commands"
+	@echo "QMANN Paper Build Commands"
 	@echo "========================="
 	@echo ""
 	@echo "Build:"
@@ -169,7 +169,7 @@ check-spell:
 		cat > .aspell.en.pws << 'EOF'; \
 personal_ws-1.1 en 100 \
 QRAM \
-QMNN \
+QMANN \
 qubit \
 qubits \
 superposition \
@@ -323,11 +323,11 @@ diff:
 archive:
 	@echo "Creating project archive..."
 	@DATE=$$(date +%Y%m%d); \
-	tar -czf "qmnn_paper_$$DATE.tar.gz" \
+	tar -czf "qmann_paper_$$DATE.tar.gz" \
 		--exclude="*.pdf" \
 		--exclude="out/" \
 		--exclude=".git/" \
 		--exclude="*.aux" \
 		--exclude="*.log" \
 		*.tex *.bib sections/ figs/ Makefile meta.yaml checklist.md
-	@echo "Archive created: qmnn_paper_$$(date +%Y%m%d).tar.gz"
+	@echo "Archive created: qmann_paper_$$(date +%Y%m%d).tar.gz"

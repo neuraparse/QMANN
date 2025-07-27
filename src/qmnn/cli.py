@@ -1,8 +1,8 @@
 """
-Command Line Interface for QMNN.
+Command Line Interface for QMANN.
 
 This module provides a comprehensive CLI for training, evaluating, and
-benchmarking QMNN models.
+benchmarking QMANN models.
 """
 
 import argparse
@@ -17,8 +17,8 @@ from rich.table import Table
 from rich.progress import Progress
 from rich.logging import RichHandler
 
-from .models import QMNN
-from .training import QMNNTrainer
+from .models import QMANN
+from .training import QMANNTrainer
 from .utils import plot_training_history
 
 
@@ -36,8 +36,8 @@ logger = logging.getLogger(__name__)
 
 
 def train_command(args):
-    """Train a QMNN model."""
-    console.print("[bold blue]Training QMNN Model[/bold blue]")
+    """Train a QMANN model."""
+    console.print("[bold blue]Training QMANN Model[/bold blue]")
     
     # Load configuration
     if args.config:
@@ -53,10 +53,10 @@ def train_command(args):
         }
     
     # Create model
-    model = QMNN(**config)
+    model = QMANN(**config)
     
     # Create trainer
-    trainer = QMNNTrainer(
+    trainer = QMANNTrainer(
         model=model,
         learning_rate=args.learning_rate,
         device=args.device,
@@ -100,8 +100,8 @@ def train_command(args):
 
 
 def evaluate_command(args):
-    """Evaluate a trained QMNN model."""
-    console.print("[bold blue]Evaluating QMNN Model[/bold blue]")
+    """Evaluate a trained QMANN model."""
+    console.print("[bold blue]Evaluating QMANN Model[/bold blue]")
     
     # Load model
     if not Path(args.model).exists():
@@ -115,7 +115,7 @@ def evaluate_command(args):
 
 def benchmark_command(args):
     """Run benchmarks."""
-    console.print("[bold blue]Running QMNN Benchmarks[/bold blue]")
+    console.print("[bold blue]Running QMANN Benchmarks[/bold blue]")
     
     from benchmarks.run import BenchmarkSuite
     
@@ -144,7 +144,7 @@ def benchmark_command(args):
 
 def info_command(args):
     """Display system and package information."""
-    console.print("[bold blue]QMNN System Information[/bold blue]")
+    console.print("[bold blue]QMANN System Information[/bold blue]")
     
     # Create info table
     table = Table(title="System Information")
@@ -178,9 +178,9 @@ def info_command(args):
     except ImportError:
         table.add_row("PennyLane", "[red]Not installed[/red]")
     
-    # QMNN info
+    # QMANN info
     from . import __version__, __organization__
-    table.add_row("QMNN", __version__)
+    table.add_row("QMANN", __version__)
     table.add_row("Organization", __organization__)
     table.add_row("Website", "https://neuraparse.com")
     table.add_row("Contact", "info@neuraparse.com")
@@ -189,11 +189,11 @@ def info_command(args):
 
 
 def demo_command(args):
-    """Run a demonstration of QMNN capabilities."""
-    console.print("[bold blue]QMNN 2025 Demonstration[/bold blue]")
+    """Run a demonstration of QMANN capabilities."""
+    console.print("[bold blue]QMANN 2025 Demonstration[/bold blue]")
 
-    # Create a small QMNN model
-    model = QMNN(
+    # Create a small QMANN model
+    model = QMANN(
         input_dim=4,
         hidden_dim=16,
         output_dim=2,
@@ -227,7 +227,7 @@ def demo_command(args):
 
     # Quantum Transformer Demo
     try:
-        from qmnn.quantum_transformers import QuantumAttentionMechanism
+        from qmann.quantum_transformers import QuantumAttentionMechanism
         qattn = QuantumAttentionMechanism(d_model=16, n_heads=4, n_qubits=4)
 
         with torch.no_grad():
@@ -240,7 +240,7 @@ def demo_command(args):
 
     # Error Correction Demo
     try:
-        from qmnn.error_correction import QuantumErrorMitigation
+        from qmann.error_correction import QuantumErrorMitigation
         error_mitigation = QuantumErrorMitigation(n_qubits=4)
 
         # Simulate noisy results
@@ -254,7 +254,7 @@ def demo_command(args):
 
     # Quantum Advantage Verification Demo
     try:
-        from qmnn.quantum_advantage import QuantumAdvantageMetrics
+        from qmann.quantum_advantage import QuantumAdvantageMetrics
         advantage_metrics = QuantumAdvantageMetrics()
 
         # Simulate quantum vs classical results
@@ -280,15 +280,15 @@ def main():
     console.print("[yellow]Contact: info@neuraparse.com[/yellow]\n")
 
     parser = argparse.ArgumentParser(
-        description="QMNN: Quantum Memory-Augmented Neural Networks",
+        description="QMANN: Quantum Memory-Augmented Neural Networks",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  qmnn train --data data/mnist.npz --epochs 50 --output model.pth
-  qmnn evaluate --model model.pth --data data/test.npz
-  qmnn benchmark --benchmarks comparison memory --output results/
-  qmnn demo --show-circuit
-  qmnn info
+  qmann train --data data/mnist.npz --epochs 50 --output model.pth
+  qmann evaluate --model model.pth --data data/test.npz
+  qmann benchmark --benchmarks comparison memory --output results/
+  qmann demo --show-circuit
+  qmann info
 
 IMPORTANT: This software is patent-protected. See USAGE_WARNING.md
         """
@@ -297,7 +297,7 @@ IMPORTANT: This software is patent-protected. See USAGE_WARNING.md
     subparsers = parser.add_subparsers(dest='command', help='Available commands')
     
     # Train command
-    train_parser = subparsers.add_parser('train', help='Train a QMNN model')
+    train_parser = subparsers.add_parser('train', help='Train a QMANN model')
     train_parser.add_argument('--data-path', type=str, help='Path to training data')
     train_parser.add_argument('--config', type=str, help='Path to config JSON file')
     train_parser.add_argument('--input-dim', type=int, default=10, help='Input dimension')

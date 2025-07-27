@@ -1,5 +1,5 @@
 """
-Quantum Advantage Verification for QMNN (2025)
+Quantum Advantage Verification for QMANN (2025)
 
 This module implements rigorous quantum advantage verification
 based on the latest 2025 theoretical frameworks and experimental protocols.

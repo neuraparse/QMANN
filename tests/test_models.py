@@ -1,5 +1,5 @@
 """
-Unit tests for QMNN models.
+Unit tests for QMANN models.
 """
 
 import pytest
@@ -7,7 +7,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 
-from qmnn.models import QuantumNeuralNetwork, QMNN
+from qmann.models import QuantumNeuralNetwork, QMANN
 
 
 class TestQuantumNeuralNetwork:
@@ -78,18 +78,18 @@ class TestQuantumNeuralNetwork:
         assert not torch.isnan(qnn.quantum_params.grad).any()
 
 
-class TestQMNN:
-    """Test cases for QMNN."""
+class TestQMANN:
+    """Test cases for QMANN."""
     
-    def test_qmnn_initialization(self):
-        """Test QMNN initialization."""
+    def test_qmann_initialization(self):
+        """Test QMANN initialization."""
         input_dim = 10
         hidden_dim = 64
         output_dim = 5
         memory_capacity = 128
         memory_embedding_dim = 32
         
-        qmnn = QMNN(
+        qmann = QMANN(
             input_dim=input_dim,
             hidden_dim=hidden_dim,
             output_dim=output_dim,
@@ -97,22 +97,22 @@ class TestQMNN:
             memory_embedding_dim=memory_embedding_dim,
         )
         
-        assert qmnn.input_dim == input_dim
-        assert qmnn.hidden_dim == hidden_dim
-        assert qmnn.output_dim == output_dim
-        assert qmnn.memory_capacity == memory_capacity
-        assert qmnn.memory_embedding_dim == memory_embedding_dim
+        assert qmann.input_dim == input_dim
+        assert qmann.hidden_dim == hidden_dim
+        assert qmann.output_dim == output_dim
+        assert qmann.memory_capacity == memory_capacity
+        assert qmann.memory_embedding_dim == memory_embedding_dim
         
         # Check components
-        assert isinstance(qmnn.encoder, nn.Sequential)
-        assert isinstance(qmnn.controller, nn.LSTM)
-        assert qmnn.quantum_memory is not None
-        assert len(qmnn.quantum_layers) > 0
-        assert isinstance(qmnn.decoder, nn.Sequential)
+        assert isinstance(qmann.encoder, nn.Sequential)
+        assert isinstance(qmann.controller, nn.LSTM)
+        assert qmann.quantum_memory is not None
+        assert len(qmann.quantum_layers) > 0
+        assert isinstance(qmann.decoder, nn.Sequential)
         
-    def test_qmnn_forward_pass(self):
-        """Test QMNN forward pass."""
-        qmnn = QMNN(
+    def test_qmann_forward_pass(self):
+        """Test QMANN forward pass."""
+        qmann = QMANN(
             input_dim=8,
             hidden_dim=32,
             output_dim=3,
@@ -125,16 +125,16 @@ class TestQMNN:
         x = torch.randn(batch_size, seq_len, 8)
         
         # Forward pass
-        output, memory_content = qmnn(x)
+        output, memory_content = qmann(x)
         
         assert output.shape == (batch_size, seq_len, 3)
         assert memory_content.shape == (batch_size, seq_len, 16)
         assert not torch.isnan(output).any()
         assert not torch.isnan(memory_content).any()
         
-    def test_qmnn_encode_input(self):
+    def test_qmann_encode_input(self):
         """Test input encoding."""
-        qmnn = QMNN(
+        qmann = QMANN(
             input_dim=10,
             hidden_dim=32,
             output_dim=5,
@@ -143,14 +143,14 @@ class TestQMNN:
         )
         
         x = torch.randn(3, 4, 10)
-        encoded = qmnn.encode_input(x)
+        encoded = qmann.encode_input(x)
         
         assert encoded.shape == (3, 4, 16)
         assert not torch.isnan(encoded).any()
         
-    def test_qmnn_memory_operations(self):
+    def test_qmann_memory_operations(self):
         """Test quantum memory read/write operations."""
-        qmnn = QMNN(
+        qmann = QMANN(
             input_dim=8,
             hidden_dim=32,
             output_dim=3,
@@ -163,18 +163,18 @@ class TestQMNN:
         value = torch.randn(2, 3, 32)
         
         # This should not raise an error
-        qmnn.quantum_memory_write(key, value)
+        qmann.quantum_memory_write(key, value)
         
         # Test memory read
         query = torch.randn(2, 3, 16)
-        retrieved = qmnn.quantum_memory_read(query)
+        retrieved = qmann.quantum_memory_read(query)
         
         assert retrieved.shape == (2, 3, 16)
         assert not torch.isnan(retrieved).any()
         
-    def test_qmnn_memory_usage(self):
+    def test_qmann_memory_usage(self):
         """Test memory usage tracking."""
-        qmnn = QMNN(
+        qmann = QMANN(
             input_dim=8,
             hidden_dim=32,
             output_dim=3,
@@ -182,21 +182,21 @@ class TestQMNN:
             memory_embedding_dim=8,
         )
         
-        initial_usage = qmnn.memory_usage()
+        initial_usage = qmann.memory_usage()
         assert initial_usage == 0.0
         
         # Store some data
         key = torch.randn(1, 1, 8)
         value = torch.randn(1, 1, 32)
-        qmnn.quantum_memory_write(key, value)
+        qmann.quantum_memory_write(key, value)
         
-        updated_usage = qmnn.memory_usage()
+        updated_usage = qmann.memory_usage()
         assert updated_usage > initial_usage
         assert 0.0 <= updated_usage <= 1.0
         
-    def test_qmnn_reset_memory(self):
+    def test_qmann_reset_memory(self):
         """Test memory reset functionality."""
-        qmnn = QMNN(
+        qmann = QMANN(
             input_dim=8,
             hidden_dim=32,
             output_dim=3,
@@ -207,18 +207,18 @@ class TestQMNN:
         # Store some data
         key = torch.randn(1, 1, 8)
         value = torch.randn(1, 1, 32)
-        qmnn.quantum_memory_write(key, value)
+        qmann.quantum_memory_write(key, value)
         
-        assert qmnn.memory_usage() > 0.0
+        assert qmann.memory_usage() > 0.0
         
         # Reset memory
-        qmnn.reset_memory()
+        qmann.reset_memory()
         
-        assert qmnn.memory_usage() == 0.0
+        assert qmann.memory_usage() == 0.0
         
-    def test_qmnn_gradient_flow(self):
-        """Test gradient flow through QMNN."""
-        qmnn = QMNN(
+    def test_qmann_gradient_flow(self):
+        """Test gradient flow through QMANN."""
+        qmann = QMANN(
             input_dim=4,
             hidden_dim=16,
             output_dim=2,
@@ -230,7 +230,7 @@ class TestQMNN:
         y_true = torch.randint(0, 2, (1, 3))
         
         # Forward pass
-        y_pred, _ = qmnn(x)
+        y_pred, _ = qmann(x)
         
         # Compute loss
         loss = nn.CrossEntropyLoss()(y_pred.view(-1, 2), y_true.view(-1))
@@ -242,13 +242,13 @@ class TestQMNN:
         assert x.grad is not None
         
         # Check that model parameters have gradients
-        for param in qmnn.parameters():
+        for param in qmann.parameters():
             if param.requires_grad:
                 assert param.grad is not None
                 
-    def test_qmnn_training_mode(self):
-        """Test QMNN behavior in training vs evaluation mode."""
-        qmnn = QMNN(
+    def test_qmann_training_mode(self):
+        """Test QMANN behavior in training vs evaluation mode."""
+        qmann = QMANN(
             input_dim=4,
             hidden_dim=16,
             output_dim=2,
@@ -259,20 +259,20 @@ class TestQMNN:
         x = torch.randn(1, 2, 4)
         
         # Training mode
-        qmnn.train()
-        output_train, _ = qmnn(x, store_memory=True)
+        qmann.train()
+        output_train, _ = qmann(x, store_memory=True)
         
         # Evaluation mode
-        qmnn.eval()
+        qmann.eval()
         with torch.no_grad():
-            output_eval, _ = qmnn(x, store_memory=False)
+            output_eval, _ = qmann(x, store_memory=False)
             
         assert output_train.shape == output_eval.shape
         # Outputs may differ due to memory storage in training mode
         
-    def test_qmnn_get_memory_circuit(self):
+    def test_qmann_get_memory_circuit(self):
         """Test getting quantum memory circuit."""
-        qmnn = QMNN(
+        qmann = QMANN(
             input_dim=4,
             hidden_dim=16,
             output_dim=2,
@@ -280,7 +280,7 @@ class TestQMNN:
             memory_embedding_dim=8,
         )
         
-        circuit = qmnn.get_memory_circuit()
+        circuit = qmann.get_memory_circuit()
         assert circuit is not None
         assert circuit.num_qubits > 0
 
@@ -288,9 +288,9 @@ class TestQMNN:
 class TestModelIntegration:
     """Integration tests for model components."""
     
-    def test_qnn_qmnn_integration(self):
-        """Test integration between QNN and QMNN components."""
-        qmnn = QMNN(
+    def test_qnn_qmann_integration(self):
+        """Test integration between QNN and QMANN components."""
+        qmann = QMANN(
             input_dim=6,
             hidden_dim=24,
             output_dim=3,
@@ -300,21 +300,21 @@ class TestModelIntegration:
         )
         
         # Test that quantum layers are properly integrated
-        assert len(qmnn.quantum_layers) == 2
+        assert len(qmann.quantum_layers) == 2
         
-        for layer in qmnn.quantum_layers:
+        for layer in qmann.quantum_layers:
             assert isinstance(layer, QuantumNeuralNetwork)
             
         # Test forward pass through integrated system
         x = torch.randn(2, 4, 6)
-        output, memory = qmnn(x)
+        output, memory = qmann(x)
         
         assert output.shape == (2, 4, 3)
         assert memory.shape == (2, 4, 12)
         
     def test_memory_attention_integration(self):
         """Test memory attention mechanism."""
-        qmnn = QMNN(
+        qmann = QMANN(
             input_dim=4,
             hidden_dim=16,
             output_dim=2,
@@ -326,7 +326,7 @@ class TestModelIntegration:
         x = torch.randn(1, 3, 4)
         
         # Forward pass should use attention
-        output, attended_memory = qmnn(x)
+        output, attended_memory = qmann(x)
         
         assert attended_memory.shape == (1, 3, 8)
         assert not torch.isnan(attended_memory).any()
@@ -339,9 +339,9 @@ def sample_qnn():
 
 
 @pytest.fixture
-def sample_qmnn():
-    """Fixture providing a sample QMNN for testing."""
-    return QMNN(
+def sample_qmann():
+    """Fixture providing a sample QMANN for testing."""
+    return QMANN(
         input_dim=6,
         hidden_dim=24,
         output_dim=3,
@@ -364,15 +364,15 @@ class TestFixtures:
         output = sample_qnn(x)
         assert output.shape == (2, 2)
         
-    def test_sample_qmnn_fixture(self, sample_qmnn):
-        """Test the sample QMNN fixture."""
-        assert sample_qmnn.input_dim == 6
-        assert sample_qmnn.output_dim == 3
-        assert sample_qmnn.memory_capacity == 16
+    def test_sample_qmann_fixture(self, sample_qmann):
+        """Test the sample QMANN fixture."""
+        assert sample_qmann.input_dim == 6
+        assert sample_qmann.output_dim == 3
+        assert sample_qmann.memory_capacity == 16
         
         # Test forward pass
         x = torch.randn(1, 3, 6)
-        output, memory = sample_qmnn(x)
+        output, memory = sample_qmann(x)
         assert output.shape == (1, 3, 3)
         assert memory.shape == (1, 3, 12)
 

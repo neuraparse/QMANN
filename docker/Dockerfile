@@ -1,4 +1,4 @@
-# Multi-stage build for QMNN
+# Multi-stage build for QMANN
 FROM nvidia/cuda:12.2-devel-ubuntu22.04 as base
 
 # Set environment variables
@@ -96,13 +96,13 @@ COPY README.md ./
 RUN pip install -e .
 
 # Create non-root user
-RUN useradd -m -u 1000 qmnn && \
-    chown -R qmnn:qmnn /app
+RUN useradd -m -u 1000 qmann && \
+    chown -R qmann:qmann /app
 
-USER qmnn
+USER qmann
 
 # Default command
-CMD ["python", "-m", "qmnn.cli"]
+CMD ["python", "-m", "qmann.cli"]
 
 # Benchmark stage
 FROM production as benchmark
@@ -123,7 +123,7 @@ COPY scripts/run_benchmarks.sh ./scripts/
 # Make scripts executable
 RUN chmod +x scripts/*.sh
 
-USER qmnn
+USER qmann
 
 # Default command for benchmarks
 CMD ["./scripts/run_benchmarks.sh"]
@@ -161,7 +161,7 @@ CMD ["make", "pdf"]
 FROM production as final
 
 # Add labels for metadata
-LABEL org.opencontainers.image.title="QMNN: Quantum Memory-Augmented Neural Networks"
+LABEL org.opencontainers.image.title="QMANN: Quantum Memory-Augmented Neural Networks"
 LABEL org.opencontainers.image.description="A quantum computing framework for memory-augmented neural networks"
 LABEL org.opencontainers.image.version="1.0.0"
 LABEL org.opencontainers.image.authors="Neura Parse <info@neuraparse.com>"
@@ -175,7 +175,7 @@ LABEL licensing.contact="info@neuraparse.com"
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python -c "import qmnn; print('QMNN is healthy')" || exit 1
+    CMD python -c "import qmann; print('QMANN is healthy')" || exit 1
 
 # Default entrypoint
-ENTRYPOINT ["python", "-m", "qmnn.cli"]
+ENTRYPOINT ["python", "-m", "qmann.cli"]

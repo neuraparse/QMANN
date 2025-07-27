@@ -1,10 +1,10 @@
-# QMNN Quantum Circuits
+# QMANN Quantum Circuits
 
-This directory contains quantum circuit implementations for the QMNN architecture, including QASM files, circuit optimization tools, and hardware-specific implementations.
+This directory contains quantum circuit implementations for the QMANN architecture, including QASM files, circuit optimization tools, and hardware-specific implementations.
 
 ## 🔬 Circuit Components
 
-### Core QMNN Circuits
+### Core QMANN Circuits
 - **QRAM Circuits**: Quantum Random Access Memory implementations
 - **Encoding Circuits**: Classical-to-quantum data encoding
 - **Memory Operations**: Read/write quantum memory operations
@@ -399,5 +399,5 @@ visualize_circuit(
 ---
 
 **Last Updated**: July 2025  
-**Maintainer**: QMNN Team  
-**Contact**: circuits@qmnn-project.org
+**Maintainer**: QMANN Team  
+**Contact**: circuits@qmann-project.org

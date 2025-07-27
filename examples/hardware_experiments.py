@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Real Quantum Hardware Experiments with QMNN
+Real Quantum Hardware Experiments with QMANN
 
-This script demonstrates how to run QMNN experiments on real quantum hardware
+This script demonstrates how to run QMANN experiments on real quantum hardware
 including IBM Quantum, Google Quantum AI, and IonQ devices.
 
 IMPORTANT: This requires actual quantum hardware access and API credentials.
-For simulation-only experiments, see basic_qmnn_example.py
+For simulation-only experiments, see basic_qmann_example.py
 """
 
 import os
@@ -16,18 +16,18 @@ import torch
 import matplotlib.pyplot as plt
 from typing import Dict, List, Optional
 
-# QMNN imports
+# QMANN imports
 try:
-    from qmnn.hardware import (
+    from qmann.hardware import (
         QuantumBackendManager,
-        ExperimentalQMNN,
+        ExperimentalQMANN,
         HardwareAwareQRAM,
         NISQOptimizedLayers
     )
     HARDWARE_AVAILABLE = True
 except ImportError:
     HARDWARE_AVAILABLE = False
-    warnings.warn("Quantum hardware interface not available. Install with: pip install qmnn[hardware]")
+    warnings.warn("Quantum hardware interface not available. Install with: pip install qmann[hardware]")
 
 def setup_quantum_backends() -> QuantumBackendManager:
     """
@@ -92,8 +92,8 @@ def run_simulator_validation(backend_manager: QuantumBackendManager) -> Dict:
     # Create small test dataset
     X_test, y_test = create_test_dataset(n_samples=20, seq_len=5, input_dim=4)
     
-    # Initialize experimental QMNN
-    model = ExperimentalQMNN(
+    # Initialize experimental QMANN
+    model = ExperimentalQMANN(
         input_dim=4,
         hidden_dim=16,
         output_dim=2,
@@ -159,7 +159,7 @@ def run_hardware_experiments(backend_manager: QuantumBackendManager,
     X_test, y_test = create_test_dataset(n_samples=5, seq_len=3, input_dim=3)
     
     # Initialize hardware-optimized model
-    model = ExperimentalQMNN(
+    model = ExperimentalQMANN(
         input_dim=3,
         hidden_dim=8,
         output_dim=2,
@@ -270,7 +270,7 @@ def create_experimental_report(results: Dict, analysis: Dict) -> str:
         Report string
     """
     report = []
-    report.append("QMNN QUANTUM HARDWARE EXPERIMENTAL REPORT")
+    report.append("QMANN QUANTUM HARDWARE EXPERIMENTAL REPORT")
     report.append("=" * 50)
     report.append("")
     
@@ -330,12 +330,12 @@ def create_experimental_report(results: Dict, analysis: Dict) -> str:
 
 def main():
     """Main experimental workflow."""
-    print("QMNN Quantum Hardware Experiments")
+    print("QMANN Quantum Hardware Experiments")
     print("=" * 40)
     
     if not HARDWARE_AVAILABLE:
         print("❌ Quantum hardware interface not available!")
-        print("Install with: pip install qmnn[hardware]")
+        print("Install with: pip install qmann[hardware]")
         return
         
     # Configuration
@@ -373,9 +373,9 @@ def main():
         print(report)
         
         # Save report
-        with open('qmnn_hardware_experiment_report.txt', 'w') as f:
+        with open('qmann_hardware_experiment_report.txt', 'w') as f:
             f.write(report)
-        print(f"\n📄 Report saved to: qmnn_hardware_experiment_report.txt")
+        print(f"\n📄 Report saved to: qmann_hardware_experiment_report.txt")
         
     except Exception as e:
         print(f"❌ Experiment failed: {e}")

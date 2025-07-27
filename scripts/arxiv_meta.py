@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-arXiv metadata processor for QMNN paper.
+arXiv metadata processor for QMANN paper.
 
 This script processes meta.yaml and generates arXiv-compatible metadata.
 """
@@ -173,7 +173,7 @@ def validate_metadata(meta_data):
     return issues, warnings
 
 def main():
-    parser = argparse.ArgumentParser(description='Process arXiv metadata for QMNN paper')
+    parser = argparse.ArgumentParser(description='Process arXiv metadata for QMANN paper')
     parser.add_argument('--input', '-i', default='paper/meta.yaml', 
                        help='Input metadata YAML file')
     parser.add_argument('--output', '-o', help='Output JSON file')

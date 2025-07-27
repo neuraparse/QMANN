@@ -1,8 +1,8 @@
 """
-Classical Controller Components for QMNN
+Classical Controller Components for QMANN
 
 This module contains classical neural network components that interface
-with quantum memory and quantum layers in the QMNN architecture.
+with quantum memory and quantum layers in the QMANN architecture.
 """
 
 import torch

@@ -1,6 +1,6 @@
-# QMNN Quick Start Guide
+# QMANN Quick Start Guide
 
-Welcome to Quantum Memory-Augmented Neural Networks (QMNN)! This guide will help you get started with QMNN in just a few minutes.
+Welcome to Quantum Memory-Augmented Neural Networks (QMANN)! This guide will help you get started with QMANN in just a few minutes.
 
 ## Installation
 
@@ -10,7 +10,7 @@ Welcome to Quantum Memory-Augmented Neural Networks (QMNN)! This guide will help
 - Qiskit 0.45+
 - PennyLane 0.32+
 
-### Install QMNN
+### Install QMANN
 
 ```bash
 # Clone the repository
@@ -20,7 +20,7 @@ cd QMANN
 # Install dependencies
 pip install -r requirements.txt
 
-# Install QMNN in development mode
+# Install QMANN in development mode
 pip install -e .
 
 # Quick test
@@ -35,25 +35,25 @@ make docker-build
 make docker-run
 
 # Or use pre-built image
-docker run -it qmnn:latest python -c "import qmnn; print('QMNN ready!')"
+docker run -it qmann:latest python -c "import qmann; print('QMANN ready!')"
 ```
 
-## Your First QMNN Model
+## Your First QMANN Model
 
 ### Basic Example: Sequential Classification
 
 ```python
 import torch
 import numpy as np
-from qmnn import QMNN, QMNNTrainer
+from qmann import QMANN, QMANNTrainer
 
 # Create sample data
 batch_size, seq_len, input_dim = 32, 10, 8
 X = torch.randn(batch_size, seq_len, input_dim)
 y = torch.randint(0, 3, (batch_size, seq_len))
 
-# Initialize QMNN model
-model = QMNN(
+# Initialize QMANN model
+model = QMANN(
     input_dim=input_dim,
     hidden_dim=64,
     output_dim=3,  # 3 classes
@@ -63,7 +63,7 @@ model = QMNN(
 )
 
 # Create trainer
-trainer = QMNNTrainer(
+trainer = QMANNTrainer(
     model=model,
     learning_rate=1e-3,
     device='cpu'  # Use 'cuda' if available
@@ -82,7 +82,7 @@ with torch.no_grad():
 ### Memory Operations Example
 
 ```python
-from qmnn import QuantumMemory
+from qmann import QuantumMemory
 
 # Create quantum memory
 memory = QuantumMemory(
@@ -114,7 +114,7 @@ print(f"Memory utilization: {stats['capacity_utilization']:.2f}")
 ### Quantum Transformers
 
 ```python
-from qmnn import QuantumTransformer
+from qmann import QuantumTransformer
 
 # Create quantum transformer for text processing
 model = QuantumTransformer(
@@ -135,10 +135,10 @@ print(f"Generated sequence: {generated}")
 ### Quantum Federated Learning
 
 ```python
-from qmnn import QuantumFederatedQMNN
+from qmann import QuantumFederatedQMANN
 
 # Create federated learning setup
-fed_model = QuantumFederatedQMNN(
+fed_model = QuantumFederatedQMANN(
     base_model_config={
         'input_dim': 8,
         'hidden_dim': 32,
@@ -162,7 +162,7 @@ print(f"Round {metrics['round']}: avg loss = {metrics['average_client_loss']:.3f
 ### Error Correction
 
 ```python
-from qmnn import PracticalErrorCorrection
+from qmann import PracticalErrorCorrection
 
 # Create error correction system
 error_corrector = PracticalErrorCorrection(
@@ -187,11 +187,11 @@ print(f"Correction success rate: {error_corrector.correction_success_rate:.3f}")
 
 ### Quantum Hardware Limits
 
-QMNN is designed to work within realistic quantum hardware constraints:
+QMANN is designed to work within realistic quantum hardware constraints:
 
 ```python
 # Check system capabilities
-from qmnn import get_system_info
+from qmann import get_system_info
 
 info = get_system_info()
 print("System Information:")
@@ -204,7 +204,7 @@ print(f"- Available features: {list(info['available_features'].keys())}")
 
 ```python
 # Use hardware-aware configuration
-model = QMNN(
+model = QMANN(
     input_dim=16,
     hidden_dim=128,
     output_dim=10,
@@ -231,16 +231,16 @@ print(f"Quantum ratio: {quantum_info['quantum_ratio']:.2%}")
 python benchmarks/run.py --all
 
 # Run specific benchmark
-python benchmarks/run.py --task mnist_sequential --model qmnn
+python benchmarks/run.py --task mnist_sequential --model qmann
 
 # Compare with baselines
-python benchmarks/run.py --task copy_task --models qmnn,lstm,transformer
+python benchmarks/run.py --task copy_task --models qmann,lstm,transformer
 ```
 
 ### Custom Benchmark
 
 ```python
-from qmnn.benchmarks import MemoryTaskBenchmark
+from qmann.benchmarks import MemoryTaskBenchmark
 
 # Create custom memory task
 benchmark = MemoryTaskBenchmark(
@@ -250,9 +250,9 @@ benchmark = MemoryTaskBenchmark(
     num_samples=1000
 )
 
-# Test QMNN vs baselines
-results = benchmark.run_comparison(['qmnn', 'lstm', 'ntm'])
-print(f"QMNN accuracy: {results['qmnn']['accuracy']:.3f}")
+# Test QMANN vs baselines
+results = benchmark.run_comparison(['qmann', 'lstm', 'ntm'])
+print(f"QMANN accuracy: {results['qmann']['accuracy']:.3f}")
 print(f"LSTM accuracy: {results['lstm']['accuracy']:.3f}")
 ```
 
@@ -268,20 +268,20 @@ print(f"LSTM accuracy: {results['lstm']['accuracy']:.3f}")
 ### Memory Errors
 ```python
 # If you get memory errors, reduce capacity
-model = QMNN(memory_capacity=32, max_qubits=6)  # Smaller config
+model = QMANN(memory_capacity=32, max_qubits=6)  # Smaller config
 ```
 
 ### Slow Training
 ```python
 # Use efficient quantum-inspired mode
-model = QMNN(use_full_quantum=False)  # Faster training
+model = QMANN(use_full_quantum=False)  # Faster training
 ```
 
 ### Hardware Warnings
 ```python
 # Warnings about qubit limits are normal - the system will adapt
 import warnings
-warnings.filterwarnings("ignore", category=UserWarning, module="qmnn")
+warnings.filterwarnings("ignore", category=UserWarning, module="qmann")
 ```
 
 ## Support

@@ -1,6 +1,6 @@
-# Contributing to QMNN
+# Contributing to QMANN
 
-Thank you for your interest in contributing to Quantum Memory-Augmented Neural Networks (QMNN)! This project is open source under the Apache 2.0 license, and we welcome contributions from the community.
+Thank you for your interest in contributing to Quantum Memory-Augmented Neural Networks (QMANN)! This project is open source under the Apache 2.0 license, and we welcome contributions from the community.
 
 ## 🚀 Welcome Contributors!
 
@@ -66,7 +66,7 @@ This project adheres to a code of conduct that we expect all contributors to fol
 Alternatively, use Docker for development:
 
 ```bash
-docker-compose up qmnn-dev
+docker-compose up qmann-dev
 ```
 
 This will start a Jupyter Lab environment with all dependencies installed.
@@ -175,7 +175,7 @@ Types:
 Examples:
 ```
 feat(core): add quantum memory compression
-fix(models): resolve QMNN gradient flow issue
+fix(models): resolve QMANN gradient flow issue
 docs(readme): update installation instructions
 ```
 
@@ -226,7 +226,7 @@ For feature requests, please include:
 pytest
 
 # Run with coverage
-pytest --cov=src/qmnn
+pytest --cov=src/qmann
 
 # Run specific test file
 pytest tests/test_core.py
@@ -314,4 +314,4 @@ Contributors will be acknowledged in:
 - Release notes
 - Project documentation
 
-Thank you for contributing to QMNN! Your contributions help advance the field of quantum machine learning.
+Thank you for contributing to QMANN! Your contributions help advance the field of quantum machine learning.

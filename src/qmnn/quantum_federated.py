@@ -1,5 +1,5 @@
 """
-Quantum Federated Learning for QMNN (2025)
+Quantum Federated Learning for QMANN (2025)
 
 This module implements cutting-edge quantum federated learning
 based on the latest 2025 research in distributed quantum computing
@@ -166,9 +166,9 @@ class QuantumDifferentialPrivacy(nn.Module):
         return data + laplace_noise + quantum_correction
 
 
-class QuantumFederatedQMNN(nn.Module):
+class QuantumFederatedQMANN(nn.Module):
     """
-    Quantum Federated QMNN System.
+    Quantum Federated QMANN System.
     
     Implements distributed quantum machine learning with
     privacy-preserving aggregation and quantum communication.
@@ -181,9 +181,9 @@ class QuantumFederatedQMNN(nn.Module):
         self.n_clients = n_clients
         self.privacy_epsilon = privacy_epsilon
         
-        # Initialize base QMNN model
-        from .models import QMNN
-        self.global_model = QMNN(**base_model_config)
+        # Initialize base QMANN model
+        from .models import QMANN
+        self.global_model = QMANN(**base_model_config)
         
         # Quantum secure aggregation
         self.secure_aggregator = QuantumSecureAggregation(n_clients)
@@ -193,7 +193,7 @@ class QuantumFederatedQMNN(nn.Module):
         
         # Client models (in practice, these would be on separate devices)
         self.client_models = nn.ModuleList([
-            QMNN(**base_model_config) for _ in range(n_clients)
+            QMANN(**base_model_config) for _ in range(n_clients)
         ])
         
         # Federated learning parameters

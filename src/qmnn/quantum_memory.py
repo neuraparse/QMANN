@@ -1,5 +1,5 @@
 """
-Quantum Memory Components for QMNN
+Quantum Memory Components for QMANN
 
 This module contains quantum memory implementations extracted from core.py
 for better modularity and maintainability.

@@ -1,8 +1,8 @@
 """
-Quantum Hardware Interface Module for QMNN
+Quantum Hardware Interface Module for QMANN
 
 This module provides interfaces to real quantum hardware for experimental
-validation of QMNN algorithms on NISQ devices.
+validation of QMANN algorithms on NISQ devices.
 """
 
 from .quantum_backend import (
@@ -15,7 +15,7 @@ from .quantum_backend import (
 
 try:
     from .experimental_interface import (
-        ExperimentalQMNN,
+        ExperimentalQMANN,
         HardwareAwareQRAM,
         NISQOptimizedLayers
     )
@@ -33,7 +33,7 @@ __all__ = [
 
 if EXPERIMENTAL_AVAILABLE:
     __all__.extend([
-        'ExperimentalQMNN',
+        'ExperimentalQMANN',
         'HardwareAwareQRAM', 
         'NISQOptimizedLayers'
     ])

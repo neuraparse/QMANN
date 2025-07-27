@@ -8,7 +8,7 @@
 To bridge the gap between quantum computing and machine learning, creating practical quantum advantages for real-world applications.
 
 ### 🔬 Research Focus
-- Quantum Memory-Augmented Neural Networks (QMNN)
+- Quantum Memory-Augmented Neural Networks (QMANN)
 - Fault-Tolerant Quantum Machine Learning
 - Quantum Transformers and Attention Mechanisms
 - Quantum Federated Learning
@@ -28,7 +28,7 @@ To bridge the gap between quantum computing and machine learning, creating pract
 
 ## 🚀 Current Projects
 
-### QMNN: Quantum Memory-Augmented Neural Networks
+### QMANN: Quantum Memory-Augmented Neural Networks
 Our flagship project developing quantum-enhanced neural networks with exponential memory scaling capabilities.
 
 **Repository**: [github.com/neuraparse/QMANN](https://github.com/neuraparse/QMANN)
@@ -56,7 +56,7 @@ We welcome collaboration opportunities with:
 ## 📚 Publications
 
 ### 2025
-- **QMNN: Quantum Memory-Augmented Neural Networks** (arXiv:2025.XXXXX)
+- **QMANN: Quantum Memory-Augmented Neural Networks** (arXiv:2025.XXXXX)
   - Novel quantum-classical hybrid architecture
   - Exponential memory scaling demonstration
   - Quantum advantage verification
@@ -95,7 +95,7 @@ All our research is committed to open science principles:
 ## 📈 Future Roadmap
 
 ### 2025 Goals
-- [ ] Deploy QMNN on fault-tolerant quantum hardware
+- [ ] Deploy QMANN on fault-tolerant quantum hardware
 - [ ] Achieve practical quantum advantage in real applications
 - [ ] Expand quantum federated learning capabilities
 - [ ] Develop quantum-native optimization algorithms

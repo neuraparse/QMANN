@@ -1,7 +1,7 @@
 """
 Quantum Memory-Augmented Neural Network models.
 
-This module implements modular QMNN models with optimized quantum-classical integration,
+This module implements modular QMANN models with optimized quantum-classical integration,
 vectorized operations, and proper PyTorch nn.Module compatibility.
 """
 
@@ -206,7 +206,7 @@ class QuantumNeuralNetwork(nn.Module):
         }
 
 
-class QMNN(nn.Module):
+class QMANN(nn.Module):
     """
     Optimized Quantum Memory-Augmented Neural Network.
 
@@ -227,7 +227,7 @@ class QMNN(nn.Module):
         dropout: float = 0.1,
     ):
         """
-        Initialize QMNN with modular architecture.
+        Initialize QMANN with modular architecture.
 
         Args:
             input_dim: Input feature dimension
@@ -415,7 +415,7 @@ class QMNN(nn.Module):
         return_attention: bool = False
     ) -> Union[torch.Tensor, Tuple[torch.Tensor, torch.Tensor], Tuple[torch.Tensor, torch.Tensor, torch.Tensor]]:
         """
-        Optimized forward pass through QMNN.
+        Optimized forward pass through QMANN.
 
         Args:
             x: Input tensor [batch_size, seq_len, input_dim]
@@ -519,7 +519,7 @@ class QMNN(nn.Module):
             attention_params = 0
 
         return {
-            'model_type': 'QMNN',
+            'model_type': 'QMANN',
             'input_dim': self.input_dim,
             'hidden_dim': self.hidden_dim,
             'output_dim': self.output_dim,

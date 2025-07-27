@@ -1,9 +1,12 @@
 #!/bin/bash
 
-# QMNN Quick Test Script
-# Runs essential tests to verify project setup
+# QMANN Quick Test Script
+# Runs essential tests to verify project setup and production readiness
 
 set -e  # Exit on any error
+
+# Create artifacts directory
+mkdir -p artifacts/quicktest
 
 # Colors for output
 RED='\033[0;31m'
@@ -68,7 +71,7 @@ check_command() {
 }
 
 echo -e "${BLUE}========================================${NC}"
-echo -e "${BLUE}QMNN Quick Test Suite${NC}"
+echo -e "${BLUE}QMANN Quick Test Suite${NC}"
 echo -e "${BLUE}========================================${NC}"
 
 # Check system requirements
@@ -88,12 +91,12 @@ else
 fi
 
 # Check if we're in the right directory
-if [ ! -f "pyproject.toml" ] || [ ! -d "src/qmnn" ]; then
-    print_error "Not in QMNN project root directory"
+if [ ! -f "pyproject.toml" ] || [ ! -d "src/qmann" ]; then
+    print_error "Not in QMANN project root directory"
     exit 1
 fi
 
-print_status "✓ In QMNN project directory"
+print_status "✓ In QMANN project directory"
 
 # Check if virtual environment is recommended
 if [[ "$VIRTUAL_ENV" == "" ]]; then
@@ -102,7 +105,7 @@ fi
 
 # Test 1: Package installation
 print_info "Testing package installation..."
-run_test "Package importable" "python3 -c 'import qmnn'"
+run_test "Package importable" "python3 -c 'import qmann'"
 
 # Test 2: Core dependencies
 print_info "Testing core dependencies..."
@@ -110,19 +113,19 @@ run_test "PyTorch import" "python3 -c 'import torch'"
 run_test "NumPy import" "python3 -c 'import numpy'"
 run_test "Qiskit import" "python3 -c 'import qiskit'"
 
-# Test 3: QMNN core components
-print_info "Testing QMNN core components..."
-run_test "QRAM import" "python3 -c 'from qmnn.core import QRAM'"
-run_test "QMNN model import" "python3 -c 'from qmnn.models import QMNN'"
-run_test "Trainer import" "python3 -c 'from qmnn.training import QMNNTrainer'"
+# Test 3: QMANN core components
+print_info "Testing QMANN core components..."
+run_test "QRAM import" "python3 -c 'from qmann.core import QRAM'"
+run_test "QMANN model import" "python3 -c 'from qmann.models import QMANN'"
+run_test "Trainer import" "python3 -c 'from qmann.training import QMANNTrainer'"
 
 # Test 4: Basic functionality
 print_info "Testing basic functionality..."
-cat > /tmp/qmnn_test.py << 'EOF'
+cat > /tmp/qmann_test.py << 'EOF'
 import torch
 import numpy as np
-from qmnn.core import QRAM, QuantumMemory
-from qmnn.models import QMNN
+from qmann.core import QRAM, QuantumMemory
+from qmann.models import QMANN
 
 # Test QRAM creation
 qram = QRAM(memory_size=4, address_qubits=2)
@@ -132,15 +135,15 @@ print("QRAM created successfully")
 qmem = QuantumMemory(capacity=8, embedding_dim=4)
 print("QuantumMemory created successfully")
 
-# Test QMNN model
-model = QMNN(
+# Test QMANN model
+model = QMANN(
     input_dim=4,
     hidden_dim=16,
     output_dim=2,
     memory_capacity=8,
     memory_embedding_dim=8
 )
-print("QMNN model created successfully")
+print("QMANN model created successfully")
 
 # Test forward pass
 x = torch.randn(1, 3, 4)
@@ -150,12 +153,12 @@ print(f"Forward pass successful: output shape {output.shape}")
 print("All basic functionality tests passed!")
 EOF
 
-run_test "Basic functionality" "python3 /tmp/qmnn_test.py"
+run_test "Basic functionality" "python3 /tmp/qmann_test.py"
 
 # Test 5: CLI interface
 print_info "Testing CLI interface..."
-run_test "CLI help" "python3 -m qmnn.cli --help"
-run_test "CLI info command" "python3 -m qmnn.cli info"
+run_test "CLI help" "python3 -m qmann.cli --help"
+run_test "CLI info command" "python3 -m qmann.cli info"
 
 # Test 6: Unit tests (if available)
 if [ -d "tests" ] && [ -f "tests/test_core.py" ]; then
@@ -209,7 +212,7 @@ else
 fi
 
 # Cleanup
-rm -f /tmp/qmnn_test.py
+rm -f /tmp/qmann_test.py
 
 # Summary
 echo ""
@@ -220,11 +223,11 @@ echo -e "${BLUE}========================================${NC}"
 if [ $TESTS_FAILED -eq 0 ]; then
     print_status "All tests passed! ($TESTS_PASSED/$TESTS_TOTAL)"
     echo ""
-    print_status "🎉 QMNN setup is working correctly!"
+    print_status "🎉 QMANN setup is working correctly!"
     echo ""
     echo "Next steps:"
     echo "  1. Run full test suite: make test"
-    echo "  2. Try the demo: python -m qmnn.cli demo"
+    echo "  2. Try the demo: python -m qmann.cli demo"
     echo "  3. Start development: make dev-server"
     echo "  4. Read documentation: open README.md"
     exit 0

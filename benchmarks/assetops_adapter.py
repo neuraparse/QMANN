@@ -1,7 +1,7 @@
 """
-AssetOps Benchmark Adapter for QMNN
+AssetOps Benchmark Adapter for QMANN
 
-This module adapts AssetOps benchmark data for QMNN evaluation,
+This module adapts AssetOps benchmark data for QMANN evaluation,
 enabling Industry 4.0 scenario testing and validation.
 """
 
@@ -33,7 +33,7 @@ class AssetOpsTask:
 
 class AssetOpsBenchmarkAdapter:
     """
-    Adapter for AssetOps benchmark suite to work with QMNN.
+    Adapter for AssetOps benchmark suite to work with QMANN.
     
     Converts AssetOps JSON data format to PyTorch tensors suitable
     for quantum memory-augmented neural networks.

@@ -1,5 +1,5 @@
 """
-QMNN: Quantum Memory-Augmented Neural Networks
+QMANN: Quantum Memory-Augmented Neural Networks
 
 A quantum computing framework for memory-augmented neural networks using QRAM.
 Includes 2025 state-of-the-art quantum transformers, fault-tolerant error correction,
@@ -15,8 +15,8 @@ __website__ = "https://neuraparse.com"
 
 # Core imports
 from .core import QRAM, QuantumMemory
-from .models import QMNN, QuantumNeuralNetwork
-from .training import QMNNTrainer
+from .models import QMANN, QuantumNeuralNetwork
+from .training import QMANNTrainer
 from .utils import quantum_state_to_classical, classical_to_quantum_state
 
 # 2025 Advanced Features
@@ -45,7 +45,7 @@ try:
     from .quantum_federated import (
         QuantumSecureAggregation,
         QuantumDifferentialPrivacy,
-        QuantumFederatedQMNN
+        QuantumFederatedQMANN
     )
     QUANTUM_FEDERATED_AVAILABLE = True
 except ImportError:
@@ -100,7 +100,7 @@ try:
         IBMQuantumBackend,
         GoogleQuantumBackend,
         IonQBackend,
-        ExperimentalQMNN,
+        ExperimentalQMANN,
         HardwareAwareQRAM,
         NISQOptimizedLayers
     )
@@ -133,9 +133,9 @@ except ImportError:
 __all__ = [
     "QRAM",
     "QuantumMemory",
-    "QMNN",
+    "QMANN",
     "QuantumNeuralNetwork",
-    "QMNNTrainer",
+    "QMANNTrainer",
     "quantum_state_to_classical",
     "classical_to_quantum_state",
 ]
@@ -160,7 +160,7 @@ if QUANTUM_FEDERATED_AVAILABLE:
     __all__.extend([
         "QuantumSecureAggregation",
         "QuantumDifferentialPrivacy",
-        "QuantumFederatedQMNN",
+        "QuantumFederatedQMANN",
     ])
 
 if QUANTUM_ADVANTAGE_AVAILABLE:
@@ -205,7 +205,7 @@ if QUANTUM_HARDWARE_AVAILABLE:
         "IBMQuantumBackend",
         "GoogleQuantumBackend",
         "IonQBackend",
-        "ExperimentalQMNN",
+        "ExperimentalQMANN",
         "HardwareAwareQRAM",
         "NISQOptimizedLayers",
     ])
@@ -252,7 +252,7 @@ def get_system_info():
     import torch
 
     info = {
-        'qmnn_version': __version__,
+        'qmann_version': __version__,
         'pytorch_version': torch.__version__,
         'cuda_available': torch.cuda.is_available(),
         'available_features': get_available_features(),
@@ -272,7 +272,7 @@ def get_system_info():
 
 def recommend_mode(purpose: str = None, budget_usd: float = 0.0, n_qubits: int = None) -> str:
     """
-    Recommend the best QMNN mode based on user requirements.
+    Recommend the best QMANN mode based on user requirements.
 
     Args:
         purpose: Purpose of experiment ('research', 'development', 'validation', 'production')
@@ -329,7 +329,7 @@ def recommend_mode(purpose: str = None, budget_usd: float = 0.0, n_qubits: int =
 
 def print_mode_guide():
     """Print comprehensive mode selection guide."""
-    print("🎮 QMNN MODE SELECTION GUIDE")
+    print("🎮 QMANN MODE SELECTION GUIDE")
     print("=" * 50)
     print()
 
@@ -354,7 +354,7 @@ def print_mode_guide():
 
     print("💡 QUICK RECOMMENDATIONS:")
     print("  - Writing a paper? → Theoretical Mode")
-    print("  - Learning QMNN? → Simulation Mode")
+    print("  - Learning QMANN? → Simulation Mode")
     print("  - Testing algorithms? → Simulation Mode")
     print("  - Need real quantum results? → Hardware Mode (estimate costs first!)")
     print()
@@ -380,7 +380,7 @@ def quick_start(mode: str = "simulation"):
     mode = mode.lower()
 
     if mode == "theoretical":
-        print("🔬 Starting QMNN in Theoretical Mode...")
+        print("🔬 Starting QMANN in Theoretical Mode...")
         if CONFIG_AVAILABLE:
             from .config import THEORETICAL_ANALYSIS, validate_experimental_setup
             validate_experimental_setup(THEORETICAL_ANALYSIS)
@@ -388,7 +388,7 @@ def quick_start(mode: str = "simulation"):
         print("📖 Run: python examples/01_theoretical_mode.py")
 
     elif mode == "simulation":
-        print("💻 Starting QMNN in Simulation Mode...")
+        print("💻 Starting QMANN in Simulation Mode...")
         if CONFIG_AVAILABLE:
             from .config import SIMULATION_VALIDATION, validate_experimental_setup
             validate_experimental_setup(SIMULATION_VALIDATION)
@@ -396,7 +396,7 @@ def quick_start(mode: str = "simulation"):
         print("📖 Run: python examples/02_simulation_mode.py")
 
     elif mode == "hardware":
-        print("⚛️ Starting QMNN in Hardware Mode...")
+        print("⚛️ Starting QMANN in Hardware Mode...")
         print("⚠️  WARNING: This mode costs real money!")
         if CONFIG_AVAILABLE:
             from .config import HARDWARE_PROOF_OF_CONCEPT, validate_experimental_setup

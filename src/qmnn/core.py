@@ -1,5 +1,5 @@
 """
-Core quantum memory components for QMNN.
+Core quantum memory components for QMANN.
 
 This module implements realistic quantum random access memory (QRAM)
 with amplitude encoding, vectorized operations, and proper scaling limitations.

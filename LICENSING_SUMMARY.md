@@ -1,8 +1,8 @@
-# 📄 QMNN Licensing Summary
+# 📄 QMANN Licensing Summary
 
 ## 📋 Overview
 
-QMNN (Quantum Memory-Augmented Neural Networks) is released under the **Apache License 2.0** to encourage open collaboration and community development while maintaining appropriate intellectual property protections for core innovations.
+QMANN (Quantum Memory-Augmented Neural Networks) is released under the **Apache License 2.0** to encourage open collaboration and community development while maintaining appropriate intellectual property protections for core innovations.
 
 ---
 
@@ -39,7 +39,7 @@ QMNN (Quantum Memory-Augmented Neural Networks) is released under the **Apache L
 - **Experimentation**: Test and validate approaches
 
 ### 📚 Citation Requirements:
-When using QMNN in academic work, please cite:
+When using QMANN in academic work, please cite:
 ```
 Eker, B., et al. (2025). Quantum Memory-Augmented Neural Networks:
 A Novel Architecture for Enhanced Learning. arXiv:2025.XXXXX
@@ -190,7 +190,7 @@ Apache 2.0 is compatible with:
 ## 🎯 Disclaimer
 
 ### Research Stage Notice:
-QMNN is currently in active research and development. While the theoretical foundations are solid, practical implementations may have limitations:
+QMANN is currently in active research and development. While the theoretical foundations are solid, practical implementations may have limitations:
 
 - **Simulation-Based**: Current results from classical simulation of quantum algorithms
 - **Scalability**: Real quantum hardware limitations apply

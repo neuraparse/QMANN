@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 type: software
-title: "QMNN: Quantum Memory-Augmented Neural Networks"
+title: "QMANN: Quantum Memory-Augmented Neural Networks"
 version: 1.0.0
 date-released: 2025-07-08
 url: "https://github.com/neuraparse/QMANN"
@@ -21,7 +21,7 @@ authors:
     affiliation: "Neura Parse"
 
 abstract: >-
-  QMNN introduces Quantum Memory-Augmented Neural Networks, a novel architecture 
+  QMANN introduces Quantum Memory-Augmented Neural Networks, a novel architecture 
   that combines classical neural networks with quantum random access memory (QRAM) 
   to enhance learning capabilities. The framework leverages quantum superposition 
   and entanglement to provide exponential memory capacity scaling with logarithmic 

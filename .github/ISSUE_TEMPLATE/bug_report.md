@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Create a report to help us improve QMNN
+about: Create a report to help us improve QMANN
 title: '[BUG] '
 labels: ['bug', 'needs-triage']
 assignees: ''
@@ -26,7 +26,7 @@ A clear and concise description of what actually happened.
 **System Information:**
 - OS: [e.g. Ubuntu 22.04, macOS 13.0, Windows 11]
 - Python version: [e.g. 3.11.5]
-- QMNN version: [e.g. 1.0.0]
+- QMANN version: [e.g. 1.0.0]
 - PyTorch version: [e.g. 1.12.1]
 - Qiskit version: [e.g. 0.45.2]
 
@@ -44,7 +44,7 @@ Paste any error messages or stack traces here
 ## Code to Reproduce
 ```python
 # Minimal code example that reproduces the issue
-import qmnn
+import qmann
 
 # Your code here
 ```

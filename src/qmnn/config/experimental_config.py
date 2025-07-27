@@ -1,5 +1,5 @@
 """
-Experimental Configuration for QMNN
+Experimental Configuration for QMANN
 
 This module separates theoretical and experimental configurations,
 ensuring clear distinction between simulation and real hardware experiments.
@@ -174,8 +174,8 @@ class ExperimentalConfig:
     hardware: HardwareConfig = field(default_factory=HardwareConfig)
     
     # General settings
-    experiment_name: str = "qmnn_experiment"
-    description: str = "QMNN experimental validation"
+    experiment_name: str = "qmann_experiment"
+    description: str = "QMANN experimental validation"
     
     # Logging and output
     log_level: str = "INFO"

@@ -46,17 +46,17 @@ jobs:
     - name: Lint with flake8
       run: |
         # Stop the build if there are Python syntax errors or undefined names
-        flake8 src/qmnn --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 src/qmann --count --select=E9,F63,F7,F82 --show-source --statistics
         # Exit-zero treats all errors as warnings
-        flake8 src/qmnn --count --exit-zero --max-complexity=10 --max-line-length=88 --statistics
+        flake8 src/qmann --count --exit-zero --max-complexity=10 --max-line-length=88 --statistics
 
     - name: Type check with mypy
       run: |
-        mypy src/qmnn --ignore-missing-imports --no-strict-optional
+        mypy src/qmann --ignore-missing-imports --no-strict-optional
 
     - name: Test with pytest
       run: |
-        pytest tests/ -v --cov=qmnn --cov-report=xml --cov-report=term-missing
+        pytest tests/ -v --cov=qmann --cov-report=xml --cov-report=term-missing
 
     - name: Upload coverage to Codecov
       if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.9'
@@ -86,7 +86,7 @@ jobs:
     - name: Test noise-aware QRAM
       run: |
         python -c "
-        from src.qmnn.core.noise_aware_qram import NoiseAwareQRAM, NoiseParameters
+        from src.qmann.core.noise_aware_qram import NoiseAwareQRAM, NoiseParameters
         import numpy as np
 
         # Test noise-aware QRAM
@@ -175,8 +175,8 @@ jobs:
     - name: Test telemetry integration
       run: |
         python -c "
-        from src.qmnn.telemetry.agentops_integration import (
-            AgentOpsIntegration, QuantumMemoryMetrics, QMNNPerformanceMetrics
+        from src.qmann.telemetry.agentops_integration import (
+            AgentOpsIntegration, QuantumMemoryMetrics, QMANNPerformanceMetrics
         )
         import time
 
@@ -202,9 +202,9 @@ jobs:
         telemetry.record_quantum_operation(quantum_metrics)
 
         # Test performance metrics recording
-        perf_metrics = QMNNPerformanceMetrics(
+        perf_metrics = QMANNPerformanceMetrics(
             timestamp=time.time(),
-            model_id='qmnn_test',
+            model_id='qmann_test',
             batch_size=32,
             sequence_length=50,
             forward_pass_time_ms=200.0,
@@ -253,7 +253,7 @@ jobs:
 
     - name: Run benchmarks (quick)
       run: |
-        python benchmarks/run.py --quick --models qmnn,lstm
+        python benchmarks/run.py --quick --models qmann,lstm
 
   docs:
     runs-on: ubuntu-latest
@@ -275,7 +275,7 @@ jobs:
     - name: Check documentation
       run: |
         # Check that all modules can be imported
-        python -c "import qmnn; print('Import successful')"
+        python -c "import qmann; print('Import successful')"
         
         # Check that examples run without errors
         python -m pytest examples/ --nbval-lax
@@ -307,7 +307,7 @@ jobs:
         safety check
         
         # Static security analysis
-        bandit -r src/qmnn -f json -o bandit-report.json || true
+        bandit -r src/qmann -f json -o bandit-report.json || true
 
     - name: Upload security report
       uses: actions/upload-artifact@v3
@@ -367,8 +367,8 @@ jobs:
         python tests/integration/test_full_pipeline.py
         
         # Test Docker build
-        docker build -t qmnn:test .
-        docker run --rm qmnn:test python -c "import qmnn; print('Docker test passed')"
+        docker build -t qmann:test .
+        docker run --rm qmann:test python -c "import qmann; print('Docker test passed')"
 
   release:
     runs-on: ubuntu-latest

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-QMNN Theoretical Mode Example
+QMANN Theoretical Mode Example
 
-This example demonstrates the theoretical analysis capabilities of QMNN,
+This example demonstrates the theoretical analysis capabilities of QMANN,
 exploring ideal quantum computer scenarios with unlimited resources.
 
 🔬 THEORETICAL MODE:
@@ -17,9 +17,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from typing import Dict, List
 
-# QMNN imports
-from qmnn import QMNN
-from qmnn.config import THEORETICAL_ANALYSIS, validate_experimental_setup
+# QMANN imports
+from qmann import QMANN
+from qmann.config import THEORETICAL_ANALYSIS, validate_experimental_setup
 
 
 def theoretical_capacity_analysis():
@@ -118,7 +118,7 @@ def theoretical_algorithm_analysis():
     print("=" * 50)
     
     # Create theoretical model with large parameters
-    model = QMNN(
+    model = QMANN(
         input_dim=1000,      # Large input dimension
         hidden_dim=2048,     # Large hidden layer
         output_dim=100,      # Many output classes
@@ -212,7 +212,7 @@ def generate_theoretical_report(capacity_results: Dict, algorithm_results: Dict,
     """Generate comprehensive theoretical analysis report."""
     
     report = []
-    report.append("QMNN THEORETICAL ANALYSIS REPORT")
+    report.append("QMANN THEORETICAL ANALYSIS REPORT")
     report.append("=" * 50)
     report.append("")
     
@@ -256,7 +256,7 @@ def generate_theoretical_report(capacity_results: Dict, algorithm_results: Dict,
 
 def main():
     """Main theoretical analysis workflow."""
-    print("🔬 QMNN THEORETICAL MODE ANALYSIS")
+    print("🔬 QMANN THEORETICAL MODE ANALYSIS")
     print("=" * 50)
     print("Analyzing ideal quantum computer capabilities...")
     print("(Unlimited qubits, perfect gates, infinite coherence)")
@@ -277,9 +277,9 @@ def main():
         print(report)
         
         # Save report
-        with open('qmnn_theoretical_analysis.txt', 'w') as f:
+        with open('qmann_theoretical_analysis.txt', 'w') as f:
             f.write(report)
-        print(f"\n📄 Report saved to: qmnn_theoretical_analysis.txt")
+        print(f"\n📄 Report saved to: qmann_theoretical_analysis.txt")
         
         # Save results
         results = {

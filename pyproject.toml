@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "qmnn"
+name = "qmann"
 version = "1.0.0"
 description = "Quantum Memory-Augmented Neural Networks"
 readme = "README.md"
@@ -119,11 +119,11 @@ experimental = [
     "mitiq>=0.30.0",  # Error mitigation
     "pyquil>=4.0.0",  # Rigetti quantum computing
 ]
-all = ["qmnn[dev,docs,gpu,hardware,experimental]"]
+all = ["qmann[dev,docs,gpu,hardware,experimental]"]
 
 [project.urls]
 Homepage = "https://github.com/neuraparse/QMANN"
-Documentation = "https://qmnn.readthedocs.io"
+Documentation = "https://qmann.readthedocs.io"
 Repository = "https://github.com/neuraparse/QMANN.git"
 "Bug Tracker" = "https://github.com/neuraparse/QMANN/issues"
 "arXiv Paper" = "https://arxiv.org/abs/2025.XXXXX"
@@ -132,15 +132,15 @@ Repository = "https://github.com/neuraparse/QMANN.git"
 "Contact" = "mailto:info@neuraparse.com"
 
 [project.scripts]
-qmnn = "qmnn.cli:main"
-qmnn-train = "qmnn.training:main"
-qmnn-benchmark = "qmnn.benchmarks:main"
+qmann = "qmann.cli:main"
+qmann-train = "qmann.training:main"
+qmann-benchmark = "qmann.benchmarks:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-qmnn = ["data/*.yaml", "circuits/*.qasm", "configs/*.json"]
+qmann = ["data/*.yaml", "circuits/*.qasm", "configs/*.json"]
 
 [tool.black]
 line-length = 88
@@ -165,7 +165,7 @@ extend-exclude = '''
 profile = "black"
 multi_line_output = 3
 line_length = 88
-known_first_party = ["qmnn"]
+known_first_party = ["qmann"]
 known_third_party = ["qiskit", "pennylane", "torch", "numpy", "scipy", "matplotlib"]
 
 [tool.pytest.ini_options]
@@ -183,7 +183,7 @@ markers = [
 ]
 
 [tool.coverage.run]
-source = ["src/qmnn"]
+source = ["src/qmann"]
 omit = [
     "*/tests/*",
     "*/test_*",

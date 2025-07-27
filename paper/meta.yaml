@@ -10,7 +10,7 @@ authors:
     email: info@neuraparse.com
 
 abstract: |
-  We introduce Quantum Memory-Augmented Neural Networks (QMNN), a novel architecture that 
+  We introduce Quantum Memory-Augmented Neural Networks (QMANN), a novel architecture that 
   combines classical neural networks with quantum random access memory (QRAM) to enhance 
   learning capabilities. Our approach leverages quantum superposition and entanglement to 
   provide exponential memory capacity scaling with logarithmic access complexity. We 

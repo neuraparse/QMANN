@@ -1,7 +1,7 @@
 """
 Experimental Interface for Real Quantum Hardware
 
-This module provides QMNN components specifically designed for real quantum
+This module provides QMANN components specifically designed for real quantum
 hardware experiments, with NISQ-era optimizations and hardware constraints.
 """
 
@@ -13,7 +13,7 @@ import torch.nn as nn
 
 from .quantum_backend import QuantumBackendManager, QuantumBackend
 from ..core import QRAM, QuantumMemory
-from ..models import QMNN
+from ..models import QMANN
 
 try:
     from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
@@ -411,9 +411,9 @@ class NISQOptimizedLayers(nn.Module):
         return torch.tanh(output)  # Normalize output
 
 
-class ExperimentalQMNN(QMNN):
+class ExperimentalQMANN(QMANN):
     """
-    QMNN model specifically designed for real quantum hardware experiments.
+    QMANN model specifically designed for real quantum hardware experiments.
     
     Integrates hardware-aware components and provides experimental validation
     capabilities on NISQ devices.
@@ -423,7 +423,7 @@ class ExperimentalQMNN(QMNN):
                  n_qubits: int = 8, backend_manager: Optional[QuantumBackendManager] = None,
                  **kwargs):
         """
-        Initialize experimental QMNN.
+        Initialize experimental QMANN.
         
         Args:
             input_dim: Input dimension
@@ -439,7 +439,7 @@ class ExperimentalQMNN(QMNN):
             
         self.backend_manager = backend_manager or QuantumBackendManager()
         
-        # Initialize base QMNN with hardware constraints
+        # Initialize base QMANN with hardware constraints
         super().__init__(
             input_dim=input_dim,
             hidden_dim=hidden_dim,
@@ -502,7 +502,7 @@ class ExperimentalQMNN(QMNN):
             
         except Exception as e:
             warnings.warn(f"Experimental execution failed: {e}. Using classical fallback.")
-            output = super().forward(x)[0]  # Use base QMNN
+            output = super().forward(x)[0]  # Use base QMANN
             experiment_info['classical_fallback'] = True
             experiment_info['error'] = str(e)
             

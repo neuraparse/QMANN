@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-QMNN Production Readiness Test
+QMANN Production Readiness Test
 
 This script validates that all production-ready features are working correctly
 and the system meets enterprise requirements.
@@ -20,7 +20,7 @@ def test_noise_aware_qram():
     print("🧪 Testing Noise-Aware QRAM...")
     
     try:
-        from qmnn.core.noise_aware_qram import NoiseAwareQRAM, NoiseParameters, ShotCostScheduler
+        from qmann.core.noise_aware_qram import NoiseAwareQRAM, NoiseParameters, ShotCostScheduler
         import numpy as np
         
         # Test with budget constraints
@@ -106,8 +106,8 @@ def test_telemetry_system():
     print("🧪 Testing Telemetry System...")
     
     try:
-        from qmnn.telemetry.agentops_integration import (
-            AgentOpsIntegration, QuantumMemoryMetrics, QMNNPerformanceMetrics
+        from qmann.telemetry.agentops_integration import (
+            AgentOpsIntegration, QuantumMemoryMetrics, QMANNPerformanceMetrics
         )
         
         # Test without external dependencies
@@ -132,9 +132,9 @@ def test_telemetry_system():
         telemetry.record_quantum_operation(quantum_metrics)
         
         # Test performance metrics
-        perf_metrics = QMNNPerformanceMetrics(
+        perf_metrics = QMANNPerformanceMetrics(
             timestamp=time.time(),
-            model_id='qmnn_test',
+            model_id='qmann_test',
             batch_size=32,
             sequence_length=50,
             forward_pass_time_ms=200.0,
@@ -172,7 +172,7 @@ def test_watermarking_system():
     print("🧪 Testing Watermarking System...")
     
     try:
-        from qmnn.utils.watermark import (
+        from qmann.utils.watermark import (
             prepare_dataset_with_watermark, verify_dataset_watermark,
             WatermarkConfig, QuantumWatermarkEmbedder
         )
@@ -222,7 +222,7 @@ def test_surface_code_integration():
     print("🧪 Testing Surface Code Integration...")
     
     try:
-        from qmnn.error_correction import SurfaceCodeManager
+        from qmann.error_correction import SurfaceCodeManager
         
         # Test surface code manager
         surface_code = SurfaceCodeManager(code_distance=3, error_rate=0.005)
@@ -257,8 +257,8 @@ def test_mode_separation():
     print("🧪 Testing Mode Separation...")
     
     try:
-        from qmnn import recommend_mode, print_mode_guide, quick_start
-        from qmnn.config import (
+        from qmann import recommend_mode, print_mode_guide, quick_start
+        from qmann.config import (
             THEORETICAL_ANALYSIS, SIMULATION_VALIDATION, HARDWARE_PROOF_OF_CONCEPT,
             validate_experimental_setup
         )
@@ -296,7 +296,7 @@ def test_cost_estimation():
     
     try:
         sys.path.append('scripts')
-        from estimate_hardware_costs import estimate_experiment_cost, estimate_qmnn_experiment_cost
+        from estimate_hardware_costs import estimate_experiment_cost, estimate_qmann_experiment_cost
         
         # Test single experiment cost estimation
         cost_estimate = estimate_experiment_cost(
@@ -311,16 +311,16 @@ def test_cost_estimation():
         assert 'backend' in cost_estimate, "Missing backend info"
         assert cost_estimate['n_qubits'] == 6, "Wrong qubit count"
         
-        # Test QMNN experiment cost estimation
-        qmnn_estimate = estimate_qmnn_experiment_cost(
+        # Test QMANN experiment cost estimation
+        qmann_estimate = estimate_qmann_experiment_cost(
             n_qubits=6,
             memory_capacity=32,
             training_epochs=5,
             backends=['ibm_brisbane']
         )
         
-        assert 'experiment_parameters' in qmnn_estimate, "Missing experiment parameters"
-        assert 'backend_estimates' in qmnn_estimate, "Missing backend estimates"
+        assert 'experiment_parameters' in qmann_estimate, "Missing experiment parameters"
+        assert 'backend_estimates' in qmann_estimate, "Missing backend estimates"
         
         print("  ✅ Cost estimation working correctly")
         return True
@@ -364,7 +364,7 @@ def generate_production_report(test_results: Dict[str, bool]) -> str:
     total_tests = len(test_results)
     
     report = []
-    report.append("QMNN PRODUCTION READINESS REPORT")
+    report.append("QMANN PRODUCTION READINESS REPORT")
     report.append("=" * 50)
     report.append("")
     
@@ -430,7 +430,7 @@ def generate_production_report(test_results: Dict[str, bool]) -> str:
 
 def main():
     """Run all production readiness tests."""
-    print("🚀 QMNN PRODUCTION READINESS VALIDATION")
+    print("🚀 QMANN PRODUCTION READINESS VALIDATION")
     print("=" * 60)
     print("Testing enterprise-grade features and capabilities...")
     print()
@@ -475,7 +475,7 @@ def main():
     total_tests = len(results)
     
     if passed_tests == total_tests:
-        print("\n🎉 QMNN is PRODUCTION READY!")
+        print("\n🎉 QMANN is PRODUCTION READY!")
         return 0
     else:
         print(f"\n⚠️  {total_tests - passed_tests} tests failed. Address issues before production.")

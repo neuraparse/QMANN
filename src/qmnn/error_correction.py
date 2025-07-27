@@ -1,5 +1,5 @@
 """
-Practical Quantum Error Correction for QMNN
+Practical Quantum Error Correction for QMANN
 
 This module implements realistic quantum error correction techniques
 suitable for near-term quantum devices with limited qubit counts and

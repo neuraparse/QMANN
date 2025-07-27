@@ -1,7 +1,7 @@
 \section{Experimental Results}
 \label{sec:results}
 
-This section presents comprehensive experimental validation of the \qmnn architecture. We evaluate performance on standard machine learning benchmarks, analyze memory scaling properties, and demonstrate quantum advantages over classical approaches.
+This section presents comprehensive experimental validation of the \qmann architecture. We evaluate performance on standard machine learning benchmarks, analyze memory scaling properties, and demonstrate quantum advantages over classical approaches.
 
 \subsection{Experimental Setup}
 
@@ -37,7 +37,7 @@ All experiments were conducted on a hybrid quantum-classical computing environme
 
 \subsubsection{Datasets and Benchmarks}
 
-We evaluate \qmnn on diverse machine learning tasks:
+We evaluate \qmann on diverse machine learning tasks:
 
 \textbf{Image Classification}:
 \begin{itemize}
@@ -62,18 +62,18 @@ We evaluate \qmnn on diverse machine learning tasks:
 
 \subsection{MNIST Classification Results}
 
-Figure~\ref{fig:mnist_results} shows \qmnn performance on MNIST classification compared to classical baselines.
+Figure~\ref{fig:mnist_results} shows \qmann performance on MNIST classification compared to classical baselines.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\columnwidth]{figs/mnist_results.pdf}
-    \caption{MNIST classification results comparing \qmnn with classical approaches. \qmnn achieves 15\% improvement in accuracy while using 60\% fewer parameters.}
+    \caption{MNIST classification results comparing \qmann with classical approaches. \qmann achieves 15\% improvement in accuracy while using 60\% fewer parameters.}
     \label{fig:mnist_results}
 \end{figure}
 
 \textbf{Key Findings}:
 \begin{itemize}
-    \item \textbf{Accuracy}: \qmnn achieves 99.2\% test accuracy vs. 98.1\% for classical LSTM
+    \item \textbf{Accuracy}: \qmann achieves 99.2\% test accuracy vs. 98.1\% for classical LSTM
     \item \textbf{Efficiency}: 40\% faster convergence with quantum memory
     \item \textbf{Robustness}: Better performance on noisy/corrupted inputs
     \item \textbf{Memory Usage}: 60\% reduction in model parameters
@@ -93,23 +93,23 @@ Table~\ref{tab:mnist_comparison} provides detailed performance metrics.
         Transformer & 98.2 $\pm$ 0.2 & 3.8M & 52 & 320 \\
         NTM & 97.9 $\pm$ 0.4 & 2.8M & 67 & 240 \\
         DNC & 98.1 $\pm$ 0.3 & 3.2M & 71 & 280 \\
-        \textbf{\qmnn (Simulated)} & \textbf{98.6 $\pm$ 0.2} & \textbf{1.2M} & \textbf{38} & \textbf{95} \\
+        \textbf{\qmann (Simulated)} & \textbf{98.6 $\pm$ 0.2} & \textbf{1.2M} & \textbf{38} & \textbf{95} \\
         \bottomrule
     \end{tabular}
     \vspace{0.5em}
     \footnotesize
-    \textbf{Note}: QMNN results are from classical simulation of quantum operations.
+    \textbf{Note}: QMANN results are from classical simulation of quantum operations.
     Real quantum hardware performance may differ due to noise and decoherence.
 \end{table}
 
 \subsection{Memory Scaling Analysis}
 
-Figure~\ref{fig:memory_scaling} demonstrates the exponential memory capacity scaling of \qmnn compared to classical approaches.
+Figure~\ref{fig:memory_scaling} demonstrates the exponential memory capacity scaling of \qmann compared to classical approaches.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\columnwidth]{figs/memory_scaling.pdf}
-    \caption{Memory capacity scaling comparison. \qmnn achieves exponential scaling ($2^n$) with linear qubit count, while classical methods scale linearly.}
+    \caption{Memory capacity scaling comparison. \qmann achieves exponential scaling ($2^n$) with linear qubit count, while classical methods scale linearly.}
     \label{fig:memory_scaling}
 \end{figure}
 
@@ -125,12 +125,12 @@ Figure~\ref{fig:memory_scaling} demonstrates the exponential memory capacity sca
 
 \subsection{Noise Resilience}
 
-Figure~\ref{fig:noise_resilience} shows \qmnn performance under various noise levels, demonstrating robustness to quantum decoherence.
+Figure~\ref{fig:noise_resilience} shows \qmann performance under various noise levels, demonstrating robustness to quantum decoherence.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\columnwidth]{figs/noise_resilience.pdf}
-    \caption{Noise resilience analysis. \qmnn maintains >95\% performance up to 5\% noise level, with graceful degradation beyond.}
+    \caption{Noise resilience analysis. \qmann maintains >95\% performance up to 5\% noise level, with graceful degradation beyond.}
     \label{fig:noise_resilience}
 \end{figure}
 
@@ -152,7 +152,7 @@ Figure~\ref{fig:noise_resilience} shows \qmnn performance under various noise le
 
 \subsection{Algorithmic Task Performance}
 
-Table~\ref{tab:algorithmic_tasks} shows \qmnn performance on memory-intensive algorithmic tasks.
+Table~\ref{tab:algorithmic_tasks} shows \qmann performance on memory-intensive algorithmic tasks.
 
 \begin{table}[htbp]
     \centering
@@ -160,7 +160,7 @@ Table~\ref{tab:algorithmic_tasks} shows \qmnn performance on memory-intensive al
     \label{tab:algorithmic_tasks}
     \begin{tabular}{lccc}
         \toprule
-        Task & Classical LSTM & DNC & \qmnn \\
+        Task & Classical LSTM & DNC & \qmann \\
         \midrule
         Copy (length 20) & 85.2\% & 92.1\% & \textbf{97.8\%} \\
         Copy (length 50) & 72.1\% & 84.3\% & \textbf{94.2\%} \\
@@ -178,7 +178,7 @@ Figure~\ref{fig:complexity_analysis} compares computational complexity of memory
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\columnwidth]{figs/complexity_analysis.pdf}
-    \caption{Computational complexity comparison for memory operations. \qmnn achieves logarithmic scaling vs. linear for classical approaches.}
+    \caption{Computational complexity comparison for memory operations. \qmann achieves logarithmic scaling vs. linear for classical approaches.}
     \label{fig:complexity_analysis}
 \end{figure}
 
@@ -192,7 +192,7 @@ Figure~\ref{fig:complexity_analysis} compares computational complexity of memory
 
 \subsection{Ablation Studies}
 
-We conduct comprehensive ablation studies to understand the contribution of different \qmnn components.
+We conduct comprehensive ablation studies to understand the contribution of different \qmann components.
 
 \subsubsection{Quantum Memory Components}
 
@@ -209,7 +209,7 @@ Table~\ref{tab:ablation_memory} shows the impact of different quantum memory con
         No quantum memory & 98.1\% & 1.0× \\
         Classical QRAM & 98.7\% & 2.1× \\
         Quantum superposition & 99.0\% & 4.2× \\
-        Full \qmnn & \textbf{99.2\%} & \textbf{8.7×} \\
+        Full \qmann & \textbf{99.2\%} & \textbf{8.7×} \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -225,7 +225,7 @@ Table~\ref{tab:ablation_memory} shows the impact of different quantum memory con
 
 \subsection{Real-World Application}
 
-We demonstrate \qmnn on a real-world drug discovery task, predicting molecular properties from chemical structures.
+We demonstrate \qmann on a real-world drug discovery task, predicting molecular properties from chemical structures.
 
 \textbf{Dataset}: QM9 molecular property prediction (134k molecules)
 \textbf{Task}: Predict HOMO-LUMO gap, dipole moment, and other properties
@@ -256,7 +256,7 @@ We demonstrate \qmnn on a real-world drug discovery task, predicting molecular p
 
 \subsection{Summary}
 
-Our experimental results demonstrate significant advantages of \qmnn over classical approaches:
+Our experimental results demonstrate significant advantages of \qmann over classical approaches:
 
 \begin{enumerate}
     \item \textbf{Performance}: 15\% accuracy improvement on MNIST
@@ -266,4 +266,4 @@ Our experimental results demonstrate significant advantages of \qmnn over classi
     \item \textbf{Versatility}: Strong performance across diverse tasks
 \end{enumerate}
 
-These results establish \qmnn as a promising approach for quantum-enhanced machine learning, with clear pathways toward practical quantum advantage in memory-intensive learning tasks.
+These results establish \qmann as a promising approach for quantum-enhanced machine learning, with clear pathways toward practical quantum advantage in memory-intensive learning tasks.

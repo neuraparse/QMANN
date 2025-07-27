@@ -1,6 +1,6 @@
 ---
 name: Feature Request
-about: Suggest an idea for QMNN
+about: Suggest an idea for QMANN
 title: '[FEATURE] '
 labels: ['enhancement', 'needs-discussion']
 assignees: ''
@@ -14,7 +14,7 @@ A clear and concise description of the feature you'd like to see added.
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
 **Why is this feature important?**
-Explain how this feature would benefit QMNN users and the quantum ML community.
+Explain how this feature would benefit QMANN users and the quantum ML community.
 
 ## Detailed Description
 **Describe the solution you'd like**

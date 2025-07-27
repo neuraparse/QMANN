@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-QMNN Simulation Mode Example
+QMANN Simulation Mode Example
 
 This example demonstrates classical simulation of quantum operations,
 providing practical algorithm development and validation.
@@ -18,9 +18,9 @@ import matplotlib.pyplot as plt
 import time
 from typing import Dict, List, Tuple
 
-# QMNN imports
-from qmnn import QMNN, QMNNTrainer
-from qmnn.config import SIMULATION_VALIDATION, validate_experimental_setup
+# QMANN imports
+from qmann import QMANN, QMANNTrainer
+from qmann.config import SIMULATION_VALIDATION, validate_experimental_setup
 
 
 def create_memory_task_dataset(n_samples: int = 1000, seq_len: int = 20, 
@@ -74,8 +74,8 @@ def run_simulation_experiment():
     
     print(f"Dataset created: {X_train.shape}, {y_train.shape}")
     
-    # Create QMNN model (simulation constraints)
-    model = QMNN(
+    # Create QMANN model (simulation constraints)
+    model = QMANN(
         input_dim=8,
         hidden_dim=64,
         output_dim=3,
@@ -86,7 +86,7 @@ def run_simulation_experiment():
         dropout=0.1
     )
     
-    print(f"\nQMNN Model (Simulation Mode):")
+    print(f"\nQMANN Model (Simulation Mode):")
     quantum_info = model.get_quantum_info()
     print(f"  - Total parameters: {quantum_info['total_parameters']:,}")
     print(f"  - Quantum parameters: {quantum_info['quantum_parameters']:,}")
@@ -113,15 +113,15 @@ def run_simulation_experiment():
     print(f"  - Total parameters: {lstm_params:,}")
     
     # Training setup
-    qmnn_trainer = QMNNTrainer(model, learning_rate=1e-3)
-    lstm_trainer = QMNNTrainer(lstm_model, learning_rate=1e-3)
+    qmann_trainer = QMANNTrainer(model, learning_rate=1e-3)
+    lstm_trainer = QMANNTrainer(lstm_model, learning_rate=1e-3)
     
     # Training loop
     n_epochs = 25
     batch_size = 32
     
-    qmnn_losses = []
-    qmnn_accuracies = []
+    qmann_losses = []
+    qmann_accuracies = []
     lstm_losses = []
     lstm_accuracies = []
     memory_usages = []
@@ -129,9 +129,9 @@ def run_simulation_experiment():
     print(f"\nTraining for {n_epochs} epochs...")
     
     for epoch in range(n_epochs):
-        # QMNN training
-        qmnn_epoch_loss = 0
-        qmnn_epoch_acc = 0
+        # QMANN training
+        qmann_epoch_loss = 0
+        qmann_epoch_acc = 0
         memory_usage = 0
         n_batches = 0
         
@@ -139,14 +139,14 @@ def run_simulation_experiment():
             batch_X = X_train[i:i+batch_size]
             batch_y = y_train[i:i+batch_size]
             
-            # QMNN forward pass
-            qmnn_output, memory_info = model(batch_X)
+            # QMANN forward pass
+            qmann_output, memory_info = model(batch_X)
             memory_usage += memory_info['memory_usage']
             
-            # QMNN training step
-            qmnn_metrics = qmnn_trainer.train_step(batch_X, batch_y)
-            qmnn_epoch_loss += qmnn_metrics['loss']
-            qmnn_epoch_acc += qmnn_metrics['accuracy']
+            # QMANN training step
+            qmann_metrics = qmann_trainer.train_step(batch_X, batch_y)
+            qmann_epoch_loss += qmann_metrics['loss']
+            qmann_epoch_acc += qmann_metrics['accuracy']
             
             # LSTM training step
             lstm_metrics = lstm_trainer.train_step(batch_X, batch_y)
@@ -166,39 +166,39 @@ def run_simulation_experiment():
             lstm_epoch_acc += lstm_metrics['accuracy']
             
         # Record metrics
-        qmnn_losses.append(qmnn_epoch_loss / n_batches)
-        qmnn_accuracies.append(qmnn_epoch_acc / n_batches)
+        qmann_losses.append(qmann_epoch_loss / n_batches)
+        qmann_accuracies.append(qmann_epoch_acc / n_batches)
         lstm_losses.append(lstm_epoch_loss / n_batches)
         lstm_accuracies.append(lstm_epoch_acc / n_batches)
         memory_usages.append(memory_usage / n_batches)
         
         if (epoch + 1) % 5 == 0:
             print(f"Epoch {epoch+1}/{n_epochs}:")
-            print(f"  QMNN - Loss: {qmnn_losses[-1]:.4f}, Acc: {qmnn_accuracies[-1]:.4f}")
+            print(f"  QMANN - Loss: {qmann_losses[-1]:.4f}, Acc: {qmann_accuracies[-1]:.4f}")
             print(f"  LSTM - Loss: {lstm_losses[-1]:.4f}, Acc: {lstm_accuracies[-1]:.4f}")
             print(f"  Memory usage: {memory_usages[-1]:.2%}")
             
     # Final evaluation
-    qmnn_test_metrics = qmnn_trainer.validate(X_test, y_test)
+    qmann_test_metrics = qmann_trainer.validate(X_test, y_test)
     lstm_test_metrics = lstm_trainer.validate(X_test, y_test)
     
     print(f"\nFinal Test Results:")
-    print(f"  QMNN Test Accuracy: {qmnn_test_metrics['accuracy']:.4f}")
+    print(f"  QMANN Test Accuracy: {qmann_test_metrics['accuracy']:.4f}")
     print(f"  LSTM Test Accuracy: {lstm_test_metrics['accuracy']:.4f}")
     
-    improvement = (qmnn_test_metrics['accuracy'] - lstm_test_metrics['accuracy']) / lstm_test_metrics['accuracy'] * 100
-    print(f"  QMNN Improvement: {improvement:+.2f}%")
+    improvement = (qmann_test_metrics['accuracy'] - lstm_test_metrics['accuracy']) / lstm_test_metrics['accuracy'] * 100
+    print(f"  QMANN Improvement: {improvement:+.2f}%")
     
     return {
-        'qmnn_losses': qmnn_losses,
-        'qmnn_accuracies': qmnn_accuracies,
+        'qmann_losses': qmann_losses,
+        'qmann_accuracies': qmann_accuracies,
         'lstm_losses': lstm_losses,
         'lstm_accuracies': lstm_accuracies,
         'memory_usages': memory_usages,
-        'qmnn_test_acc': qmnn_test_metrics['accuracy'],
+        'qmann_test_acc': qmann_test_metrics['accuracy'],
         'lstm_test_acc': lstm_test_metrics['accuracy'],
         'improvement': improvement,
-        'qmnn_params': quantum_info['total_parameters'],
+        'qmann_params': quantum_info['total_parameters'],
         'lstm_params': lstm_params
     }
 
@@ -218,7 +218,7 @@ def analyze_quantum_simulation_effects():
         print(f"\nTesting {n_qubits} qubits...")
         
         # Create model with specific qubit count
-        model = QMNN(
+        model = QMANN(
             input_dim=8,
             hidden_dim=32,
             output_dim=3,
@@ -260,8 +260,8 @@ def plot_simulation_results(training_results: Dict, scaling_results: Dict):
     
     # Training curves
     plt.subplot(2, 3, 1)
-    epochs = range(1, len(training_results['qmnn_losses']) + 1)
-    plt.plot(epochs, training_results['qmnn_losses'], 'b-', label='QMNN', linewidth=2)
+    epochs = range(1, len(training_results['qmann_losses']) + 1)
+    plt.plot(epochs, training_results['qmann_losses'], 'b-', label='QMANN', linewidth=2)
     plt.plot(epochs, training_results['lstm_losses'], 'r--', label='LSTM', linewidth=2)
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
@@ -270,7 +270,7 @@ def plot_simulation_results(training_results: Dict, scaling_results: Dict):
     plt.grid(True)
     
     plt.subplot(2, 3, 2)
-    plt.plot(epochs, training_results['qmnn_accuracies'], 'b-', label='QMNN', linewidth=2)
+    plt.plot(epochs, training_results['qmann_accuracies'], 'b-', label='QMANN', linewidth=2)
     plt.plot(epochs, training_results['lstm_accuracies'], 'r--', label='LSTM', linewidth=2)
     plt.xlabel('Epoch')
     plt.ylabel('Accuracy')
@@ -306,8 +306,8 @@ def plot_simulation_results(training_results: Dict, scaling_results: Dict):
     
     # Parameter comparison
     plt.subplot(2, 3, 6)
-    models = ['QMNN', 'LSTM']
-    params = [training_results['qmnn_params'], training_results['lstm_params']]
+    models = ['QMANN', 'LSTM']
+    params = [training_results['qmann_params'], training_results['lstm_params']]
     colors = ['blue', 'red']
     
     bars = plt.bar(models, params, color=colors, alpha=0.7)
@@ -328,17 +328,17 @@ def generate_simulation_report(training_results: Dict, scaling_results: Dict) ->
     """Generate simulation experiment report."""
     
     report = []
-    report.append("QMNN SIMULATION MODE REPORT")
+    report.append("QMANN SIMULATION MODE REPORT")
     report.append("=" * 50)
     report.append("")
     
     # Executive Summary
     report.append("EXECUTIVE SUMMARY")
     report.append("-" * 20)
-    report.append(f"• QMNN vs LSTM improvement: {training_results['improvement']:+.2f}%")
-    report.append(f"• QMNN test accuracy: {training_results['qmnn_test_acc']:.4f}")
+    report.append(f"• QMANN vs LSTM improvement: {training_results['improvement']:+.2f}%")
+    report.append(f"• QMANN test accuracy: {training_results['qmann_test_acc']:.4f}")
     report.append(f"• LSTM test accuracy: {training_results['lstm_test_acc']:.4f}")
-    report.append(f"• Parameter efficiency: {training_results['qmnn_params']:,} vs {training_results['lstm_params']:,}")
+    report.append(f"• Parameter efficiency: {training_results['qmann_params']:,} vs {training_results['lstm_params']:,}")
     report.append("")
     
     # Simulation Details
@@ -375,7 +375,7 @@ def generate_simulation_report(training_results: Dict, scaling_results: Dict) ->
 
 def main():
     """Main simulation workflow."""
-    print("💻 QMNN SIMULATION MODE ANALYSIS")
+    print("💻 QMANN SIMULATION MODE ANALYSIS")
     print("=" * 50)
     print("Running classical simulation of quantum operations...")
     print("(Free computational experiment)")
@@ -400,9 +400,9 @@ def main():
         print(report)
         
         # Save results
-        with open('qmnn_simulation_report.txt', 'w') as f:
+        with open('qmann_simulation_report.txt', 'w') as f:
             f.write(report)
-        print(f"\n📄 Report saved to: qmnn_simulation_report.txt")
+        print(f"\n📄 Report saved to: qmann_simulation_report.txt")
         
         results = {
             'training': training_results,

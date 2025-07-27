@@ -1,7 +1,7 @@
 \section{Quantum Circuit Implementations}
 \label{app:circuits}
 
-This appendix provides detailed quantum circuit implementations for the key components of the QMNN architecture.
+This appendix provides detailed quantum circuit implementations for the key components of the QMANN architecture.
 
 \subsection{Quantum Random Access Memory (QRAM) Circuit}
 
@@ -152,7 +152,7 @@ where $\ket{\psi_{\text{ideal}}}$ is the ideal output state and $\ket{\psi_{\tex
 
 \subsubsection{Resource Requirements}
 
-Table~\ref{tab:circuit_resources} summarizes the quantum resource requirements for different QMNN components.
+Table~\ref{tab:circuit_resources} summarizes the quantum resource requirements for different QMANN components.
 
 \begin{table}[htbp]
     \centering
@@ -165,7 +165,7 @@ Table~\ref{tab:circuit_resources} summarizes the quantum resource requirements f
         QRAM (8 addresses) & 6 & 12 & 24 \\
         Encoding (4 features) & 4 & 8 & 6 \\
         Retrieval (4 outputs) & 4 & 6 & 4 \\
-        Full QMNN & 14 & 26 & 34 \\
+        Full QMANN & 14 & 26 & 34 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -212,4 +212,4 @@ def create_qram_circuit(n_address, n_data):
     return qc
 \end{verbatim}
 
-This implementation provides the foundation for more complex QMNN circuits and can be extended with additional features such as error correction and optimization.
+This implementation provides the foundation for more complex QMANN circuits and can be extended with additional features such as error correction and optimization.

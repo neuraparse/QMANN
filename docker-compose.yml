@@ -2,34 +2,34 @@ version: '3.8'
 
 services:
   # Development environment
-  qmnn-dev:
+  qmann-dev:
     build:
       context: .
       dockerfile: docker/Dockerfile
       target: development
-    container_name: qmnn-dev
+    container_name: qmann-dev
     ports:
       - "8888:8888"  # Jupyter Lab
       - "5000:5000"  # MLflow
       - "6006:6006"  # TensorBoard
     volumes:
       - .:/app
-      - qmnn-data:/app/data
-      - qmnn-results:/app/results
-      - qmnn-models:/app/models
+      - qmann-data:/app/data
+      - qmann-results:/app/results
+      - qmann-models:/app/models
     environment:
       - CUDA_VISIBLE_DEVICES=0
       - PYTHONPATH=/app/src
       - MLFLOW_TRACKING_URI=http://localhost:5000
     labels:
-      - "org.opencontainers.image.title=QMNN Development"
+      - "org.opencontainers.image.title=QMANN Development"
       - "org.opencontainers.image.description=Quantum Memory-Augmented Neural Networks Development Environment"
       - "org.opencontainers.image.vendor=Neura Parse"
       - "org.opencontainers.image.version=1.0.0"
       - "org.opencontainers.image.url=https://neuraparse.com"
       - "org.opencontainers.image.source=https://github.com/neuraparse/QMANN"
     networks:
-      - qmnn-network
+      - qmann-network
     stdin_open: true
     tty: true
     command: >
@@ -40,71 +40,71 @@ services:
       "
 
   # Production environment
-  qmnn-prod:
+  qmann-prod:
     build:
       context: .
       dockerfile: docker/Dockerfile
       target: production
-    container_name: qmnn-prod
+    container_name: qmann-prod
     volumes:
-      - qmnn-data:/app/data
-      - qmnn-results:/app/results
-      - qmnn-models:/app/models
+      - qmann-data:/app/data
+      - qmann-results:/app/results
+      - qmann-models:/app/models
     environment:
       - CUDA_VISIBLE_DEVICES=0
       - PYTHONPATH=/app/src
     networks:
-      - qmnn-network
+      - qmann-network
     profiles:
       - production
 
   # Benchmark runner
-  qmnn-benchmark:
+  qmann-benchmark:
     build:
       context: .
       dockerfile: docker/Dockerfile
       target: benchmark
-    container_name: qmnn-benchmark
+    container_name: qmann-benchmark
     volumes:
-      - qmnn-data:/app/data
-      - qmnn-results:/app/results
+      - qmann-data:/app/data
+      - qmann-results:/app/results
       - ./benchmarks:/app/benchmarks
     environment:
       - CUDA_VISIBLE_DEVICES=0
       - PYTHONPATH=/app/src
     networks:
-      - qmnn-network
+      - qmann-network
     profiles:
       - benchmark
 
   # Paper compilation
-  qmnn-paper:
+  qmann-paper:
     build:
       context: .
       dockerfile: docker/Dockerfile
       target: paper
-    container_name: qmnn-paper
+    container_name: qmann-paper
     volumes:
       - ./paper:/paper
-      - qmnn-paper-output:/paper/out
+      - qmann-paper-output:/paper/out
     networks:
-      - qmnn-network
+      - qmann-network
     profiles:
       - paper
 
   # MLflow tracking server
   mlflow:
     image: python:3.11-slim
-    container_name: qmnn-mlflow
+    container_name: qmann-mlflow
     ports:
       - "5000:5000"
     volumes:
-      - qmnn-mlflow:/mlflow
+      - qmann-mlflow:/mlflow
     environment:
       - MLFLOW_BACKEND_STORE_URI=sqlite:///mlflow/mlflow.db
       - MLFLOW_DEFAULT_ARTIFACT_ROOT=/mlflow/artifacts
     networks:
-      - qmnn-network
+      - qmann-network
     command: >
       bash -c "
         pip install mlflow[extras] &&
@@ -120,60 +120,60 @@ services:
   # Redis for caching (optional)
   redis:
     image: redis:7-alpine
-    container_name: qmnn-redis
+    container_name: qmann-redis
     ports:
       - "6379:6379"
     volumes:
-      - qmnn-redis:/data
+      - qmann-redis:/data
     networks:
-      - qmnn-network
+      - qmann-network
     profiles:
       - cache
 
   # PostgreSQL for metadata (optional)
   postgres:
     image: postgres:15-alpine
-    container_name: qmnn-postgres
+    container_name: qmann-postgres
     ports:
       - "5432:5432"
     volumes:
-      - qmnn-postgres:/var/lib/postgresql/data
+      - qmann-postgres:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=qmnn
-      - POSTGRES_USER=qmnn
-      - POSTGRES_PASSWORD=qmnn_password
+      - POSTGRES_DB=qmann
+      - POSTGRES_USER=qmann
+      - POSTGRES_PASSWORD=qmann_password
     networks:
-      - qmnn-network
+      - qmann-network
     profiles:
       - database
 
   # Quantum simulator service (if using remote simulators)
   qsim:
     image: qiskit/qasm-simulator
-    container_name: qmnn-qsim
+    container_name: qmann-qsim
     ports:
       - "8080:8080"
     networks:
-      - qmnn-network
+      - qmann-network
     profiles:
       - quantum
 
 networks:
-  qmnn-network:
+  qmann-network:
     driver: bridge
 
 volumes:
-  qmnn-data:
+  qmann-data:
     driver: local
-  qmnn-results:
+  qmann-results:
     driver: local
-  qmnn-models:
+  qmann-models:
     driver: local
-  qmnn-paper-output:
+  qmann-paper-output:
     driver: local
-  qmnn-mlflow:
+  qmann-mlflow:
     driver: local
-  qmnn-redis:
+  qmann-redis:
     driver: local
-  qmnn-postgres:
+  qmann-postgres:
     driver: local

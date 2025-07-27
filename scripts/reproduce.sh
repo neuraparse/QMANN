@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# QMNN Reproduction Script
+# QMANN Reproduction Script
 # This script reproduces all results from the paper
 
 set -e  # Exit on any error
@@ -22,7 +22,7 @@ FIGURES_DIR="paper/figs"
 mkdir -p "$RESULTS_DIR" "$DATA_DIR" "$MODELS_DIR" "$FIGURES_DIR"
 
 echo -e "${BLUE}========================================${NC}"
-echo -e "${BLUE}QMNN Reproduction Pipeline${NC}"
+echo -e "${BLUE}QMANN Reproduction Pipeline${NC}"
 echo -e "${BLUE}========================================${NC}"
 
 # Function to print status
@@ -55,9 +55,9 @@ check_dependencies() {
         exit 1
     fi
     
-    # Check if QMNN is installed
-    if ! python -c "import qmnn" &> /dev/null; then
-        print_warning "QMNN not installed, installing..."
+    # Check if QMANN is installed
+    if ! python -c "import qmann" &> /dev/null; then
+        print_warning "QMANN not installed, installing..."
         pip install -e .
     fi
     
@@ -136,7 +136,7 @@ run_experiments() {
     print_status "Running comparison with classical methods..."
     python scripts/experiment_comparison.py \
         --output "$RESULTS_DIR/classical_comparison.json" \
-        --methods "lstm,transformer,ntm,dnc,qmnn"
+        --methods "lstm,transformer,ntm,dnc,qmann"
     
     print_status "All experiments completed"
 }
@@ -265,7 +265,7 @@ main() {
     
     # Set quick mode parameters
     if [ "$QUICK_MODE" = true ]; then
-        export QMNN_QUICK_MODE=1
+        export QMANN_QUICK_MODE=1
         print_warning "Running in quick mode - results may differ from paper"
     fi
     

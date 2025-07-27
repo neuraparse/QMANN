@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-We actively support the following versions of QMNN with security updates:
+We actively support the following versions of QMANN with security updates:
 
 | Version | Supported          |
 | ------- | ------------------ |
@@ -11,7 +11,7 @@ We actively support the following versions of QMNN with security updates:
 
 ## Reporting a Vulnerability
 
-The QMNN team takes security seriously. If you discover a security vulnerability, please follow these steps:
+The QMANN team takes security seriously. If you discover a security vulnerability, please follow these steps:
 
 ### 1. Do Not Create a Public Issue
 
@@ -44,11 +44,11 @@ When reporting a vulnerability, please include:
 - **Proof of concept** (if applicable and safe to share)
 - **Suggested mitigation** (if you have ideas)
 
-## Security Considerations for QMNN
+## Security Considerations for QMANN
 
 ### Quantum-Specific Security
 
-QMNN involves quantum computing components that have unique security considerations:
+QMANN involves quantum computing components that have unique security considerations:
 
 1. **Quantum State Privacy**: Quantum states may contain sensitive information
 2. **Circuit Tampering**: Malicious modification of quantum circuits
@@ -66,7 +66,7 @@ Standard security practices apply to the classical components:
 
 ### Research Data Security
 
-Since QMNN is a research project:
+Since QMANN is a research project:
 
 1. **Experimental Data**: Secure storage and transmission of research data
 2. **Model Weights**: Protection of trained model parameters
@@ -79,12 +79,12 @@ Since QMNN is a research project:
 
 1. **Verify Downloads**: Always download from official sources
 2. **Check Signatures**: Verify package signatures when available
-3. **Use Virtual Environments**: Isolate QMNN installations
-4. **Regular Updates**: Keep QMNN and dependencies updated
+3. **Use Virtual Environments**: Isolate QMANN installations
+4. **Regular Updates**: Keep QMANN and dependencies updated
 
 ### Usage Security
 
-1. **Input Sanitization**: Validate all data inputs to QMNN models
+1. **Input Sanitization**: Validate all data inputs to QMANN models
 2. **Access Control**: Limit access to quantum hardware credentials
 3. **Network Security**: Use secure connections for remote quantum backends
 4. **Logging**: Monitor and log quantum circuit executions
@@ -132,7 +132,7 @@ For security-related questions or concerns:
 
 ## Acknowledgments
 
-We appreciate the security research community's efforts to improve QMNN's security. Researchers who responsibly disclose vulnerabilities will be acknowledged (with their permission) in our security advisories.
+We appreciate the security research community's efforts to improve QMANN's security. Researchers who responsibly disclose vulnerabilities will be acknowledged (with their permission) in our security advisories.
 
 ## Legal
 

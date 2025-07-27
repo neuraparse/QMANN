@@ -1,9 +1,9 @@
 """
-AgentOps Telemetry Integration for QMNN
+AgentOps Telemetry Integration for QMANN
 
 This module provides comprehensive telemetry and observability
 for quantum memory operations, enabling monitoring and optimization
-of QMNN performance in production environments.
+of QMANN performance in production environments.
 """
 
 import time
@@ -46,8 +46,8 @@ class QuantumMemoryMetrics:
 
 
 @dataclass
-class QMNNPerformanceMetrics:
-    """QMNN model performance metrics."""
+class QMANNPerformanceMetrics:
+    """QMANN model performance metrics."""
     timestamp: float
     model_id: str
     batch_size: int
@@ -64,7 +64,7 @@ class QMNNPerformanceMetrics:
 
 
 class PrometheusMetrics:
-    """Prometheus metrics collector for QMNN."""
+    """Prometheus metrics collector for QMANN."""
     
     def __init__(self, registry: Optional[CollectorRegistry] = None):
         """Initialize Prometheus metrics."""
@@ -72,72 +72,72 @@ class PrometheusMetrics:
         
         # Quantum memory metrics
         self.quantum_operations_total = Counter(
-            'qmnn_quantum_operations_total',
+            'qmann_quantum_operations_total',
             'Total quantum memory operations',
             ['operation_type', 'backend', 'success'],
             registry=self.registry
         )
         
         self.quantum_fidelity = Histogram(
-            'qmnn_quantum_fidelity',
+            'qmann_quantum_fidelity',
             'Quantum operation fidelity',
             ['operation_type', 'backend'],
             registry=self.registry
         )
         
         self.quantum_execution_time = Histogram(
-            'qmnn_quantum_execution_time_seconds',
+            'qmann_quantum_execution_time_seconds',
             'Quantum operation execution time',
             ['operation_type', 'backend'],
             registry=self.registry
         )
         
         self.quantum_cost = Counter(
-            'qmnn_quantum_cost_usd_total',
+            'qmann_quantum_cost_usd_total',
             'Total quantum operation cost in USD',
             ['backend'],
             registry=self.registry
         )
         
         self.memory_hit_ratio = Gauge(
-            'qmnn_memory_hit_ratio',
+            'qmann_memory_hit_ratio',
             'Quantum memory hit ratio',
             ['model_id'],
             registry=self.registry
         )
         
-        # QMNN model metrics
+        # QMANN model metrics
         self.model_forward_time = Histogram(
-            'qmnn_model_forward_time_seconds',
-            'QMNN model forward pass time',
+            'qmann_model_forward_time_seconds',
+            'QMANN model forward pass time',
             ['model_id'],
             registry=self.registry
         )
         
         self.quantum_advantage_ratio = Gauge(
-            'qmnn_quantum_advantage_ratio',
+            'qmann_quantum_advantage_ratio',
             'Quantum vs classical performance ratio',
             ['model_id'],
             registry=self.registry
         )
         
         self.model_accuracy = Gauge(
-            'qmnn_model_accuracy',
-            'QMNN model accuracy',
+            'qmann_model_accuracy',
+            'QMANN model accuracy',
             ['model_id', 'dataset'],
             registry=self.registry
         )
         
         # System metrics
         self.memory_usage = Gauge(
-            'qmnn_memory_usage_bytes',
-            'QMNN memory usage in bytes',
+            'qmann_memory_usage_bytes',
+            'QMANN memory usage in bytes',
             ['component'],
             registry=self.registry
         )
         
         self.decoherence_events = Counter(
-            'qmnn_decoherence_events_total',
+            'qmann_decoherence_events_total',
             'Total decoherence events',
             ['backend', 'severity'],
             registry=self.registry
@@ -146,10 +146,10 @@ class PrometheusMetrics:
 
 class AgentOpsIntegration:
     """
-    AgentOps integration for QMNN telemetry and monitoring.
+    AgentOps integration for QMANN telemetry and monitoring.
     
     Provides comprehensive observability for quantum memory operations
-    and QMNN model performance.
+    and QMANN model performance.
     """
     
     def __init__(self, api_key: Optional[str] = None, 
@@ -257,8 +257,8 @@ class AgentOpsIntegration:
             except Exception as e:
                 warnings.warn(f"AgentOps recording failed: {e}")
                 
-    def record_model_performance(self, metrics: QMNNPerformanceMetrics):
-        """Record QMNN model performance metrics."""
+    def record_model_performance(self, metrics: QMANNPerformanceMetrics):
+        """Record QMANN model performance metrics."""
         with self._metrics_lock:
             self.performance_metrics_buffer.append(metrics)
             
@@ -413,17 +413,17 @@ class AgentOpsIntegration:
         thread.start()
         
     def create_grafana_dashboard(self) -> Dict[str, Any]:
-        """Create Grafana dashboard configuration for QMNN metrics."""
+        """Create Grafana dashboard configuration for QMANN metrics."""
         dashboard = {
             "dashboard": {
-                "title": "QMNN Quantum Memory Monitoring",
+                "title": "QMANN Quantum Memory Monitoring",
                 "panels": [
                     {
                         "title": "Quantum Operations Rate",
                         "type": "graph",
                         "targets": [
                             {
-                                "expr": "rate(qmnn_quantum_operations_total[5m])",
+                                "expr": "rate(qmann_quantum_operations_total[5m])",
                                 "legendFormat": "{{operation_type}} - {{backend}}"
                             }
                         ]
@@ -433,7 +433,7 @@ class AgentOpsIntegration:
                         "type": "graph",
                         "targets": [
                             {
-                                "expr": "qmnn_quantum_fidelity",
+                                "expr": "qmann_quantum_fidelity",
                                 "legendFormat": "{{operation_type}} - {{backend}}"
                             }
                         ]
@@ -443,7 +443,7 @@ class AgentOpsIntegration:
                         "type": "singlestat",
                         "targets": [
                             {
-                                "expr": "qmnn_memory_hit_ratio",
+                                "expr": "qmann_memory_hit_ratio",
                                 "legendFormat": "{{model_id}}"
                             }
                         ]
@@ -453,7 +453,7 @@ class AgentOpsIntegration:
                         "type": "graph",
                         "targets": [
                             {
-                                "expr": "rate(qmnn_quantum_cost_usd_total[1h])",
+                                "expr": "rate(qmann_quantum_cost_usd_total[1h])",
                                 "legendFormat": "{{backend}}"
                             }
                         ]
@@ -463,7 +463,7 @@ class AgentOpsIntegration:
                         "type": "graph",
                         "targets": [
                             {
-                                "expr": "rate(qmnn_decoherence_events_total[5m])",
+                                "expr": "rate(qmann_decoherence_events_total[5m])",
                                 "legendFormat": "{{backend}} - {{severity}}"
                             }
                         ]
