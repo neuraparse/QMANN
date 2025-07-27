@@ -20,6 +20,212 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+class SurfaceCodeManager:
+    """
+    Surface Code Error Correction Manager
+
+    Implements practical surface code error correction for QRAM operations.
+    Surface codes are the most promising approach for fault-tolerant quantum computing.
+    """
+
+    def __init__(self, code_distance: int, error_rate: float):
+        """
+        Initialize surface code manager.
+
+        Args:
+            code_distance: Distance of the surface code (odd number)
+            error_rate: Physical error rate of the quantum device
+        """
+        if code_distance % 2 == 0:
+            raise ValueError("Surface code distance must be odd")
+
+        self.code_distance = code_distance
+        self.error_rate = error_rate
+
+        # Surface code parameters
+        self.data_qubits = code_distance ** 2
+        self.x_stabilizers = (code_distance - 1) * code_distance // 2
+        self.z_stabilizers = (code_distance - 1) * code_distance // 2
+        self.total_qubits = self.data_qubits + self.x_stabilizers + self.z_stabilizers
+
+        # Error correction threshold (surface code threshold ~1%)
+        self.threshold = 0.01
+        self.logical_error_rate = self._calculate_logical_error_rate()
+
+        # Syndrome measurement history
+        self.syndrome_history = []
+
+    def _calculate_logical_error_rate(self) -> float:
+        """Calculate logical error rate for surface code."""
+        if self.error_rate > self.threshold:
+            # Above threshold - error correction fails
+            return min(1.0, self.error_rate * 10)
+        else:
+            # Below threshold - exponential suppression
+            suppression_factor = (self.error_rate / self.threshold) ** ((self.code_distance + 1) // 2)
+            return self.error_rate * suppression_factor
+
+    def create_surface_code_circuit(self, logical_qubits: int = 1) -> QuantumCircuit:
+        """
+        Create surface code circuit for logical qubits.
+
+        Args:
+            logical_qubits: Number of logical qubits to encode
+
+        Returns:
+            Quantum circuit implementing surface code
+        """
+        total_qubits = logical_qubits * self.total_qubits
+        circuit = QuantumCircuit(total_qubits, total_qubits)
+
+        for logical_idx in range(logical_qubits):
+            offset = logical_idx * self.total_qubits
+
+            # Initialize logical |0⟩ state
+            self._initialize_logical_zero(circuit, offset)
+
+            # Add stabilizer measurements
+            self._add_stabilizer_measurements(circuit, offset)
+
+        return circuit
+
+    def _initialize_logical_zero(self, circuit: QuantumCircuit, offset: int):
+        """Initialize logical |0⟩ state in surface code."""
+        # For surface code, logical |0⟩ is initialized by measuring all Z stabilizers
+        # and applying corrections to ensure even parity
+
+        # Apply Hadamard to ancilla qubits for X stabilizers
+        for i in range(self.x_stabilizers):
+            ancilla_idx = offset + self.data_qubits + i
+            circuit.h(ancilla_idx)
+
+    def _add_stabilizer_measurements(self, circuit: QuantumCircuit, offset: int):
+        """Add stabilizer measurements to the circuit."""
+        # X stabilizer measurements
+        for i in range(self.x_stabilizers):
+            ancilla_idx = offset + self.data_qubits + i
+
+            # Connect to neighboring data qubits (simplified 1D chain for demo)
+            for j in range(min(4, self.data_qubits - i)):  # Max 4 neighbors
+                data_idx = offset + i + j
+                if data_idx < offset + self.data_qubits:
+                    circuit.cx(ancilla_idx, data_idx)
+
+            # Measure ancilla
+            circuit.measure(ancilla_idx, ancilla_idx)
+
+        # Z stabilizer measurements
+        for i in range(self.z_stabilizers):
+            ancilla_idx = offset + self.data_qubits + self.x_stabilizers + i
+
+            # Connect to neighboring data qubits
+            for j in range(min(4, self.data_qubits - i)):
+                data_idx = offset + i + j
+                if data_idx < offset + self.data_qubits:
+                    circuit.cz(ancilla_idx, data_idx)
+
+            # Measure ancilla
+            circuit.measure(ancilla_idx, ancilla_idx)
+
+    def decode_syndrome(self, measurement_results: Dict[str, int]) -> Dict[str, Any]:
+        """
+        Decode syndrome measurements to identify and correct errors.
+
+        Args:
+            measurement_results: Results from syndrome measurements
+
+        Returns:
+            Decoding results with error correction information
+        """
+        # Extract syndrome bits
+        syndrome_bits = self._extract_syndrome_bits(measurement_results)
+
+        # Simple minimum-weight perfect matching decoder (simplified)
+        error_correction = self._minimum_weight_decoder(syndrome_bits)
+
+        # Calculate correction success probability
+        success_probability = self._calculate_correction_success(syndrome_bits)
+
+        return {
+            'syndrome_bits': syndrome_bits,
+            'error_correction': error_correction,
+            'success_probability': success_probability,
+            'logical_error_rate': self.logical_error_rate
+        }
+
+    def _extract_syndrome_bits(self, measurement_results: Dict[str, int]) -> List[int]:
+        """Extract syndrome bits from measurement results."""
+        # Get most frequent measurement outcome
+        most_frequent = max(measurement_results.items(), key=lambda x: x[1])
+        bit_string = most_frequent[0]
+
+        # Extract syndrome bits (ancilla measurements)
+        syndrome_bits = []
+        for i in range(self.x_stabilizers + self.z_stabilizers):
+            bit_idx = self.data_qubits + i
+            if bit_idx < len(bit_string):
+                syndrome_bits.append(int(bit_string[bit_idx]))
+            else:
+                syndrome_bits.append(0)
+
+        return syndrome_bits
+
+    def _minimum_weight_decoder(self, syndrome_bits: List[int]) -> Dict[str, Any]:
+        """
+        Simplified minimum-weight perfect matching decoder.
+
+        In practice, this would use sophisticated graph algorithms.
+        Here we implement a simplified version for demonstration.
+        """
+        # Count syndrome violations
+        x_violations = sum(syndrome_bits[:self.x_stabilizers])
+        z_violations = sum(syndrome_bits[self.x_stabilizers:])
+
+        # Simple correction strategy
+        if x_violations > z_violations:
+            correction_type = "X_correction"
+            correction_weight = x_violations
+        else:
+            correction_type = "Z_correction"
+            correction_weight = z_violations
+
+        return {
+            'correction_type': correction_type,
+            'correction_weight': correction_weight,
+            'x_violations': x_violations,
+            'z_violations': z_violations
+        }
+
+    def _calculate_correction_success(self, syndrome_bits: List[int]) -> float:
+        """Calculate probability of successful error correction."""
+        total_violations = sum(syndrome_bits)
+
+        if total_violations == 0:
+            return 1.0  # No errors detected
+        elif total_violations <= self.code_distance:
+            # Correctable errors
+            return 1.0 - self.logical_error_rate
+        else:
+            # Too many errors - correction likely to fail
+            return 0.1
+
+    def get_surface_code_info(self) -> Dict[str, Any]:
+        """Get comprehensive surface code information."""
+        return {
+            'code_distance': self.code_distance,
+            'data_qubits': self.data_qubits,
+            'x_stabilizers': self.x_stabilizers,
+            'z_stabilizers': self.z_stabilizers,
+            'total_qubits': self.total_qubits,
+            'physical_error_rate': self.error_rate,
+            'logical_error_rate': self.logical_error_rate,
+            'threshold': self.threshold,
+            'below_threshold': self.error_rate < self.threshold,
+            'overhead_factor': self.total_qubits,
+            'syndrome_measurements': len(self.syndrome_history)
+        }
+
+
 class PracticalErrorCorrection(nn.Module):
     """
     Practical quantum error correction for near-term devices.
@@ -57,6 +263,12 @@ class PracticalErrorCorrection(nn.Module):
         self.error_history = []
         self.correction_success_rate = 0.0
         self.total_corrections = 0
+
+        # Surface code specific initialization
+        if correction_method == "surface":
+            self.surface_code = SurfaceCodeManager(code_distance, error_rate)
+        else:
+            self.surface_code = None
         
     def create_error_correction_circuit(self, logical_qubits: int) -> QuantumCircuit:
         """Create error correction circuit for given number of logical qubits."""

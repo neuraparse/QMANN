@@ -66,7 +66,171 @@ jobs:
         flags: unittests
         name: codecov-umbrella
 
-  quantum-tests:
+  test-noise-aware-qram:
+    name: Noise-Aware QRAM Tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev]
+        pip install qiskit qiskit-aer
+
+    - name: Test noise-aware QRAM
+      run: |
+        python -c "
+        from src.qmnn.core.noise_aware_qram import NoiseAwareQRAM, NoiseParameters
+        import numpy as np
+
+        # Test noise-aware QRAM
+        qram = NoiseAwareQRAM(memory_size=16, address_qubits=4)
+
+        # Test write operation
+        test_data = np.array([1.0, 0.5, -0.3, 0.8])
+        result = qram.write_with_noise(address=5, data=test_data)
+        print(f'Write result: {result}')
+        assert result['success'], 'Write operation failed'
+
+        # Test read operation
+        result = qram.read_with_noise(address=5)
+        print(f'Read result: {result}')
+        assert result['success'], 'Read operation failed'
+
+        # Get statistics
+        stats = qram.get_noise_statistics()
+        print(f'Noise statistics: {stats}')
+        assert 'noise_parameters' in stats, 'Missing noise parameters'
+        "
+
+  test-assetops-benchmarks:
+    name: AssetOps Benchmark Tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev]
+        pip install pandas scikit-learn
+
+    - name: Test AssetOps adapter
+      run: |
+        python -c "
+        from benchmarks.assetops_adapter import AssetOpsBenchmarkAdapter
+
+        # Test AssetOps adapter
+        adapter = AssetOpsBenchmarkAdapter()
+
+        # Test synthetic data generation
+        X, y = adapter.generate_synthetic_dataset('predictive_maintenance', n_samples=100)
+        print(f'Generated data shapes: X={X.shape}, y={y.shape}')
+        assert X.shape[0] == 100, 'Wrong number of samples'
+        assert len(X.shape) == 3, 'Wrong tensor dimensions'
+
+        # Test all tasks
+        for task_id in adapter.list_available_tasks():
+            task_info = adapter.get_task_info(task_id)
+            print(f'Task {task_id}: {task_info.description}')
+
+            # Generate small dataset for each task
+            X_task, y_task = adapter.generate_synthetic_dataset(task_id, n_samples=10)
+            assert X_task.shape[0] == 10, f'Wrong sample count for {task_id}'
+
+        # Get benchmark summary
+        summary = adapter.get_benchmark_summary()
+        print(f'Benchmark summary: {summary}')
+        assert summary['total_tasks'] > 0, 'No tasks found'
+        "
+
+  test-telemetry:
+    name: Telemetry Integration Tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev]
+        pip install prometheus-client
+
+    - name: Test telemetry integration
+      run: |
+        python -c "
+        from src.qmnn.telemetry.agentops_integration import (
+            AgentOpsIntegration, QuantumMemoryMetrics, QMNNPerformanceMetrics
+        )
+        import time
+
+        # Test telemetry without external dependencies
+        telemetry = AgentOpsIntegration(enable_agentops=False)
+
+        # Test quantum metrics recording
+        quantum_metrics = QuantumMemoryMetrics(
+            timestamp=time.time(),
+            operation_type='read',
+            memory_address=42,
+            memory_capacity_used=0.75,
+            quantum_fidelity=0.95,
+            classical_fallback=False,
+            execution_time_ms=150.0,
+            shots_used=1024,
+            cost_usd=0.10,
+            error_rate=0.01,
+            decoherence_time_us=50.0,
+            backend_name='ibm_simulator'
+        )
+
+        telemetry.record_quantum_operation(quantum_metrics)
+
+        # Test performance metrics recording
+        perf_metrics = QMNNPerformanceMetrics(
+            timestamp=time.time(),
+            model_id='qmnn_test',
+            batch_size=32,
+            sequence_length=50,
+            forward_pass_time_ms=200.0,
+            memory_hit_ratio=0.85,
+            quantum_advantage_ratio=1.2,
+            total_parameters=10000,
+            quantum_parameters=2000,
+            memory_usage_mb=512.0,
+            gpu_utilization=0.6,
+            accuracy=0.92
+        )
+
+        telemetry.record_model_performance(perf_metrics)
+
+        # Get statistics
+        stats = telemetry.get_real_time_stats()
+        print(f'Real-time stats: {stats}')
+        assert stats['total_quantum_operations'] > 0, 'No operations recorded'
+
+        summary = telemetry.get_quantum_metrics_summary()
+        print(f'Metrics summary: {summary}')
+        assert summary['count'] > 0, 'No metrics in summary'
+        "
+
+  test-mode-separation:
+    name: Mode Separation Tests
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4

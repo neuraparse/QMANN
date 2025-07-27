@@ -1,0 +1,41 @@
+QMNN Academic Research License
+
+Copyright (c) 2025 Bayram Eker and Contributors
+
+ACADEMIC AND RESEARCH USE LICENSE
+
+This license governs the use of the QMNN (Quantum Memory-Augmented Neural Networks) 
+software for academic and research purposes.
+
+PERMITTED USES:
+1. Academic research and education
+2. Non-commercial scientific research
+3. Publication of research results using this software
+4. Modification and distribution for academic purposes
+5. Use in academic courses and educational materials
+
+REQUIREMENTS:
+1. Attribution: You must cite the original QMNN paper in any publications
+2. Share-alike: Modifications must be shared under the same license
+3. Non-commercial: No commercial use without separate commercial license
+4. Notice: This license notice must be included in all copies
+
+CITATION REQUIREMENT:
+When using this software in academic work, please cite:
+
+@article{eker2025qmnn,
+  title={Quantum Memory-Augmented Neural Networks: Bridging Quantum Computing and Machine Learning},
+  author={Eker, Bayram and others},
+  journal={arXiv preprint arXiv:2025.XXXXX},
+  year={2025}
+}
+
+DISCLAIMER:
+This software is provided "as is" without warranty of any kind. The authors 
+are not liable for any damages arising from its use.
+
+COMMERCIAL USE:
+For commercial use, please contact: info@neuraparse.com
+
+This license is compatible with academic collaboration and open science principles
+while protecting commercial interests.
