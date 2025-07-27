@@ -22,6 +22,9 @@ try:
     QISKIT_AVAILABLE = True
 except ImportError:
     QISKIT_AVAILABLE = False
+    # Create dummy classes for type hints when Qiskit is not available
+    class QuantumCircuit:
+        pass
     warnings.warn("Qiskit not available. Real quantum hardware access disabled.")
 
 try:
@@ -30,6 +33,10 @@ try:
     CIRQ_AVAILABLE = True
 except ImportError:
     CIRQ_AVAILABLE = False
+    # Create dummy cirq module for type hints
+    class cirq:
+        class Circuit:
+            pass
     warnings.warn("Cirq not available. Google Quantum AI access disabled.")
 
 try:
