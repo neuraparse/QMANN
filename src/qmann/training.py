@@ -112,7 +112,7 @@ class QMANNTrainer:
             self.optimizer.zero_grad()
             
             # Forward pass
-            outputs, memory_content = self.model(data, store_memory=True)
+            outputs = self.model(data, store_memory=True)
             
             # Remove sequence dimension for loss computation
             if len(outputs.shape) == 3:
@@ -199,7 +199,7 @@ class QMANNTrainer:
                 if len(data.shape) == 2:
                     data = data.unsqueeze(1)
                     
-                outputs, _ = self.model(data, store_memory=False)
+                outputs = self.model(data, store_memory=False)
                 
                 # Remove sequence dimension for loss computation
                 if len(outputs.shape) == 3:
